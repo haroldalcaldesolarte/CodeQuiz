@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_23_171822) do
+ActiveRecord::Schema.define(version: 2024_10_23_174352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "categories_courses", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id", "course_id"], name: "index_categories_courses_on_category_id_and_course_id", unique: true
+    t.index ["category_id"], name: "index_categories_courses_on_category_id"
+    t.index ["course_id"], name: "index_categories_courses_on_course_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -21,6 +38,13 @@ ActiveRecord::Schema.define(version: 2024_10_23_171822) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "year"], name: "index_courses_on_name_and_year", unique: true
+  end
+
+  create_table "levels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_levels_on_name", unique: true
   end
 
   create_table "roles", force: :cascade do |t|
@@ -49,4 +73,6 @@ ActiveRecord::Schema.define(version: 2024_10_23_171822) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "categories_courses", "categories"
+  add_foreign_key "categories_courses", "courses"
 end

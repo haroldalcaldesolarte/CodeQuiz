@@ -1,0 +1,27 @@
+<%= form_with(model: categories_course) do |form| %>
+  <% if categories_course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(categories_course.errors.count, "error") %> prohibited this categories_course from being saved:</h2>
+
+      <ul>
+        <% categories_course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :category_id %>
+    <%= form.text_field :category_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_id %>
+    <%= form.text_field :course_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
