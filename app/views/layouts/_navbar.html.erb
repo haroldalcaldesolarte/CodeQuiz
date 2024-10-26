@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <!-- Logo -->
+  <div class="navbar-logo">
+    <div class="container">
+      <%= link_to "Logo", root_path %>
+    </div>
+  </div>
+  
+  <!-- Opciones de navegación -->
+  <div class="navbar-menu">
+    <%= link_to "Categorías", categories_path %>
+    <%= link_to "Cursos", courses_path %>
+    <%= link_to "Roles", roles_path %>
+    <%= link_to "Niveles", levels_path %>
+    <%= link_to "Cursos Categorias", categories_courses_path %>
+    <%= link_to "Kahoot", 'kahoot' %>
+  </div>
+  
+  <!-- Perfil (a la derecha) -->
+  <div class="navbar-profile">
+    <div class="container">
+      <%= link_to "Perfil", 'profile_path' %>
+    </div>
+  </div>
+</nav>

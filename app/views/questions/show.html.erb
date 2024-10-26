@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question text:</strong>
+  <%= @question.question_text %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @question.category_id %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @question.level_id %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @question.approved %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @question.author_id %>
+</p>
+
+<p>
+  <strong>Revisor:</strong>
+  <%= @question.revisor_id %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
