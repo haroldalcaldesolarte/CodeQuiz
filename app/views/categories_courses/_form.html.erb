@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+    <%= form.collection_select :category_id, @categories, :id, :name, prompt: "Selecciona una categoría" %>
   </div>
 
   <div class="field">
     <%= form.label :course_id %>
-    <%= form.text_field :course_id %>
+    <%= form.collection_select :course_id, @courses, :id, :course_display_name, prompt: "Selecciona un curso" %>
   </div>
 
   <div class="actions">

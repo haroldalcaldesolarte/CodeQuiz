@@ -1,5 +1,6 @@
 class CategoriesCoursesController < ApplicationController
   before_action :set_categories_course, only: %i[ show edit update destroy ]
+  before_action :set_init_variables, only: %i[ new edit update]
 
   # GET /categories_courses or /categories_courses.json
   def index
@@ -61,6 +62,11 @@ class CategoriesCoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_categories_course
       @categories_course = CategoriesCourse.find(params[:id])
+    end
+
+    def set_init_variables
+      @categories = Category.all
+      @courses = Course.all
     end
 
     # Only allow a list of trusted parameters through.
