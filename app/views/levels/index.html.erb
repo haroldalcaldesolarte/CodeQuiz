@@ -1,27 +1,26 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>Niveles <%= link_to 'Nuevo Nivel <i class="fas fa-circle-plus"></i>'.html_safe, new_level_path, class: 'btn btn-success'%></h1>
 
-<h1>Levels</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @levels.each do |level| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= level.name %></td>
-        <td><%= link_to 'Show', level %></td>
-        <td><%= link_to 'Edit', edit_level_path(level) %></td>
-        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nombre</th>
+        <th colspan="3">Acciones</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Level', new_level_path %>
+    <tbody>
+      <% @levels.each do |level| %>
+        <tr>
+          <td><%= level.name %> </td>
+          <td>
+            <%= link_to 'Show <i class="fas fa-magnifying-glass"></i>'.html_safe , level, class: 'btn btn-primary btn-sm'%>
+            <%= link_to 'Edit <i class="far fa-pen-to-square"></i>'.html_safe, edit_level_path(level), class: 'btn btn-warning btn-sm'%>
+            <%= link_to 'Destroy <i class="far fa-trash-can"></i>'.html_safe, level, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>

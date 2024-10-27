@@ -1,3 +1,18 @@
+ /* Centra el contenedor horizontalmente */
+ .container {
+  width: 80%; /* O ajusta el ancho según lo necesites */
+  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+  text-align: center; /* Alinea el texto dentro del contenedor al centro */
+}
+
+/* Enlace para crear un nuevo curso */
+.container a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* NAVBAR */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -33,10 +48,6 @@
 .navbar-menu a {
   color: #fff;
   text-decoration: none;
-}
-
-.navbar-menu a:hover {
-  color: #ddd;
 }
 
 .navbar-profile {
