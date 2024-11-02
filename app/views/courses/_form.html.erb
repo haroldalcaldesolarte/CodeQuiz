@@ -1,27 +1,39 @@
 <%= form_with(model: course) do |form| %>
   <% if course.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+      <h6><%= pluralize(course.errors.count, "error") %>. No se puede guardar este curso:</h2>
 
       <ul>
         <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li style="list-style:none"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row mb-3">
+    <%= form.label 'Nombre' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, required: true, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year %>
+  <div class="row mb-3">
+    <%= form.label 'Año' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.select :year, [1,2], {} , {class: "form-select mb-3", required: true}  %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
+    
+    <div>
+      <% if @course.persisted? %>
+        <%= link_to '<i class="fas fa-magnifying-glass"></i> Ver'.html_safe, @course, class: "btn btn-secondary"%>
+      <% end %>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, courses_path, class: "btn btn-dark"%>
+    </div>
   </div>
+
 <% end %>

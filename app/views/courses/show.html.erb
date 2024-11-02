@@ -1,13 +1,18 @@
+<div class="container">
+  <div class="row mb-3">
+    <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= @course.name %>" class="form-control" readonly>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+  <div class="row mb-3">
+    <label for="Año" class="col-sm-2 col-form-label">Año</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= @course.year %>" class="form-control" readonly>
+    </div>
+  </div>
 
-<p>
-  <strong>Year:</strong>
-  <%= @course.year %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+  <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
+  <%= link_to 'Back', courses_path , class: "btn btn-dark" %>
+</div>
