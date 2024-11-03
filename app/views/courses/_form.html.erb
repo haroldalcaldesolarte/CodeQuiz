@@ -5,7 +5,7 @@
 
       <ul>
         <% course.errors.each do |error| %>
-          <li style="list-style:none"><%= error.full_message %></li>
+          <li><%= error.message %></li>
         <% end %>
       </ul>
     </div>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit(@course.persisted? ? "Actualizar Curso" : "Crear Curso", class: "btn btn-primary") %>
     
     <div>
       <% if @course.persisted? %>

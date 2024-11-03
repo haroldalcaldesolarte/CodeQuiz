@@ -1,4 +1,6 @@
 <div class="container">
+  <h1>Ver Curso</h1>
+  <br>
   <div class="row mb-3">
     <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
     <div class="col-sm-10">
@@ -12,7 +14,11 @@
       <input type="text" value="<%= @course.year %>" class="form-control" readonly>
     </div>
   </div>
-
-  <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-warning" %>
-  <%= link_to 'Back', courses_path , class: "btn btn-dark" %>
+  
+  <div class= "actions">
+    <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_course_path(@course), class: "btn btn-warning" %>
+    <div>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, courses_path , class: "btn btn-dark" %>
+    </div>
+  </div>
 </div>

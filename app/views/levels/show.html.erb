@@ -1,8 +1,17 @@
+<div class="container">
+  <h1>Ver Nivel</h1>
+  <br>
+  <div class="row mb-3">
+    <label for="Nombre" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= @level.name %>" class="form-control" readonly>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @level.name %>
-</p>
-
-<%= link_to 'Edit', edit_level_path(@level) %> |
-<%= link_to 'Back', levels_path %>
+  <div class= "actions">
+    <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_level_path(@level), class: "btn btn-warning" %>
+    <div>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, levels_path , class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>

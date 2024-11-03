@@ -71,3 +71,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
+#error_explanation ul {
+  list-style-type: none;
+}

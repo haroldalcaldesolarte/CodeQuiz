@@ -1,22 +1,30 @@
 <%= form_with(model: role) do |form| %>
   <% if role.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(role.errors.count, "error") %> prohibited this role from being saved:</h2>
+      <h6><%= pluralize(role.errors.count, "error") %>. No se puede guardar este rol:</h6>
 
       <ul>
         <% role.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li><%= error.message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="row mb-3">
+    <%= form.label 'Nombre' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, required: true, class: "form-control" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(@role.persisted? ? "Actualizar Rol" : "Crear Rol", class: "btn btn-primary") %>
+    <div>
+      <% if @role.persisted? %>
+        <%= link_to '<i class="fas fa-magnifying-glass"></i> Ver'.html_safe, @role, class: "btn btn-secondary"%>
+      <% end %>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, roles_path, class: "btn btn-dark"%>
+    </div>
   </div>
 <% end %>

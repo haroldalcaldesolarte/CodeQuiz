@@ -4,6 +4,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>ID</th>
       <th>Curso</th>
       <th>Categoría</th>
       <th colspan="3">Acciones</th>
@@ -11,14 +12,15 @@
   </thead>
 
   <tbody>
-    <% @categories_courses.each do |categories_course| %>
+    <% @categories_courses.sort_by { |categories_course| categories_course.course.course_display_name }.each do |categories_course| %>
       <tr>
+        <td><%= categories_course.id %></td>
         <td><%= categories_course.course.course_display_name %></td>
         <td><%= categories_course.category.name %></td>
         <td>
-          <%= link_to 'Show <i class="fas fa-magnifying-glass"></i>'.html_safe, categories_course, class: 'btn btn-primary btn-sm' %>
-          <%= link_to 'Edit <i class="far fa-pen-to-square"></i>'.html_safe, edit_categories_course_path(categories_course), class: 'btn btn-warning btn-sm' %>
-          <%= link_to 'Destroy <i class="far fa-trash-can"></i>'.html_safe, categories_course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= link_to 'Ver <i class="fas fa-magnifying-glass"></i>'.html_safe, categories_course, class: 'btn btn-primary btn-sm' %>
+          <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_categories_course_path(categories_course), class: 'btn btn-warning btn-sm' %>
+          <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, categories_course, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
         </td>
       </tr>
     <% end %>

@@ -15,9 +15,9 @@
         <tr>
           <td><%= role.name %> </td>
           <td>
-            <%= link_to 'Show <i class="fas fa-magnifying-glass"></i>'.html_safe , role, class: 'btn btn-primary btn-sm'%>
-            <%= link_to 'Edit <i class="far fa-pen-to-square"></i>'.html_safe, edit_role_path(role), class: 'btn btn-warning btn-sm'%>
-            <%= link_to 'Destroy <i class="far fa-trash-can"></i>'.html_safe, role, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
+            <%= link_to 'Ver <i class="fas fa-magnifying-glass"></i>'.html_safe , role, class: 'btn btn-primary btn-sm'%>
+            <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_role_path(role), class: 'btn btn-warning btn-sm'%>
+            <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, role, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
           </td>
         </tr>
       <% end %>

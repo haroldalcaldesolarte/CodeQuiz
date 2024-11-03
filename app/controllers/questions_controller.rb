@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :init_variables, only: %i[ new edit update]
 
   # GET /questions or /questions.json
   def index
@@ -66,5 +67,10 @@ class QuestionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def question_params
       params.require(:question).permit(:question_text, :category_id, :level_id, :approved, :author_id, :revisor_id)
+    end
+
+    def init_variables
+      @categories = Category.all
+      @levels = Level.all
     end
 end

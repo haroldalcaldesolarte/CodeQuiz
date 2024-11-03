@@ -1,13 +1,25 @@
+<div class="container">
+  <h1>Ver Relación</h1>
+  <br>
+  <div class="row mb-3">
+    <label for="NombreCurso" class="col-sm-2 col-form-label">Curso</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= @course.course_display_name %>" class="form-control" readonly>
+    </div>
+  </div>
 
-<p>
-  <strong>Category:</strong>
-  <%= @categories_course.category_id %>
-</p>
+  <div class="row mb-3">
+    <label for="NombreCategoria" class="col-sm-2 col-form-label">Categoría</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= @category.name %>" class="form-control" readonly>
+    </div>
+  </div>
 
-<p>
-  <strong>Course:</strong>
-  <%= @categories_course.course_id %>
-</p>
-
-<%= link_to 'Edit', edit_categories_course_path(@categories_course) %> |
-<%= link_to 'Back', categories_courses_path %>
+  <%= link_to 'Edit', edit_categories_course_path(@categories_course) %>
+  <div class= "actions">
+    <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_categories_course_path(@categories_course), class: "btn btn-warning" %>
+    <div>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, categories_courses_path , class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>

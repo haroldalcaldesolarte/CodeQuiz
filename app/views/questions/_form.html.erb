@@ -1,35 +1,46 @@
 <%= form_with(model: question) do |form| %>
   <% if question.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h6><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h6>
 
       <ul>
         <% question.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li><%= error.message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :question_text %>
-    <%= form.text_field :question_text %>
+  <div class="row mb-3">
+    <%= form.label 'Pregunta' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :question_text, required: true, class: "form-control", rows: 3 %>
+    </div>
+  </div>
+  <br>
+
+  <div class="row mb-3">
+      <%= form.label 'Categoría' , class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-10">
+        <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
+      </div>
   </div>
 
-  <div class="field">
-    <%= form.label :category_id %>
-    <%= form.text_field :category_id %>
+  <div class="row mb-3">
+    <%= form.label 'Niveles' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :level_id, @levels, :id, :name, { prompt: "Selecciona un nivel" }, { class: "form-select mb-3", required: true} %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :level_id %>
-    <%= form.text_field :level_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :approved %>
-    <%= form.check_box :approved %>
-  </div>
+  <%if is_admin? %>
+    <div class="row mb-3">
+      <%= form.label 'Aprobado' , class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-1">
+        <%= form.check_box :approved, class: "form-check-input" %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :author_id %>
