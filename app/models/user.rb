@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def admin?
     self.role == Role.where(name: "admin").first
   end
+
+  def teacher?
+    self.role == Role.where(name: "teacher").first
+  end
 end

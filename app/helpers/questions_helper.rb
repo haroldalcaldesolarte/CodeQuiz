@@ -1,5 +1,5 @@
 module QuestionsHelper
-  def is_admin?
-    current_user.admin?
+  def is_revisor?
+    current_user.admin? || current_user.teacher?
   end
 end

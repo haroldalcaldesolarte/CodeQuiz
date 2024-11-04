@@ -1,11 +1,10 @@
-<%= form_with(model: question) do |form| %>
+<%= form_with(model: question) do |form| %> 
   <% if question.errors.any? %>
     <div id="error_explanation">
       <h6><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h6>
-
       <ul>
         <% question.errors.each do |error| %>
-          <li><%= error.message %></li>
+          <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
@@ -17,23 +16,22 @@
       <%= form.text_area :question_text, required: true, class: "form-control", rows: 3 %>
     </div>
   </div>
-  <br>
-
+  
   <div class="row mb-3">
-      <%= form.label 'Categoría' , class: "col-sm-2 col-form-label" %>
-      <div class="col-sm-10">
-        <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
-      </div>
+    <%= form.label 'Categoría' , class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
+    </div>
   </div>
 
   <div class="row mb-3">
-    <%= form.label 'Niveles' , class: "col-sm-2 col-form-label" %>
+    <%= form.label 'Nivel' , class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
       <%= form.collection_select :level_id, @levels, :id, :name, { prompt: "Selecciona un nivel" }, { class: "form-select mb-3", required: true} %>
     </div>
   </div>
 
-  <%if is_admin? %>
+  <% if is_revisor? %>
     <div class="row mb-3">
       <%= form.label 'Aprobado' , class: "col-sm-2 col-form-label" %>
       <div class="col-sm-1">
@@ -42,17 +40,60 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :author_id %>
-    <%= form.text_field :author_id %>
-  </div>
+  <hr>
 
-  <div class="field">
-    <%= form.label :revisor_id %>
-    <%= form.text_field :revisor_id %>
-  </div>
+  <h6>Respuestas</h6>
+  <br>
+  <div class="accordion accordion-flush" id="answersAccordion">
+    <%= form.fields_for :answers do |answer_form| %>
+      <% answer_index = answer_form.index + 1 %>
 
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading<%= answer_index %>">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= answer_index %>" aria-expanded="false" aria-controls="collapse<%= answer_index %>">
+            Respuesta <%= answer_index %>
+          </button>
+        </h2>
+        <div id="collapse<%= answer_index %>" class="accordion-collapse collapse" aria-labelledby="heading<%= answer_index %>">
+          <div class="accordion-body">
+            <div class="row mb-3">
+              <%= answer_form.label :answer_text, "Respuesta", class: "col-sm-2 col-form-label" %>
+              <div class="col-sm-10">
+                <%= answer_form.text_area :answer_text, required: true, class: "form-control", rows: 3 %>
+              </div>
+            </div>
+            <div class="form-check">
+              <%= answer_form.label :correct, "Es correcta", class: "form-check-label", for: "correctAnswer#{answer_index}" %>
+              <%= answer_form.check_box :correct, class: "form-check-input correct-checkbox", id: "correctAnswer#{answer_index}", onclick: "onlyOneCorrect(this)" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary", onclick: "atLeastOneCorrect()" %>
   </div>
 <% end %>
+
+<script>
+  function onlyOneCorrect(selectedCheckbox) {
+    const checkboxes = document.querySelectorAll(".correct-checkbox");
+    
+    checkboxes.forEach((checkbox) => {
+      if (checkbox !== selectedCheckbox) {
+        checkbox.checked = false;
+      }
+    });
+  }
+
+  function atLeastOneCorrect(){
+    let correctAnswers = document.querySelectorAll('#answersAccordion input[type="checkbox"][name*="[correct]"]:checked');
+      if (correctAnswers.length === 0) {
+        event.preventDefault(); // Evitar el envío del formulario
+        alert("Debes marcar al menos una respuesta como correcta.");
+      }
+  }
+</script>
+
