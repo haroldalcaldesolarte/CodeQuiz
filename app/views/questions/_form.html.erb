@@ -62,9 +62,10 @@
                 <%= answer_form.text_area :answer_text, required: true, class: "form-control", rows: 3 %>
               </div>
             </div>
-            <div class="form-check">
-              <%= answer_form.label :correct, "Es correcta", class: "form-check-label", for: "correctAnswer#{answer_index}" %>
-              <%= answer_form.check_box :correct, class: "form-check-input correct-checkbox", id: "correctAnswer#{answer_index}", onclick: "onlyOneCorrect(this)" %>
+
+            <div class="form-check d-flex align-items-center mb-3">
+              <%= answer_form.label :correct, class: "form-check-label mb-0", for: "correctAnswer#{answer_index}"%>
+              <%= answer_form.check_box :correct, class: "form-check-input me-2 correct-checkbox", id: "correctAnswer#{answer_index}", onclick: "onlyOneCorrect(this)" %>
             </div>
           </div>
         </div>

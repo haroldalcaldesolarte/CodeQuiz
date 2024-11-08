@@ -2,7 +2,7 @@
   <!-- Logo -->
   <div class="navbar-logo">
     <div class="container">
-      <%= link_to "Logo", root_path %>
+      <%= link_to "Logo", '' %>
     </div>
   </div>
   
@@ -20,7 +20,10 @@
   <!-- Perfil (a la derecha) -->
   <div class="navbar-profile">
     <div class="container">
-      <%= link_to "Perfil", 'profile_path' %>
+      <%= link_to "Perfil", 'dropdowns' %>
+      <% if user_signed_in? %>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+      <% end %>
     </div>
   </div>
 </nav>

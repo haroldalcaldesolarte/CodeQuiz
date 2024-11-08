@@ -1,54 +1,65 @@
-<h2>Sign up</h2>
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card text-center shadow p-4" style="width: 50rem;">
+    <h5 class="card-title mb-4">Nueva Cuenta</h5>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+      <div class="form-floating mb-3">
+        <%= f.text_field :name, autofocus: true, required: true, autocomplete: "Nombre", class: "form-control" %>
+        <%= f.label :name, 'Nombre' %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= f.text_field :surname, autofocus: true, required: true, autocomplete: "Apellidos", class: "form-control" %>
+        <%= f.label :surname, 'Apellidos' %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "form-control" %>
+        <%= f.label :email %>
+      </div>
+      <div class="row g-2">
+        <div class="col-md">
+          <div class="form-floating mb-3">
+            <%= f.collection_select :course_id, Course.all, :id, :course_display_name, {}, {class: "form-select", required: true} %>
+            <%= f.label :course, 'Curso' %>
+          </div>
+        </div>
+
+        <div class="col-md">
+          <div class="form-floating mb-3">
+            <%= f.text_field :username, autofocus: true, required: true, autocomplete: "Username", class: "form-control" %>
+            <%= f.label :username, 'Username' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-floating mb-3 position-relative">
+        <%= f.password_field :password, required: true, autocomplete: "new-password", class: "form-control" %>
+        <%= f.label :password, "Password (#{@minimum_password_length} characters minimum)" %>
+        <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" onclick="togglePassword('user_password')"></i>
+      </div>
+
+      <div class="form-floating mb-3 position-relative">
+        <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control" %>
+        <%= f.label :password_confirmation, 'Confirma Contraseña' %>
+        <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" onclick="togglePassword('user_password_confirmation')"></i>
+      </div>
+
+      <div class="actions_devise">
+        <%= f.submit "Crear cuenta", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :surname %><br />
-    <%= f.text_field :surname %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :course %><br />
-    <%= f.collection_select :course_id, Course.all, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role_id, Role.all, :id, :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<br><br><br>
+<script>
+  function togglePassword(id) {
+    const passwordField = document.getElementById(id);
+    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+    passwordField.setAttribute("type", type);
+  }
+</script>

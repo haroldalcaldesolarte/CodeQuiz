@@ -10,6 +10,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+      
+  validates :role, presence: true
+  before_validation :set_default_role, on: :create
 
   def admin?
     self.role == Role.where(name: "admin").first
@@ -17,5 +20,15 @@ class User < ApplicationRecord
 
   def teacher?
     self.role == Role.where(name: "teacher").first
+  end
+
+  def student?
+    self.role == Role.where(name: "student").first
+  end
+
+  private
+
+  def set_default_role
+    self.role ||= Role.where(name: "student").first
   end
 end
