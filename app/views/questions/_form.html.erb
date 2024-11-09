@@ -63,9 +63,11 @@
               </div>
             </div>
 
-            <div class="form-check d-flex align-items-center mb-3">
-              <%= answer_form.label :correct, class: "form-check-label mb-0", for: "correctAnswer#{answer_index}"%>
-              <%= answer_form.check_box :correct, class: "form-check-input me-2 correct-checkbox", id: "correctAnswer#{answer_index}", onclick: "onlyOneCorrect(this)" %>
+            <div class="row mb-3">
+              <%= answer_form.label 'Correcta', class: "col-sm-2 col-form-label", for: "correctAnswer#{answer_index}" %>
+              <div class="col-sm-1">
+                <%= answer_form.check_box :correct, class: "form-check-input correct-checkbox", id: "correctAnswer#{answer_index}", onclick: "onlyOneCorrect(this)" %>
+              </div>
             </div>
           </div>
         </div>
@@ -75,7 +77,11 @@
   <br>
   <div class="actions">
     <%= form.submit class: "btn btn-primary", onclick: "atLeastOneCorrect()" %>
+    <div>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, questions_path , class: "btn btn-dark" %>
+    </div>
   </div>
+  <br><br>
 <% end %>
 
 <script>

@@ -21,13 +21,7 @@
           <td><%= question.category.name %></td>
           <td><%= question.level.name %></td>
           <td>
-            <%if question.approved %>
-              <i class="fas fa-square-check text-success" title="Aprobada"></i>
-            <% elsif !question.approved && question.revisor.nil? %>
-              <i class="fas fa-clock text-secondary" title="Pendiente"></i>
-            <% else %>
-              <i class="fas fa-square-xmark text-danger" title="Rechazada"></i>
-            <% end %>
+            <%= question_status_icon(question) %>
           </td>
           <td><%= question.author.username %></td>
           <td><%= question.revisor.username unless question.revisor.nil?  %></td>

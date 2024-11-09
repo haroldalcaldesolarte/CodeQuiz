@@ -26,7 +26,8 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.author = current_user
-    @question.approved = false if question_params[:approved].nil?
+    @question.approved = nil if question_params[:approved] == "0" #Si no se marca el check de aprobado se envia un cero
+    #En la creación de la pregunta pondremos aprobado a nil y esa sera nuestro estado de pendiente
 
     respond_to do |format|
       if @question.save
