@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :roles
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+  # config/routes.rb
+  resources :admin, only: [:index] do
+    collection do
+      post 'upload_questions', to: 'admin#uploadQuestions'
+    end
+  end
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'
