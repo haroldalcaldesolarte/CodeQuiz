@@ -1,0 +1,2 @@
+module GameResponsesHelper
+end

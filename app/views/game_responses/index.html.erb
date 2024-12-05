@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Game Responses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Game session</th>
+      <th>Question</th>
+      <th>Correct</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @game_responses.each do |game_response| %>
+      <tr>
+        <td><%= game_response.game_session_id %></td>
+        <td><%= game_response.question_id %></td>
+        <td><%= game_response.correct %></td>
+        <td><%= link_to 'Show', game_response %></td>
+        <td><%= link_to 'Edit', edit_game_response_path(game_response) %></td>
+        <td><%= link_to 'Destroy', game_response, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Game Response', new_game_response_path %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_04_102812) do
+ActiveRecord::Schema.define(version: 2024_11_17_164455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,26 @@ ActiveRecord::Schema.define(version: 2024_11_04_102812) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name", "year"], name: "index_courses_on_name_and_year", unique: true
+  end
+
+  create_table "game_responses", force: :cascade do |t|
+    t.bigint "game_session_id", null: false
+    t.bigint "question_id", null: false
+    t.boolean "correct"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_session_id"], name: "index_game_responses_on_game_session_id"
+    t.index ["question_id"], name: "index_game_responses_on_question_id"
+  end
+
+  create_table "game_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_game_sessions_on_category_id"
+    t.index ["user_id"], name: "index_game_sessions_on_user_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -100,6 +120,10 @@ ActiveRecord::Schema.define(version: 2024_11_04_102812) do
   add_foreign_key "answers", "questions"
   add_foreign_key "categories_courses", "categories"
   add_foreign_key "categories_courses", "courses"
+  add_foreign_key "game_responses", "game_sessions"
+  add_foreign_key "game_responses", "questions"
+  add_foreign_key "game_sessions", "categories"
+  add_foreign_key "game_sessions", "users"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "levels"
   add_foreign_key "questions", "users", column: "author_id"

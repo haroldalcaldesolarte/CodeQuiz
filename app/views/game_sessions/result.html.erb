@@ -1,0 +1,14 @@
+<h1>Resultados</h1>
+<p>Puntaje Final: <%= @game_session.score %></p>
+
+<ul>
+  <% @responses.each do |response| %>
+    <li>
+      Pregunta: <%= response.question.question_text %><br>
+      Respuesta Correcta: <%= response.correct %><br>
+      Tu Respuesta: <%= response.correct ? 'Correcta' : 'Incorrecta' %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Jugar de Nuevo", game_sessions_path, class: "btn btn-primary" %>

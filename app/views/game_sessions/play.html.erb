@@ -1,0 +1,56 @@
+<style>
+  .answer-button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .answer-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+</style>
+
+<div class="container py-4">
+  <!-- Barra superior -->
+  <div class="d-flex justify-content-between mb-4">
+    <h4 class="text-primary">Pregunta <%= session[:current_question_index] + 1 %> de <%= session[:question_ids].size %></h4>
+    <h4 class="text-success">Puntuación: <%= @game_session.score %></h4>
+  </div>
+
+  <!-- Pregunta en el centro -->
+  <div class="text-center mb-4">
+    <h3 class="fw-bold text-dark"><%= @question.question_text %></h3>
+  </div>
+
+  <!-- Formulario único -->
+  <%= form_with url: answer_game_sessions_path, method: :post do |form| %>
+    <%= form.hidden_field :question_id, value: @question.id %>
+    <%= form.hidden_field :answer_id, id: "selected_answer_id" %>
+
+    <div class="row g-3">
+      <% @question.answers.shuffle.each do |answer| %>
+        <div class="col-md-6">
+          <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button" data-answer-id="<%= answer.id %>">
+            <%= answer.answer_text %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const answerButtons = document.querySelectorAll(".answer-button");
+    const answerInput = document.getElementById("selected_answer_id");
+    const answerForm = document.querySelector("form");
+
+    answerButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        answerInput.value = button.getAttribute("data-answer-id");
+        answerForm.submit();
+      });
+    });
+  });
+</script>

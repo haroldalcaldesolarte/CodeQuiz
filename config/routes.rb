@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :game_responses
   resources :answers
   resources :questions
   resources :categories_courses
@@ -7,6 +8,14 @@ Rails.application.routes.draw do
   resources :courses
   resources :roles
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :game_sessions, only: [:index, :new, :create] do
+    collection do
+      get :play
+      post :answer
+      get :result
+    end
+  end
 
   # config/routes.rb
   resources :admin, only: [:index] do

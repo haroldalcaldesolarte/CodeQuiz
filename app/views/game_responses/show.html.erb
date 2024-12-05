@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Game session:</strong>
+  <%= @game_response.game_session_id %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @game_response.question_id %>
+</p>
+
+<p>
+  <strong>Correct:</strong>
+  <%= @game_response.correct %>
+</p>
+
+<%= link_to 'Edit', edit_game_response_path(@game_response) %> |
+<%= link_to 'Back', game_responses_path %>
