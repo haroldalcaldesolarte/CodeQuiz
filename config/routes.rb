@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # config/routes.rb
   resources :admin, only: [:index] do
     collection do
-      post 'upload_questions', to: 'admin#uploadQuestions'
+      post 'upload_questions', to: 'admin#upload_questions'
     end
   end
 

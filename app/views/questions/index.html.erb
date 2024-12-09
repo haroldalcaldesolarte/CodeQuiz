@@ -1,5 +1,11 @@
 <div class="container">
-  <h1>Preguntas <%= link_to 'Nueva Pregunta <i class="fas fa-circle-plus"></i>'.html_safe, new_question_path, class: "btn btn-success" %></h1>
+  <h1>
+    Preguntas 
+    <%= link_to 'Nueva Pregunta <i class="fas fa-circle-plus"></i>'.html_safe, new_question_path, class: "btn btn-success" %>
+    <% if current_user.superuser? %>
+      <%= link_to 'Cargar Preguntas <i class="fas fa-cloud-arrow-up"></i>'.html_safe, admin_index_path, class: "btn btn-primary" %>
+    <% end %>
+  </h1>
   <br>
   <table class="table table-striped">
     <thead>
@@ -26,9 +32,9 @@
           <td><%= question.author.username %></td>
           <td><%= question.revisor.username unless question.revisor.nil?  %></td>
           <td>
-            <%= link_to 'Ver <i class="fas fa-magnifying-glass"></i>'.html_safe , question, class: 'btn btn-primary btn-sm'%>
-            <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm'%>
-            <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, question, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
+            <%= link_to '<i class="fas fa-magnifying-glass"></i>'.html_safe , question, class: 'btn btn-primary btn-sm'%>
+            <%= link_to '<i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm'%>
+            <%= link_to '<i class="far fa-trash-can"></i>'.html_safe, question, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'%>
           </td>
         </tr>
       <% end %>

@@ -12,18 +12,15 @@
 </style>
 
 <div class="container py-4">
-  <!-- Barra superior -->
   <div class="d-flex justify-content-between mb-4">
     <h4 class="text-primary">Pregunta <%= session[:current_question_index] + 1 %> de <%= session[:question_ids].size %></h4>
     <h4 class="text-success">Puntuación: <%= @game_session.score %></h4>
   </div>
 
-  <!-- Pregunta en el centro -->
   <div class="text-center mb-4">
     <h3 class="fw-bold text-dark"><%= @question.question_text %></h3>
   </div>
 
-  <!-- Formulario único -->
   <%= form_with url: answer_game_sessions_path, method: :post do |form| %>
     <%= form.hidden_field :question_id, value: @question.id %>
     <%= form.hidden_field :answer_id, id: "selected_answer_id" %>

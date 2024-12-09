@@ -4,11 +4,63 @@
       <h5 class="card-title">Sube tus preguntas en formato JSON</h5> 
       <div id="drop-zone" class="p-5 border border-primary rounded" style="border-style: dashed; cursor: pointer;">
         <p id="drop-zone-text">Arrastra y suelta el archivo aquí, o haz clic para seleccionarlo</p>
-        <input type="file" id="file-input" style="display: none;">
+        <input type="file" id="file-input" accept="application/json" style="display: none;">
         <p id="file-name" class="mt-3 text-primary font-weight-bold" style="display: none;"></p>
       </div>
-      <button id="upload-button" class="btn btn-primary mt-3">Subir archivo</button>
+      <button id="upload-button" class="btn btn-primary mt-3">Subir archivo
+        <i class="fas fa-cloud-arrow-up"></i>
+      </button>
     </div>
+  </div>
+
+  <div class="text-start mt-4">
+    <h6>Formato JSON esperado:</h6>
+    <pre>
+      {
+        "questions":[
+          {
+            "text": "¿Qué componente es responsable de la ejecución de las instrucciones en un sistema informático?",
+            "category_id": 1,
+            "level_id": 1,
+            "approved": true,
+            "author_id": 1,
+            "revisor_id": 1,
+            "answers": [
+              {"text": "CPU", "correct": true},
+              {"text": "RAM", "correct": false},
+              {"text": "Disco duro", "correct": false},
+              {"text": "Placa base", "correct": false}
+            ]
+          },
+          {
+            "text": "¿Qué función cumple la memoria RAM en un sistema?",
+            "category_id": 1,
+            "level_id": 1,
+            "approved": true,
+            "answers": [
+              {"text": "Almacenar datos temporalmente", "correct": true},
+              {"text": "Almacenar datos permanentemente", "correct": false},
+              {"text": "Ejecutar programas", "correct": false },
+              {"text": "Controlar el sistema operativo","correct": false}
+            ]
+          },
+          {
+            "text": "¿Qué es una clave primaria en una base de datos?",
+            "category_id": 2,
+            "level_id": 2,
+            "approved": true,
+            "author_id": 1,
+            "revisor_id": 2,
+            "answers": [
+              {"text": "Un campo único que identifica un registro", "correct": true},
+              {"text": "Un campo que establece relaciones entre tablas", "correct": false},
+              {"text": "Un índice que acelera las búsquedas", "correct": false},
+              {"text": "Un campo que contiene datos redundantes","correct": false}
+            ]
+          }
+        ]
+      }
+    </pre>
   </div>
 </div>
 
@@ -78,9 +130,9 @@
       .then(response => response.json())
       .then(data => {
         if (data.success) {
-          alert("Archivo subido y procesado con éxito");
+          alert(data.message);
         } else {
-          alert("Hubo un problema al procesar el archivo.");
+          alert(data.message);
         }
       })
       .catch(error => {

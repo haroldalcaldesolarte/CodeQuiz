@@ -26,6 +26,10 @@ class User < ApplicationRecord
     self.role == Role.where(name: "student").first
   end
 
+  def superuser?
+    self.role == Role.where(name: "admin").first || self.role == Role.where(name: "teacher").first
+  end
+
   private
 
   def set_default_role
