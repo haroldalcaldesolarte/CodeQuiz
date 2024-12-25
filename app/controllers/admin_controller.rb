@@ -4,11 +4,6 @@ class AdminController < ApplicationController
   end
 
   def upload_questions
-    #CONTROL MAS FERREO, 
-    # Comprobar que tiene categoria valida, text, level valido
-    # Lo mismo para las respuestas, que sean 4 y que haya una correcta
-    # Si no que no deje crear ninguna respuesta
-    #Indicar en la vista el formato de JSON que tiene que tener para que lo hagan correctamente
     begin
       raise "Solo pueden usar esta funcionalidad profesores o administradores" unless current_user.superuser?
 
@@ -32,6 +27,11 @@ class AdminController < ApplicationController
       end
 
       #Si no hay errores en el JSON creamos las preguntas y respuestas
+      ActiveRecord::Base.transaction do
+        json_data['questions'].each do |question_data|
+          create_question_and_answers(question_data)
+        end
+      end
 
       render json: { success: true, message: "Preguntas cargadas exitosamente." }, status: :ok
     rescue Exception => e
@@ -49,12 +49,12 @@ class AdminController < ApplicationController
           errors << "Pregunta ##{index + 1}: El campo 'text' no puede estar vacío."
         end
 
-        category = Category.find(question_data['category_id'])
+        category = Category.find_by(id: question_data['category_id'])
         if category.nil?
           errors << "Pregunta ##{index + 1}: La categoría con el ID: '#{question_data['category_id']}' no existe."
         end
 
-        level = Level.find(question_data['level_id'])
+        level = Level.find_by(id: question_data['level_id'])
         if level.nil?
           errors << "Pregunta ##{index + 1}: El nivel con el ID: '#{question_data['level_id']}' no existe."
         end
@@ -75,6 +75,27 @@ class AdminController < ApplicationController
         end
       end
       errors
+    end
+
+    def create_question_and_answers(question_data)
+      category = Category.find(question_data['category_id'])
+      level = Level.find(question_data['level_id'])
+  
+      question = Question.create!(
+        question_text: question_data['text'],
+        category: category,
+        level: level,
+        approved: question_data['approved'].nil? ? true : question_data['approved'],
+        author_id: question_data['author_id'].present? ? question_data['author_id'] : current_user.id,
+        revisor_id: question_data['revisor_id'].present? ? question_data['revisor_id'] : current_user.id
+      )
+  
+      question_data['answers'].each do |answer_data|
+        question.answers.create!(
+          answer_text: answer_data['text'],
+          correct: answer_data['correct']
+        )
+      end
     end
 end
 
