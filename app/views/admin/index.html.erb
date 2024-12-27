@@ -1,3 +1,9 @@
+<div id="loader" class="d-none mask position-fixed opacity-75 bg-dark top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center" style="z-index: 9999;">
+  <div class="spinner-border text-primary" style="width: 4rem; height: 4rem;" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div>
+
 <div class="container mt-5">
   <div class="card shadow-lg">
     <div class="card-body text-center">
@@ -65,80 +71,108 @@
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const dropZone = document.getElementById("drop-zone");
-    const fileInput = document.getElementById("file-input");
-    const fileNameDisplay = document.getElementById("file-name");
-    const uploadButton = document.getElementById("upload-button");
+ document.addEventListener("DOMContentLoaded", function() {
+  const dropZone = document.getElementById("drop-zone");
+  const fileInput = document.getElementById("file-input");
+  const fileNameDisplay = document.getElementById("file-name");
+  const uploadButton = document.getElementById("upload-button");
+  const loader = document.getElementById("loader");
 
-    // Abre el selector de archivos al hacer clic en el área de drop
-    dropZone.addEventListener("click", () => fileInput.click());
+  // Abre el selector de archivos al hacer clic en el área de drop
+  dropZone.addEventListener("click", () => fileInput.click());
 
-    // Maneja el evento "drag and drop" solo para seleccionar el archivo
-    dropZone.addEventListener("dragover", (e) => {
-      e.preventDefault();
-      dropZone.classList.add("bg-light", "border-success");
-    });
+  // Maneja el evento "drag and drop" solo para seleccionar el archivo
+  dropZone.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    dropZone.classList.add("bg-light", "border-success");
+  });
 
-    dropZone.addEventListener("dragleave", () => {
-      dropZone.classList.remove("bg-light", "border-success");
-    });
+  dropZone.addEventListener("dragleave", () => {
+    dropZone.classList.remove("bg-light", "border-success");
+  });
 
-    dropZone.addEventListener("drop", (e) => {
-      e.preventDefault();
-      dropZone.classList.remove("bg-light", "border-success");
-      const file = e.dataTransfer.files[0];
-      if (file) displayFileName(file);
-      fileInput.files = e.dataTransfer.files; // Actualiza el input file para almacenar el archivo
-    });
+  dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("bg-light", "border-success");
+    const file = e.dataTransfer.files[0];
+    if (file) displayFileName(file);
+    fileInput.files = e.dataTransfer.files; // Actualiza el input file para almacenar el archivo
+  });
 
-    // Muestra el nombre del archivo seleccionado
-    fileInput.addEventListener("change", () => {
-      const file = fileInput.files[0];
-      if (file) displayFileName(file);
-    });
+  // Muestra el nombre del archivo seleccionado
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    if (file) displayFileName(file);
+  });
 
-    // Subir archivo al hacer clic en el botón
-    uploadButton.addEventListener("click", () => {
-      const file = fileInput.files[0];
-      if (file) {
-        uploadFile(file);
-      } else {
-        alert("Por favor, selecciona un archivo primero.");
-      }
-    });
-
-    // Muestra el nombre del archivo seleccionado
-    function displayFileName(file) {
-      document.getElementById("drop-zone-text").style.display = "none";
-      fileNameDisplay.style.display = "block";
-      fileNameDisplay.textContent = `Archivo seleccionado: ${file.name}`;
-    }
-
-    // Función para enviar el archivo al servidor
-    function uploadFile(file) {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      fetch("<%= upload_questions_admin_index_path %>", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert(data.message);
-        } else {
-          alert(data.message);
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("Hubo un problema al procesar el archivo. Error: " + error);
-      });
+  // Subir archivo al hacer clic en el botón
+  uploadButton.addEventListener("click", () => {
+    const file = fileInput.files[0];
+    if (file) {
+      uploadFile(file);
+    } else {
+      alert("Por favor, selecciona un archivo primero.");
     }
   });
+
+  
+  function displayFileName(file) {
+    document.getElementById("drop-zone-text").style.display = "none";
+    fileNameDisplay.style.display = "block";
+    fileNameDisplay.textContent = `Archivo seleccionado: ${file.name}`;
+  }
+
+  // Función para enviar el archivo al servidor
+  function uploadFile(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    loader.classList.remove("d-none");
+    uploadButton.disabled = true;
+    dropZone.style.pointerEvents = "none";
+
+    fetch("<%= upload_questions_admin_index_path %>", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      showFloatingMessage(data.message, data.success);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      showFloatingMessage(`Hubo un problema al procesar el archivo. Error: ${error}`, false);
+    })
+    .finally(() => {
+      loader.classList.add("d-none");
+      uploadButton.disabled = false;
+      dropZone.style.pointerEvents = "auto";
+    });
+  }
+
+  function showFloatingMessage(message, success) {
+    const alertDiv = document.createElement("div");
+    alertDiv.id = "flotating-alert-upload-questions";
+    alertDiv.classList.add("alert", success ? "alert-success" : "alert-danger", "alert-dismissible", "fade", "show", "position-fixed", "top-0", "start-50", "translate-middle-x", "w-50", "z-index-1050");
+    alertDiv.role = "alert";
+    alertDiv.textContent = message;
+
+    //Btn cierrre
+    const closeButton = document.createElement("button");
+    closeButton.type = "button";
+    closeButton.classList.add("btn-close");
+    closeButton.setAttribute("data-bs-dismiss", "alert");
+    closeButton.setAttribute("aria-label", "Close");
+    alertDiv.appendChild(closeButton);
+
+    document.body.appendChild(alertDiv);
+
+    setTimeout(() => {
+      alertDiv.remove();
+    }, 5000);
+  }
+});
 </script>
