@@ -7,16 +7,18 @@
   </div>
   
   <!-- Opciones de navegación -->
-  <div class="navbar-menu">
-    <%= link_to "Categorías", categories_path %>
-    <%= link_to "Cursos", courses_path %>
-    <%= link_to "Roles", roles_path %>
-    <%= link_to "Niveles", levels_path %>
-    <%= link_to "Cursos Categorias", categories_courses_path %>
-    <%= link_to "Preguntas", questions_path %>
-    <%= link_to "Jugar", game_sessions_path %>
-    <%= link_to "Kahoot", 'kahoot' %>
-  </div>
+  <% if user_signed_in?%>
+    <div class="navbar-menu">
+      <%= link_to "Categorías", categories_path %>
+      <%= link_to "Cursos", courses_path %>
+      <%= link_to "Roles", roles_path %>
+      <%= link_to "Niveles", levels_path %>
+      <%= link_to "Cursos Categorias", categories_courses_path %>
+      <%= link_to "Preguntas", questions_path %>
+      <%= link_to "Jugar", game_sessions_path %>
+      <%= link_to "Kahoot", 'kahoot' %>
+    </div>
+  <% end %>
   
   <!-- Perfil (a la derecha) -->
   <div class="navbar-profile">

@@ -1,4 +1,14 @@
 <style>
+  .btn-success {
+    background-color: #28a745 !important;
+    color: white !important;
+  }
+
+  .btn-danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+  }
+
   .answer-button {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
@@ -10,6 +20,8 @@
   }
 
 </style>
+
+<%= render 'partials/overlay' %>
 
 <div class="container py-4">
   <div class="d-flex justify-content-between mb-4">
@@ -42,11 +54,43 @@
     const answerButtons = document.querySelectorAll(".answer-button");
     const answerInput = document.getElementById("selected_answer_id");
     const answerForm = document.querySelector("form");
+    const overlay = document.getElementById("overlay");
 
     answerButtons.forEach(button => {
       button.addEventListener("click", () => {
-        answerInput.value = button.getAttribute("data-answer-id");
-        answerForm.submit();
+        const answerId = button.getAttribute("data-answer-id");
+        answerInput.value = answerId;
+        
+        //Poner aqui un overlay transparente para que no se pueda presionar ningun btn de nuevo
+        overlay.classList.remove("d-none");
+
+        fetch(answerForm.action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+          },
+          body: new URLSearchParams(new FormData(answerForm))
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.correct) {
+              button.classList.add("btn-success");
+            } else {
+              button.classList.add("btn-danger");
+            }
+
+            setTimeout(() => {
+              overlay.classList.add("d-none");
+              
+              if (data.next_question_index) {
+                window.location.href = data.question_path;
+              } else {
+                window.location.href = "<%= result_game_sessions_path %>";
+              }
+            }, 3000);
+          })
+          .catch(error => console.error("Error:", error));
       });
     });
   });

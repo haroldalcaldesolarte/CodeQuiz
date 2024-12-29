@@ -49,10 +49,13 @@ class GameSessionsController < ApplicationController
     GameResponse.create(game_session: game_session, question: question, correct: correct)
 
     game_session.increment!(:score, 10) if correct
-
     session[:current_question_index] += 1
 
-    redirect_to play_game_sessions_path
+    render json: {
+      correct: correct,
+      next_question_index: session[:current_question_index] < session[:question_ids].size,
+      question_path: play_game_sessions_path
+    }
   end
 
   def result
