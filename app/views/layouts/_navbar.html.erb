@@ -1,12 +1,12 @@
 <nav class="navbar">
-  <!-- Logo -->
   <div class="navbar-logo">
     <div class="container">
-      <%= link_to "Logo", '' %>
+      <%= link_to game_sessions_path, title: "Jugar" , class: "d-block" do %>
+        <%= image_tag "favicon.jpg", alt: "Logo", class: "navbar-logo-image rounded-circle" %>
+      <% end %>
     </div>
   </div>
-  
-  <!-- Opciones de navegación -->
+
   <% if user_signed_in?%>
     <div class="navbar-menu">
       <%= link_to "Categorías", categories_path %>
@@ -20,7 +20,6 @@
     </div>
   <% end %>
   
-  <!-- Perfil (a la derecha) -->
   <div class="navbar-profile">
     <div class="container">
       <%= link_to "Perfil", 'dropdowns' %>

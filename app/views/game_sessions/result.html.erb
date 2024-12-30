@@ -1,14 +1,36 @@
-<h1>Resultados</h1>
-<p>Puntaje Final: <%= @game_session.score %></p>
+<div class="container py-5">
+  <div class="card shadow-lg">
+    <div class="card-body text-center">
+      <h1 class="card-title display-4 text-primary">¡Resultado Final!</h1>
+      <p class="card-text fs-4">Puntuación Final: <span class="fw-bold text-success"><%= @game_session.score %> puntos</span></p>
+    </div>
+  </div>
 
-<ul>
-  <% @responses.each do |response| %>
-    <li>
-      Pregunta: <%= response.question.question_text %><br>
-      Respuesta Correcta: <%= response.correct %><br>
-      Tu Respuesta: <%= response.correct ? 'Correcta' : 'Incorrecta' %>
-    </li>
-  <% end %>
-</ul>
+  <div class="mt-4">
+    <h3 class="text-center text-secondary mb-4">Resumen de tus respuestas</h3>
+    <div class="list-group">
+      <% @responses.each_with_index do |response, index| %>
+        <div class="list-group-item">
+          <p class="fw-bold">Pregunta <%= index + 1 %>: <span class="text-dark"><%= response.question.question_text %></span></p>
+          <p class="mb-0">
+            <span class="text-muted">Respuesta Correcta:</span> 
+            <span class="text-success"><%= response.question.answers.find_by(correct: true).answer_text %></span>
+          </p>
+          <p class="mb-0">
+            <span class="text-muted">Tu Respuesta:</span> 
+            <% if response.correct %>
+              <span class="text-success">Correcta</span>
+            <% else %>
+              <span class="text-danger">Incorrecta</span>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<%= link_to "Jugar de Nuevo", game_sessions_path, class: "btn btn-primary" %>
+  <div class="text-center mt-5">
+    <%= link_to "Jugar de Nuevo", game_sessions_path, class: "btn btn-primary btn-lg px-5 shadow-sm" %>
+  </div>
+</div>
+

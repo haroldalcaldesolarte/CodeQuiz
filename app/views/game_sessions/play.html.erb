@@ -23,13 +23,13 @@
 
 <%= render 'partials/overlay' %>
 
-<div class="container py-4">
-  <div class="d-flex justify-content-between mb-4">
-    <h4 class="text-primary">Pregunta <%= session[:current_question_index] + 1 %> de <%= session[:question_ids].size %></h4>
-    <h4 class="text-success">Puntuación: <%= @game_session.score %></h4>
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="text-primary fw-bold">Pregunta <%= session[:current_question_index] + 1 %> de <%= session[:question_ids].size %></h4>
+    <h4 class="text-success fw-bold">Puntuación: <%= @game_session.score %></h4>
   </div>
 
-  <div class="text-center mb-4">
+  <div class="text-center mb-5">
     <h3 class="fw-bold text-dark"><%= @question.question_text %></h3>
   </div>
 
@@ -37,10 +37,10 @@
     <%= form.hidden_field :question_id, value: @question.id %>
     <%= form.hidden_field :answer_id, id: "selected_answer_id" %>
 
-    <div class="row g-3">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
       <% @question.answers.shuffle.each do |answer| %>
-        <div class="col-md-6">
-          <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button" data-answer-id="<%= answer.id %>">
+        <div class="col">
+          <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button shadow-sm" data-answer-id="<%= answer.id %>">
             <%= answer.answer_text %>
           </button>
         </div>
@@ -82,7 +82,7 @@
 
             setTimeout(() => {
               overlay.classList.add("d-none");
-              
+
               if (data.next_question_index) {
                 window.location.href = data.question_path;
               } else {
