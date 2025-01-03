@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Gestión de Usuarios</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Curso</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.name %></td>
+          <td><%= user.surname %></td>
+          <td><%= user.course.course_display_name %></td>
+          <td><%= user.role.name %></td>
+          <td>
+            <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_user_path(user), class: "btn btn-warning btn-sm" %>
+            <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

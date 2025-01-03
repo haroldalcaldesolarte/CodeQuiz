@@ -1,30 +1,47 @@
-<nav class="navbar">
-  <div class="navbar-logo">
-    <div class="container">
-      <%= link_to game_sessions_path, title: "Jugar" , class: "d-block" do %>
-        <%= image_tag "favicon.jpg", alt: "Logo", class: "navbar-logo-image rounded-circle" %>
-      <% end %>
-    </div>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <%= link_to game_sessions_path, title: "Jugar", class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "favicon.jpg", alt: "Logo", class: "navbar-logo-image rounded-circle me-2" %>
+      <span class="fw-bold">CodeQuiz</span>
+    <% end %>
 
-  <% if user_signed_in?%>
-    <div class="navbar-menu">
-      <%= link_to "Categorías", categories_path %>
-      <%= link_to "Cursos", courses_path %>
-      <%= link_to "Roles", roles_path %>
-      <%= link_to "Niveles", levels_path %>
-      <%= link_to "Cursos Categorias", categories_courses_path %>
-      <%= link_to "Preguntas", questions_path %>
-      <%= link_to "Jugar", game_sessions_path %>
-      <%= link_to "Kahoot", 'kahoot' %>
-    </div>
-  <% end %>
-  
-  <div class="navbar-profile">
-    <div class="container">
-      <%= link_to "Perfil", 'dropdowns' %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
       <% if user_signed_in? %>
-        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><%= link_to "Categorías", categories_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Cursos", courses_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Roles", roles_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Niveles", levels_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Cursos Categorias", categories_courses_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Preguntas", questions_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Jugar", game_sessions_path, class: "nav-link" %></li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg me-2"></i>
+              <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+              <li><%= link_to "Perfil", edit_user_path(current_user), class: "dropdown-item" %></li>
+              <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, class: "dropdown-item text-danger" %></li>
+            </ul>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <%= link_to "Iniciar Sesión", new_user_session_path, class: "btn btn-outline-primary me-2" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Registrarse", new_user_registration_path, class: "btn btn-primary" %>
+          </li>
+        </ul>
       <% end %>
     </div>
   </div>

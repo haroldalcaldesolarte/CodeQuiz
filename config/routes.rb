@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   }
 
   authenticated :user do
-    root to: 'courses#index', as: :authenticated_root 
+    root to: 'courses#index', as: :authenticated_root
   end
 
   devise_scope :user do
@@ -38,4 +38,5 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [:index, :edit, :update, :destroy]
 end

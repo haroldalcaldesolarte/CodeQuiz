@@ -1,0 +1,46 @@
+<div class="mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-secondary text-white text-center">
+          <h1 class="display-6">Editar Perfil</h1>
+        </div>
+        <div class="card-body">
+          <%= form_with model: @user, local: true do |form| %>
+            <div class="mb-3">
+              <%= form.label :email, "Correo Electrónico", class: "form-label" %>
+              <%= form.email_field :email, class: "form-control", placeholder: "Ingresa tu correo electrónico" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :name, "Nombre", class: "form-label" %>
+              <%= form.text_field :name, class: "form-control", placeholder: "Ingresa tu nombre" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :surname, "Apellidos", class: "form-label" %>
+              <%= form.text_field :surname, class: "form-control", placeholder: "Ingresa tus apellidos" %>
+            </div>
+
+            <% if current_user.admin? %>
+              <div class="mb-3">
+                <%= form.label :role_id, "Rol", class: "form-label" %>
+                <%= form.select :role_id, Role.all.collect { |role| [role.name, role.id] }, { prompt: "Selecciona un rol" }, class: "form-select" %>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :course_id, "Curso", class: "form-label" %>
+              <%= form.select :course_id, Course.all.collect { |course| [course.course_display_name, course.id] }, { prompt: "Selecciona un curso" }, class: "form-select" %>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <%= form.submit "Actualizar", class: "btn btn-warning w-50" %>
+              <%= link_to "Cancelar", current_user.admin? ? users_path : game_sessions_path , class: "btn btn-secondary w-50 ms-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
