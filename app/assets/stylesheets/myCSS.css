@@ -1,7 +1,6 @@
 
  .container {
-  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
-  text-align: center; /* Alinea el texto dentro del contenedor al centro */
+  margin: 0 auto;
 }
 
 .container a {

@@ -8,7 +8,7 @@
 
   <div class="mt-4">
     <h3 class="text-center text-secondary mb-4">Resumen de tus respuestas</h3>
-    <div class="list-group">
+    <div class="list-group text-center">
       <% @responses.each_with_index do |response, index| %>
         <div class="list-group-item">
           <p class="fw-bold">Pregunta <%= index + 1 %>: <span class="text-dark"><%= response.question.question_text %></span></p>
