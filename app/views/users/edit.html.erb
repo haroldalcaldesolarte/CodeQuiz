@@ -1,4 +1,4 @@
-<div class="mt-5">
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card shadow">
@@ -7,19 +7,26 @@
         </div>
         <div class="card-body">
           <%= form_with model: @user, local: true do |form| %>
+            <h3 class="h5 text-muted mb-3 text-center">Información General</h3>
+
             <div class="mb-3">
               <%= form.label :email, "Correo Electrónico", class: "form-label" %>
-              <%= form.email_field :email, class: "form-control", placeholder: "Ingresa tu correo electrónico" %>
+              <%= form.email_field :email, class: "form-control", required: true, placeholder: "Ingresa tu correo electrónico" %>
             </div>
 
             <div class="mb-3">
               <%= form.label :name, "Nombre", class: "form-label" %>
-              <%= form.text_field :name, class: "form-control", placeholder: "Ingresa tu nombre" %>
+              <%= form.text_field :name, class: "form-control", required: true, placeholder: "Ingresa tu nombre" %>
             </div>
 
             <div class="mb-3">
               <%= form.label :surname, "Apellidos", class: "form-label" %>
-              <%= form.text_field :surname, class: "form-control", placeholder: "Ingresa tus apellidos" %>
+              <%= form.text_field :surname, class: "form-control", required: true, placeholder: "Ingresa tus apellidos" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :username, "Username", class: "form-label" %>
+              <%= form.text_field :username, class: "form-control", required: true, placeholder: "Ingresa tu username" %>
             </div>
 
             <% if current_user.admin? %>
@@ -31,12 +38,34 @@
 
             <div class="mb-3">
               <%= form.label :course_id, "Curso", class: "form-label" %>
-              <%= form.select :course_id, Course.all.collect { |course| [course.course_display_name, course.id] }, { prompt: "Selecciona un curso" }, class: "form-select" %>
+              <%= form.select :course_id, Course.all.collect { |course| [course.course_display_name, course.id] }, { prompt: "Selecciona un curso" }, class: "form-select", required: true %>
             </div>
 
-            <div class="d-flex justify-content-between">
+            <hr class="my-4">
+
+            <h3 class="h5 text-muted mb-3 text-center">Seguridad y Contraseña</h3>
+
+            <% if current_user == @user %>
+              <!-- Campos para el propio usuario -->
+              <div class="mb-3">
+                <%= form.label :current_password, "Contraseña Actual", class: "form-label" %>
+                <%= form.password_field :current_password, class: "form-control", placeholder: "Ingresa tu contraseña actual", required: true %>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :password, "Nueva Contraseña", class: "form-label" %>
+              <%= form.password_field :password, class: "form-control", placeholder: "Ingresa tu nueva contraseña", required: current_user == @user %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :password_confirmation, "Confirmar Contraseña", class: "form-label" %>
+              <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Confirma tu nueva contraseña", required: current_user == @user %>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
               <%= form.submit "Actualizar", class: "btn btn-warning w-50" %>
-              <%= link_to "Cancelar", current_user.admin? ? users_path : game_sessions_path , class: "btn btn-secondary w-50 ms-2" %>
+              <%= link_to "Cancelar", current_user.admin? ? users_path : game_sessions_path, class: "btn btn-secondary w-50 ms-2" %>
             </div>
           <% end %>
         </div>

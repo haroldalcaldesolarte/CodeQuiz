@@ -12,16 +12,22 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      if current_user.admin?
-        redirect_to users_path, notice: "Usuario actualizado correctamente."
-      else
+    if current_user == @user
+      if @user.update_with_password(user_params)
+        bypass_sign_in(@user) # Mantiene la sesión activa después de actualizar contraseña
         redirect_to edit_user_path(current_user), notice: "Tu perfil se actualizó correctamente."
+      else
+        redirect_to edit_user_path(current_user), alert: "Hubo un error al actualizar tu perfil. Vuelve a intentarlo."
       end
     else
-      render :edit, alert: "Hubo un error al actualizar el usuario."
+      if @user.update(user_params.except(:current_password))
+        redirect_to users_path, notice: "Usuario actualizado correctamente."
+      else
+        redirect_to edit_user_path(@user), alert: "Hubo un error al actualizar tu perfil. Vuelve a intentarlo."
+      end
     end
   end
+  
 
   def destroy
     @user.destroy
@@ -35,7 +41,15 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :surname, :role_id, :course_id, :password, :password_confirmation)
+    params.require(:user).permit(:email, :name, :surname, :username, :role_id, :course_id, :password, :password_confirmation, :current_password)
+  end
+
+  def user_password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+
+  def updating_password?
+    params[:user][:password].present? || params[:user][:password_confirmation].present?
   end
 
   def authorize_user
