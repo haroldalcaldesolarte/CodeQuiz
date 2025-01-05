@@ -1,38 +1,37 @@
 <div class="container mt-4 text-center">
   <h1 class="mb-4">Gestión de Usuarios</h1>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>Nombre</th>
-        <th>Apellidos</th>
-        <th>Username</th>
-        <th>Curso</th>
-        <th>Rol</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.id %></td>
-          <td><%= user.email %></td>
-          <td><%= user.name %></td>
-          <td><%= user.surname %></td>
-          <td><%= user.username %></td>
-          <td><%= user.course.course_display_name %></td>
-          <td><%= user.role.name %></td>
-          <td>
-            <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_user_path(user), class: "btn btn-warning btn-sm" %>
-            <% if current_user.admin? %>
-              <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn btn-danger btn-sm" %>
-              <%= link_to 'Cambiar contraseña <i class="far fa-pen-to-square"></i>'.html_safe, edit_password_user_path(user), class: "btn btn-warning btn-sm" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <ul class="nav nav-tabs" id="userTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">Todos</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="admins-tab" data-bs-toggle="tab" data-bs-target="#admins" type="button" role="tab" aria-controls="admins" aria-selected="false">Admins</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="teachers-tab" data-bs-toggle="tab" data-bs-target="#teachers" type="button" role="tab" aria-controls="teachers" aria-selected="false">Profesores</button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button" role="tab" aria-controls="students" aria-selected="false">Estudiantes</button>
+    </li>
+  </ul>
+
+  <div class="tab-content mt-4" id="userTabsContent">
+    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <%= render 'user_table', users: @users %>
+    </div>
+
+    <div class="tab-pane fade" id="admins" role="tabpanel" aria-labelledby="admins-tab">
+      <%= render 'user_table', users: @admins %>
+    </div>
+
+
+    <div class="tab-pane fade" id="teachers" role="tabpanel" aria-labelledby="teachers-tab">
+      <%= render 'user_table', users: @teachers %>
+    </div>
+
+    <div class="tab-pane fade" id="students" role="tabpanel" aria-labelledby="students-tab">
+      <%= render 'user_table', users: @students %>
+    </div>
+  </div>
 </div>

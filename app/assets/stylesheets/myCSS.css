@@ -29,6 +29,20 @@
   font-weight: bold;
 }
 
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1; /* Color de fondo */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color del thumb */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color del thumb al pasar el mouse */
+}
+
 @media (max-width: 768px) {
   .navbar-menu {
     display: none;

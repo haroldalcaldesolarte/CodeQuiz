@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @admins = User.where(role_id: Role.find_by(name: 'admin'))
+    @teachers = User.where(role_id: Role.find_by(name: 'teacher'))
+    @students = User.where(role_id: Role.find_by(name: 'student'))
   end
 
   def edit
@@ -51,7 +54,14 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    unless @user
+      if current_user.admin?
+        redirect_to users_path, alert: "El usuario no existe o la URL es inválida."
+      else
+        redirect_to game_sessions_path, alert: "El usuario no existe o la URL es inválida."
+      end
+    end
   end
 
   def user_params
