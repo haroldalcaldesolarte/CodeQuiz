@@ -46,5 +46,6 @@ Rails.application.routes.draw do
     end
   end
   
+  match "*path", to: "application#handle_not_found", via: :all
   
 end
