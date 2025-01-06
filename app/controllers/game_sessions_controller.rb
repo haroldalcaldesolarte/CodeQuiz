@@ -3,7 +3,9 @@ class GameSessionsController < ApplicationController
 
   # GET /game_sessions or /game_sessions.json
   def index
-    @categories = Category.all #Dependiendo del curso del alumno deben salir sus categorias(asignaturas)
+    #@categories = Category.all #Dependiendo del curso del alumno deben salir sus categorias(asignaturas)
+    categories_course = CategoriesCourse.where(course_id: current_user.course_id)
+    @categories = Category.where(id: categories_course.pluck(:category_id))
     @levels = Level.all
   end
 
@@ -35,6 +37,7 @@ class GameSessionsController < ApplicationController
 
     if current_index < question_ids.size
       @question = Question.find(question_ids[current_index])
+      @categoy_name = @question.category.name
     else
       redirect_to result_game_sessions_path
     end

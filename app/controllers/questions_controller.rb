@@ -5,7 +5,16 @@ class QuestionsController < ApplicationController
   NUMBER_OF_ANSWERS = 4
   # GET /questions or /questions.json
   def index
-    @questions = Question.all
+    case current_user.role.name
+    when 'student'
+      @questions_created = Question.where(author_id: current_user.id)
+      @questions_reviewed = Question.where(revisor_id: current_user.id)
+    when 'teacher'
+      categories_course = CategoriesCourse.where(course_id: current_user.course_id)
+      @questions_for_course = Question.where(category_id: categories_course.pluck(:category_id))
+    when 'admin'
+      @all_questions = Question.all
+    end
   end
 
   # GET /questions/1 or /questions/1.json
