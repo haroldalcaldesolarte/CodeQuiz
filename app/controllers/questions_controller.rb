@@ -85,7 +85,23 @@ class QuestionsController < ApplicationController
     end
 
     def init_variables
-      @categories = Category.all
-      @levels = Level.all
+      case current_user.role.name
+      when 'student', 'teacher'
+        categories_course = CategoriesCourse.where(course_id: current_user.course_id)
+        @categories = Category.where(id: categories_course.pluck(:category_id))
+      when 'admin'
+        @categories = Category.all
+      end
+      @categories_with_courses = @categories.map do |category|
+        course_name = get_course_category(category.id)
+        ["#{category.name} (#{course_name})", category.id]
+      end
+      @levels = Level.where.not(name: 'mix')
+    end
+
+    def get_course_category(category_id)
+      course_category = CategoriesCourse.where(category_id: category_id)
+      course = Course.where(id: course_category.first.course_id).first
+      course.course_display_name
     end
 end

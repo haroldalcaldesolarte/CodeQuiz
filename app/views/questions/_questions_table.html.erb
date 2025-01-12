@@ -15,7 +15,7 @@
       <% questions.each do |question| %>
         <tr>
           <td><%= question.question_text %></td>
-          <td><%= question.category.name %></td>
+          <td><%= question.category.name %> (<%= get_course_category(question.category.id) %>)</td>
           <td><%= question.level.name %></td>
           <td>
             <%= question_status_icon(question) %>

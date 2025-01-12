@@ -3,10 +3,15 @@ class GameSessionsController < ApplicationController
 
   # GET /game_sessions or /game_sessions.json
   def index
-    #@categories = Category.all #Dependiendo del curso del alumno deben salir sus categorias(asignaturas)
-    categories_course = CategoriesCourse.where(course_id: current_user.course_id)
-    @categories = Category.where(id: categories_course.pluck(:category_id))
     @levels = Level.all
+    case current_user.role.name
+    when 'student', 'teacher'
+      categories_course = CategoriesCourse.where(course_id: current_user.course_id)
+      @categories = Category.where(id: categories_course.pluck(:category_id))
+    when 'admin'
+      @categories = Category.all
+    end
+    
   end
 
   # POST /game_sessions or /game_sessions.json

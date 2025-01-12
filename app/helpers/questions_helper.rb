@@ -12,4 +12,10 @@ module QuestionsHelper
       '<i class="fas fa-clock text-secondary" title="Pendiente"></i>'.html_safe
     end
   end
+
+  def get_course_category(category_id)
+    course_category = CategoriesCourse.where(category_id: category_id)
+    course = Course.where(id: course_category.first.course_id).first
+    course.course_display_name
+  end
 end

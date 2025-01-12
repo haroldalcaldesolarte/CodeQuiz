@@ -1,5 +1,11 @@
 <div class="container mt-4">
-  <h1 class="mb-4 text-center">Gestión de Preguntas</h1>
+  <h1 class="mb-4 text-center">
+    Gestión de Preguntas
+    <%= link_to 'Nueva Pregunta <i class="fas fa-circle-plus"></i>'.html_safe, new_question_path, class: "btn btn-success" %>
+    <% if current_user.superuser? %>
+      <%= link_to 'Cargar Preguntas <i class="fas fa-cloud-arrow-up"></i>'.html_safe, admin_index_path, data: {turbolinks: false }, class: "btn btn-primary" %>
+    <% end %>
+  </h1>
 
   <ul class="nav nav-tabs" id="questionsTab" role="tablist">
     <% if current_user.role.name == 'student' %>

@@ -18,11 +18,12 @@
   </div>
   
   <div class="row mb-3">
-    <%= form.label 'Categoría' , class: "col-sm-2 col-form-label" %>
+    <%= form.label 'Categoría', class: "col-sm-2 col-form-label" %>
     <div class="col-sm-10">
-      <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
+      <%= form.select :category_id, options_for_select(@categories_with_courses, selected: question.category_id), { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true } %>
     </div>
   </div>
+
 
   <div class="row mb-3">
     <%= form.label 'Nivel' , class: "col-sm-2 col-form-label" %>

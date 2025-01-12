@@ -15,7 +15,7 @@
   <div class="row g-2 mb-3">
     <div class="col-md">
       <div class="form-floating">
-        <input type="input" class="form-control" id="floatingInputCategory" readonly value= "<%= @question.category.name %>">
+        <input type="input" class="form-control" id="floatingInputCategory" readonly value= "<%= @question.category.name %> (<%=  get_course_category(@question.category.id) %>)">
         <label for="floatingInputCategory">Categoría</label>
       </div>
     </div>
