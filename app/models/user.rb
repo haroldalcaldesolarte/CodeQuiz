@@ -26,6 +26,19 @@ class User < ApplicationRecord
     self.role == Role.where(name: "student").first
   end
 
+  def translated_role
+    translations = {
+      "student" => "Estudiante",
+      "teacher" => "Profesor",
+      "admin" => "Administrador"
+    }
+    translations[role.name] || role.name
+  end
+
+  def full_name_with_username
+    "#{name} #{surname} (#{username})"
+  end
+
   def superuser?
     self.role == Role.where(name: "admin").first || self.role == Role.where(name: "teacher").first
   end

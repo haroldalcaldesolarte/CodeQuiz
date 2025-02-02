@@ -24,8 +24,8 @@
           <td><%= question.revisor.username unless question.revisor.nil? %></td>
           <td>
             <%= link_to '<i class="fas fa-magnifying-glass"></i>'.html_safe, question, class: 'btn btn-primary btn-sm' %>
-            <%= link_to '<i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm' %>
-            <%= link_to '<i class="far fa-trash-can"></i>'.html_safe, question, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to '<i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm' if current_user == question.author %>
+            <%= link_to '<i class="far fa-trash-can"></i>'.html_safe, question, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-danger btn-sm' if current_user.superuser? %>
           </td>
         </tr>
       <% end %>

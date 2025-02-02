@@ -21,9 +21,9 @@ class GameSessionsController < ApplicationController
 
     #Controlar que si no hay 10 preguntas no se puede empezar la partida
     if @level.name.include?('mix')
-      @questions = Question.where(category: @category, approved: true).shuffle.take(3)
+      @questions = Question.where(category: @category, status: 1).shuffle.take(3)
     else
-      @questions = Question.where(category: @category, level: @level, approved: true).shuffle.take(3)
+      @questions = Question.where(category: @category, level: @level, status: 1).shuffle.take(3)
     end
 
     @game_session = GameSession.create(user: current_user, category: @category, score: 0)

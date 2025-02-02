@@ -32,11 +32,17 @@
     </div>
   </div>
 
-  <% if is_revisor? %>
+  <div class="row mb-3">
+    <%= form.label 'Asignar Revisor', class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+    <%= form.collection_select :revisor_id, get_potencial_reviewer(current_user), :id, :full_name_with_username, { prompt: "Selecciona un revisor" }, { class: "form-select mb-3", required: true} %>
+  </div>
+
+  <% if 1 == 0 and is_revisor?  %>
     <div class="row mb-3">
-      <%= form.label 'Aprobado' , class: "col-sm-2 col-form-label" %>
+      <%= form.label 'Estado' , class: "col-sm-2 col-form-label" %>
       <div class="col-sm-1">
-        <%= form.check_box :approved, class: "form-check-input" %>
+        <%= form.check_box :status, class: "form-check-input" %>
       </div>
     </div>
   <% end %>

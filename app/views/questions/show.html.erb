@@ -31,14 +31,14 @@
   <div class="row g-2 mb-3">
     <div class="col-md">
       <div class="form-floating">
-        <input type="input" class="form-control" id="floatingInputAuthor" readonly value= "<%= @question.author.username %>">
+        <input type="input" class="form-control" id="floatingInputAuthor" readonly value= "<%= @question.author.full_name_with_username %>">
         <label for="floatingInputAuthor">Autor</label>
       </div>
     </div>
 
     <div class="col-md">
       <div class="form-floating">
-        <input type="input" class="form-control" id="floatingInputRevisor" readonly value= "<%= @question.revisor.nil? ? '' : @question.revisor.username %>">
+        <input type="input" class="form-control" id="floatingInputRevisor" readonly value= "<%= @question.revisor.nil? ? '' : @question.revisor.full_name_with_username %>">
         <label for="floatingInputRevisor">Revisor</label>
       </div>
     </div>
@@ -70,7 +70,7 @@
   <div class="mb-3"></div>
 
   <div class= "actions mb-3">
-    <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(@question), class: "btn btn-warning" %>
+    <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(@question), class: "btn btn-warning" if (current_user == @question.author && @question.pending? ) %>
     <div>
       <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, questions_path , class: "btn btn-dark" %>
     </div>

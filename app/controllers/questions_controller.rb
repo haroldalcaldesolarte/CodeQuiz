@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.author = current_user
-    @question.approved = nil if question_params[:approved] == "0" #Si no se marca el check de aprobado se envia un cero
+    #@question.status = nil if question_params[:approved] == "0" #Si no se marca el check de aprobado se envia un cero
     #En la creación de la pregunta pondremos aprobado a nil y esa sera nuestro estado de pendiente
 
     respond_to do |format|
@@ -72,6 +72,18 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def approve
+    @question = Question.find(params[:id])
+    if current_user == @question.review || current_user.superuser?
+      @question.update(status: :approved)
+      flash[:notice] = "Pregunta aprobada con éxito."
+    else
+      flash[:alert] = "No tienes permisos para aprobar esta pregunta."
+    end
+    redirect_to questions_path
+  end
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -80,7 +92,7 @@ class QuestionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def question_params
-      params.require(:question).permit(:question_text, :category_id, :level_id, :approved, :author_id, :revisor_id,
+      params.require(:question).permit(:question_text, :category_id, :level_id, :status, :author_id, :revisor_id,
       answers_attributes: [:id, :answer_text, :correct, :_destroy])
     end
 
