@@ -14,7 +14,7 @@
           <p class="fw-bold">Pregunta <%= index + 1 %>: <span class="text-dark"><%= response.question.question_text %></span></p>
           <p class="mb-0">
             <span class="text-muted">Respuesta Correcta:</span> 
-            <span class="text-success"><%= response.question.answers.find_by(correct: true).answer_text %></span>
+            <span class="text-success"><%= response.question.correct_answer_text %></span>
           </p>
           <p class="mb-0">
             <span class="text-muted">Tu Respuesta:</span> 

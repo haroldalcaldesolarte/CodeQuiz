@@ -16,4 +16,8 @@ class Question < ApplicationRecord
   def reviewable?(current_user)
     (self.pending? && (self.revisor == current_user || current_user.superuser?))
   end
+
+  def correct_answer_text
+    answers.find_by(correct: true)&.answer_text
+  end
 end

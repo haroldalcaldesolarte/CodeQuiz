@@ -20,6 +20,10 @@ module QuestionsHelper
   end
 
   def get_potencial_reviewer(asker)
-    User.where(course_id: asker.course_id).where.not(id: asker.id)
+    if asker.superuser?
+      User.where(course_id: asker.course_id)
+    else
+      User.where(course_id: asker.course_id).where.not(id: asker.id)
+    end
   end
 end
