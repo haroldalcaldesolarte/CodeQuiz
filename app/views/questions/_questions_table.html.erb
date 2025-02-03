@@ -2,6 +2,7 @@
   <table class="table table-striped mb-0">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Pregunta</th>
         <th>Categoría</th>
         <th>Nivel</th>
@@ -14,18 +15,21 @@
     <tbody>
       <% questions.each do |question| %>
         <tr>
+          <td><%= question.id %></td>
           <td><%= question.question_text %></td>
           <td><%= question.category.name %> (<%= get_course_category(question.category.id) %>)</td>
           <td><%= question.level.name %></td>
-          <td>
+          <td class="text-center">
             <%= question_status_icon(question) %>
           </td>
           <td><%= question.author.username %></td>
           <td><%= question.revisor.username unless question.revisor.nil? %></td>
           <td>
-            <%= link_to '<i class="fas fa-magnifying-glass"></i>'.html_safe, question, class: 'btn btn-primary btn-sm' %>
-            <%= link_to '<i class="far fa-pen-to-square"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm' if current_user == question.author %>
-            <%= link_to '<i class="far fa-trash-can"></i>'.html_safe, question, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-danger btn-sm' if current_user.superuser? %>
+            <btn title="">
+            <%= link_to '<i class="fas fa-magnifying-glass" title="Ver pregunta"></i>'.html_safe, question, class: 'btn btn-primary btn-sm' %>
+            <%= link_to '<i class="far fa-pen-to-square" title="Editar pregunta"></i>'.html_safe, edit_question_path(question), class: 'btn btn-warning btn-sm' if question.editable?(current_user) %>
+            <%= link_to '<i class="fas fa-magnifying-glass" title="Revisar pregunta"></i>'.html_safe, review_question_path(question), class: 'btn btn-warning btn-sm' if question.reviewable?(current_user) %>
+            <%= link_to '<i class="far fa-trash-can" title="Eliminar pregunta"></i>'.html_safe, question, method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-danger btn-sm' if current_user.superuser? %>
           </td>
         </tr>
       <% end %>

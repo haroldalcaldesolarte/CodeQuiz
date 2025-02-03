@@ -1,19 +1,19 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update destroy ]
+  before_action :set_question, only: %i[ show edit update destroy review update_status]
   before_action :init_variables, only: %i[ new edit update create]
 
   NUMBER_OF_ANSWERS = 4
   # GET /questions or /questions.json
   def index
+    @questions_created = Question.where(author_id: current_user.id).order(:id)
+    @questions_reviewed = Question.where(revisor_id: current_user.id, status: [:approved, :rejected]).order(:id)
+    @questions_pending_review =  Question.where(revisor_id: current_user.id, status: :pending).order(:id)
     case current_user.role.name
-    when 'student'
-      @questions_created = Question.where(author_id: current_user.id)
-      @questions_reviewed = Question.where(revisor_id: current_user.id)
     when 'teacher'
       categories_course = CategoriesCourse.where(course_id: current_user.course_id)
-      @questions_for_course = Question.where(category_id: categories_course.pluck(:category_id))
+      @questions_for_course = Question.where(category_id: categories_course.pluck(:category_id)).order(:id)
     when 'admin'
-      @all_questions = Question.all
+      @all_questions = Question.all.order(:id)
     end
   end
 
@@ -29,6 +29,12 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    unless @question.editable?(current_user)
+      respond_to do |format|
+        format.html { redirect_to @question, notice: "No tienes permiso para editar esta pregunta. Debes ser el autor de la pregunta" }
+        format.json { render :show, status: :ok, location: @question }
+      end
+    end
   end
 
   # POST /questions or /questions.json
@@ -72,17 +78,33 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def approve
-    @question = Question.find(params[:id])
-    if current_user == @question.review || current_user.superuser?
-      @question.update(status: :approved)
-      flash[:notice] = "Pregunta aprobada con éxito."
-    else
-      flash[:alert] = "No tienes permisos para aprobar esta pregunta."
+  def review
+    unless @question.reviewable?(current_user)
+      respond_to do |format|
+        format.html { redirect_to @question, notice: "No tienes permiso para revisar esta pregunta." }
+        format.json { render :show, status: :ok, location: @question }
+      end
     end
+  end
+
+  def update_status
+    unless @question.reviewable?(current_user)
+      flash[:alert] = "No tienes permiso para modificar esta pregunta."
+      return redirect_to questions_path
+    end
+
+    if params[:status] == "1"
+      @question.update(status: :approved)
+      flash[:notice] = "Pregunta aprobada correctamente."
+    elsif params[:status] == "2"
+      @question.update(status: :rejected)
+      flash[:notice] = "Pregunta rechazada correctamente."
+    else
+      flash[:alert] = "Estado no válido."
+    end
+
     redirect_to questions_path
   end
-  
 
   private
     # Use callbacks to share common setup or constraints between actions.

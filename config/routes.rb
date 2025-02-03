@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   resources :game_responses
   resources :answers
-  resources :questions
+  resources :questions do
+    member do
+      get :review
+      patch :update_status
+    end
+  end
   resources :categories_courses
   resources :levels
   resources :categories

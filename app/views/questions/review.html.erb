@@ -1,0 +1,21 @@
+<div class="container text-center">
+  <h1 class="mb-3">Revisar Pregunta
+    <span class="badge">
+      <%= question_status_icon(@question) %>
+    </span>
+  </h1>
+
+  <%= render 'info', question: @question %>
+
+  <div class="mb-3"></div>
+
+  <div class= "actions mb-3">
+    <%= form_with url: update_status_question_path(@question), method: :patch do %>
+      <button type="submit" name="status" value="1" class="btn btn-success">Aprobar</button>
+      <button type="submit" name="status" value="2" class="btn btn-danger">Rechazar</button>
+    <% end %>
+    <div>
+      <%= link_to '<i class="fas fa-backward"></i> Volver'.html_safe, questions_path , class: "btn btn-dark" %>
+    </div>
+  </div>
+</div>

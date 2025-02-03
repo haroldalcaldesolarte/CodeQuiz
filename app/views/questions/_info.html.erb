@@ -1,0 +1,61 @@
+<div class="form-floating mb-3">
+  <textarea class="form-control" id="floatingTextarea" style="height: 150px" readonly>
+    <%= question.question_text %>
+  </textarea>
+  <label for="floatingTextarea">Pregunta</label>
+</div>
+
+<div class="row g-2 mb-3">
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="input" class="form-control" id="floatingInputCategory" readonly value= "<%= question.category.name %> (<%=  get_course_category(question.category.id) %>)">
+      <label for="floatingInputCategory">Categoría</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="input" class="form-control" id="floatingInputLevel" readonly value= "<%= question.level.name %>">
+      <label for="floatingInputLevel">Nivel</label>
+    </div>
+  </div>
+</div>
+
+<div class="row g-2 mb-3">
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="input" class="form-control" id="floatingInputAuthor" readonly value= "<%= question.author.full_name_with_username %>">
+      <label for="floatingInputAuthor">Autor</label>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <div class="form-floating">
+      <input type="input" class="form-control" id="floatingInputRevisor" readonly value= "<%= question.revisor.nil? ? '' : question.revisor.full_name_with_username %>">
+      <label for="floatingInputRevisor">Revisor</label>
+    </div>
+  </div>
+</div>
+
+<div class="accordion" id="accordionAnswers">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingAnswers">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnswers" aria-expanded="true" aria-controls="collapseOne">
+        Respuestas
+      </button>
+    </h2>
+
+    <div id="collapseAnswers" class="accordion-collapse collapse" aria-labelledby="headingAnswers" data-bs-parent="#accordionAnswers">
+      <div class="accordion-body">
+        <% question.answers.each_with_index  do |answer, index| %>
+          <div class="form-floating mb-3">
+            <textarea class="form-control" id="floatingTextarea" style="height: 150px" readonly>
+              <%= answer.answer_text %>
+            </textarea>
+            <label for="floatingTextarea">Respuesta <%= index + 1 %> <%= '<i class="fas fa-square-check text-success" title="Aprobada"></i>'.html_safe if (answer.correct && (current_user == question.revisor || current_user == question.author || current_user.superuser?) && question.pending?) %></label>
+          </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

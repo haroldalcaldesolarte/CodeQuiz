@@ -1,0 +1,3222 @@
+{
+  "questions": [
+    {
+      "text": "¿Qué es una clave primaria en una base de datos?",
+      "category_id": 2,
+      "level_id": 1,
+      "author_id": 2,
+      "answers": [
+        {"text": "Un campo único que identifica un registro", "correct": true},
+        {"text": "Un índice que acelera búsquedas", "correct": false},
+        {"text": "Un campo que permite valores duplicados", "correct": false},
+        {"text": "Una columna usada solo para relaciones", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la principal característica de una clave foránea?",
+      "category_id": 2,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Establece relaciones entre tablas", "correct": true},
+        {"text": "Permite valores nulos", "correct": false},
+        {"text": "Es única en toda la tabla", "correct": false},
+        {"text": "Se usa para almacenar datos redundantes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de operación realiza una sentencia SQL DELETE?",
+      "category_id": 2,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Elimina registros de una tabla", "correct": true},
+        {"text": "Elimina una tabla completa", "correct": false},
+        {"text": "Elimina una columna específica", "correct": false},
+        {"text": "Elimina índices en una tabla", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el acrónimo ACID en bases de datos?",
+      "category_id": 2,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Atomicidad, Consistencia, Aislamiento, Durabilidad", "correct": true},
+        {"text": "Acceso, Control, Integridad, Duración", "correct": false},
+        {"text": "Actualización, Consistencia, Integración, Distribución", "correct": false},
+        {"text": "Atomicidad, Conexión, Índices, Datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de una vista en una base de datos?",
+      "category_id": 2,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Proveer una representación lógica de datos", "correct": true},
+        {"text": "Optimizar las consultas SQL", "correct": false},
+        {"text": "Crear índices en tablas grandes", "correct": false},
+        {"text": "Almacenar datos permanentemente", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando SQL se usa para modificar la estructura de una tabla?",
+      "category_id": 2,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ALTER TABLE", "correct": true},
+        {"text": "UPDATE TABLE", "correct": false},
+        {"text": "MODIFY TABLE", "correct": false},
+        {"text": "CHANGE TABLE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la normalización en bases de datos?",
+      "category_id": 2,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un proceso para reducir la redundancia de datos", "correct": true},
+        {"text": "Una técnica para acelerar consultas", "correct": false},
+        {"text": "Un método para añadir índices", "correct": false},
+        {"text": "Un proceso para desnormalizar tablas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un índice en una base de datos?",
+      "category_id": 2,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una estructura que mejora la velocidad de búsqueda", "correct": true},
+        {"text": "Un campo que permite relaciones entre tablas", "correct": false},
+        {"text": "Un identificador único de un registro", "correct": false},
+        {"text": "Una clave foránea en otra tabla", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia hay entre DELETE y TRUNCATE en SQL?",
+      "category_id": 2,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "TRUNCATE elimina todos los registros sin generar logs", "correct": true},
+        {"text": "DELETE elimina tablas completas", "correct": false},
+        {"text": "DELETE es más rápido que TRUNCATE", "correct": false},
+        {"text": "TRUNCATE permite condiciones WHERE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando SQL se usa para combinar datos de dos tablas?",
+      "category_id": 2,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "JOIN", "correct": true},
+        {"text": "COMBINE", "correct": false},
+        {"text": "MERGE", "correct": false},
+        {"text": "UNION", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un sistema operativo?",
+      "category_id": 1,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Software que gestiona el hardware y los recursos de un sistema", "correct": true},
+        {"text": "Un programa para editar documentos", "correct": false},
+        {"text": "Un lenguaje de programación", "correct": false},
+        {"text": "Un sistema de almacenamiento en la nube", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la principal función del kernel en un sistema operativo?",
+      "category_id": 1,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Controlar y gestionar el acceso al hardware", "correct": true},
+        {"text": "Proporcionar una interfaz gráfica para el usuario", "correct": false},
+        {"text": "Almacenar datos permanentemente", "correct": false},
+        {"text": "Realizar copias de seguridad automáticamente", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un sistema de archivos?",
+      "category_id": 1,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una estructura para organizar y almacenar datos en discos", "correct": true},
+        {"text": "Un programa que gestiona usuarios del sistema", "correct": false},
+        {"text": "Un sistema para acceder a internet", "correct": false},
+        {"text": "Un protocolo para transferir datos en redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa RAID en sistemas informáticos?",
+      "category_id": 1,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Redundant Array of Independent Disks", "correct": true},
+        {"text": "Random Access In Disk", "correct": false},
+        {"text": "Rapid Access Information Disk", "correct": false},
+        {"text": "Redundant Architecture for Input Devices", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la función principal de un servidor DNS?",
+      "category_id": 1,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Resolver nombres de dominio en direcciones IP", "correct": true},
+        {"text": "Controlar el acceso a bases de datos", "correct": false},
+        {"text": "Realizar copias de seguridad de datos", "correct": false},
+        {"text": "Proveer conectividad Wi-Fi", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia hay entre software libre y software propietario?",
+      "category_id": 1,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El software libre permite acceso y modificación del código", "correct": true},
+        {"text": "El software propietario siempre es gratuito", "correct": false},
+        {"text": "El software libre no se puede usar en empresas", "correct": false},
+        {"text": "El software propietario siempre está basado en Linux", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la virtualización en sistemas informáticos?",
+      "category_id": 1,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "La creación de recursos virtuales como máquinas o redes", "correct": true},
+        {"text": "La instalación de software en discos físicos", "correct": false},
+        {"text": "El uso de servidores en la nube", "correct": false},
+        {"text": "El diseño de sistemas operativos nuevos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza principalmente para transferir archivos entre equipos?",
+      "category_id": 1,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "FTP", "correct": true},
+        {"text": "HTTP", "correct": false},
+        {"text": "SMTP", "correct": false},
+        {"text": "SNMP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una dirección IP?",
+      "category_id": 1,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un identificador único para dispositivos en una red", "correct": true},
+        {"text": "Un protocolo de seguridad para redes", "correct": false},
+        {"text": "Un nombre asignado a servidores web", "correct": false},
+        {"text": "Un método para comprimir datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una partición de disco?",
+      "category_id": 1,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una división lógica del almacenamiento en disco", "correct": true},
+        {"text": "Un archivo de configuración del sistema", "correct": false},
+        {"text": "Un método para optimizar el rendimiento del hardware", "correct": false},
+        {"text": "Un protocolo para transferir datos entre redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una variable en programación?",
+      "category_id": 3,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un espacio de memoria para almacenar datos", "correct": true},
+        {"text": "Un tipo de archivo ejecutable", "correct": false},
+        {"text": "Un componente de hardware", "correct": false},
+        {"text": "Un sistema operativo", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa OOP en programación?",
+      "category_id": 3,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Object-Oriented Programming", "correct": true},
+        {"text": "Optimal Operational Process", "correct": false},
+        {"text": "Open-Source Programming", "correct": false},
+        {"text": "Online Operations Protocol", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un bucle en programación?",
+      "category_id": 3,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una estructura que repite un bloque de código", "correct": true},
+        {"text": "Un error en la ejecución del programa", "correct": false},
+        {"text": "Un tipo de dato", "correct": false},
+        {"text": "Un algoritmo de búsqueda", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué palabra clave se usa para definir una función en Python?",
+      "category_id": 3,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "def", "correct": true},
+        {"text": "function", "correct": false},
+        {"text": "func", "correct": false},
+        {"text": "define", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un tipo de dato booleano?",
+      "category_id": 3,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un tipo de dato que puede ser verdadero o falso", "correct": true},
+        {"text": "Un tipo de dato que almacena números enteros", "correct": false},
+        {"text": "Un tipo de dato para representar texto", "correct": false},
+        {"text": "Un tipo de dato para almacenar listas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué estructura de control se usa para tomar decisiones en un programa?",
+      "category_id": 3,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Condicional (if/else)", "correct": true},
+        {"text": "Bucle (for/while)", "correct": false},
+        {"text": "Clase (class)", "correct": false},
+        {"text": "Módulo (module)", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un array en programación?",
+      "category_id": 3,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una colección de elementos del mismo tipo", "correct": true},
+        {"text": "Un conjunto de funciones reutilizables", "correct": false},
+        {"text": "Una estructura de control condicional", "correct": false},
+        {"text": "Un tipo de dato para cadenas de texto", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un algoritmo?",
+      "category_id": 3,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un conjunto de pasos para resolver un problema", "correct": true},
+        {"text": "Un error en la ejecución de un programa", "correct": false},
+        {"text": "Un tipo de bucle en programación", "correct": false},
+        {"text": "Un lenguaje de programación", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa 'debugging' en programación?",
+      "category_id": 3,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El proceso de identificar y corregir errores en un programa", "correct": true},
+        {"text": "El proceso de compilar un programa", "correct": false},
+        {"text": "La instalación de un entorno de desarrollo", "correct": false},
+        {"text": "El diseño de interfaces gráficas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un IDE en programación?",
+      "category_id": 3,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un entorno integrado para desarrollar software", "correct": true},
+        {"text": "Un sistema operativo para programadores", "correct": false},
+        {"text": "Un tipo de lenguaje de programación", "correct": false},
+        {"text": "Un protocolo de comunicación en redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa HTML?",
+      "category_id": 4,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "HyperText Markup Language", "correct": true},
+        {"text": "HighText Machine Language", "correct": false},
+        {"text": "HyperTool Markup Language", "correct": false},
+        {"text": "HyperText Machine Logic", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué etiqueta se utiliza para definir un enlace en HTML?",
+      "category_id": 4,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "<a>", "correct": true},
+        {"text": "<link>", "correct": false},
+        {"text": "<href>", "correct": false},
+        {"text": "<url>", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la función principal de CSS?",
+      "category_id": 4,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Dar estilo a las páginas web", "correct": true},
+        {"text": "Crear estructuras HTML", "correct": false},
+        {"text": "Gestionar bases de datos", "correct": false},
+        {"text": "Definir la funcionalidad de un sitio web", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué atributo se usa para especificar una dirección URL en un enlace HTML?",
+      "category_id": 4,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "href", "correct": true},
+        {"text": "src", "correct": false},
+        {"text": "alt", "correct": false},
+        {"text": "url", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué etiqueta HTML se utiliza para incluir un archivo CSS externo?",
+      "category_id": 4,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "<link>", "correct": true},
+        {"text": "<style>", "correct": false},
+        {"text": "<css>", "correct": false},
+        {"text": "<stylesheet>", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa XML?",
+      "category_id": 4,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "eXtensible Markup Language", "correct": true},
+        {"text": "eXtra Machine Language", "correct": false},
+        {"text": "eXtreme Markup Logic", "correct": false},
+        {"text": "eXtended Machine Layout", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de un DOCTYPE en HTML?",
+      "category_id": 4,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Declarar la versión de HTML que se está utilizando", "correct": true},
+        {"text": "Incluir hojas de estilo", "correct": false},
+        {"text": "Conectar el sitio web a una base de datos", "correct": false},
+        {"text": "Definir un encabezado en la página", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa JSON?",
+      "category_id": 4,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "JavaScript Object Notation", "correct": true},
+        {"text": "Java Simple Object Naming", "correct": false},
+        {"text": "Java System Operation Network", "correct": false},
+        {"text": "JavaScript Optional Namespace", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué etiqueta se utiliza para incluir un archivo JavaScript en HTML?",
+      "category_id": 4,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "<script>", "correct": true},
+        {"text": "<js>", "correct": false},
+        {"text": "<code>", "correct": false},
+        {"text": "<javascript>", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué atributo de la etiqueta <img> es obligatorio para especificar la fuente de la imagen?",
+      "category_id": 4,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "src", "correct": true},
+        {"text": "alt", "correct": false},
+        {"text": "href", "correct": false},
+        {"text": "title", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un IDE en el desarrollo de software?",
+      "category_id": 5,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un entorno de desarrollo integrado", "correct": true},
+        {"text": "Una base de datos para programadores", "correct": false},
+        {"text": "Un lenguaje de programación específico", "correct": false},
+        {"text": "Una biblioteca de funciones predefinidas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué lenguaje de programación utiliza Visual Studio por defecto?",
+      "category_id": 5,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "C#", "correct": true},
+        {"text": "Python", "correct": false},
+        {"text": "Java", "correct": false},
+        {"text": "Ruby", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué sistema de control de versiones es uno de los más populares en desarrollo de software?",
+      "category_id": 5,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Git", "correct": true},
+        {"text": "SVN", "correct": false},
+        {"text": "Mercurial", "correct": false},
+        {"text": "CVS", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza para clonar un repositorio en Git?",
+      "category_id": 5,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "git clone", "correct": true},
+        {"text": "git fetch", "correct": false},
+        {"text": "git commit", "correct": false},
+        {"text": "git pull", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa 'compilar' en el contexto de desarrollo de software?",
+      "category_id": 5,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Convertir el código fuente en código ejecutable", "correct": true},
+        {"text": "Escribir documentación para el programa", "correct": false},
+        {"text": "Probar la funcionalidad del software", "correct": false},
+        {"text": "Actualizar la versión del software", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué archivo se utiliza para gestionar dependencias en un proyecto Maven?",
+      "category_id": 5,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "pom.xml", "correct": true},
+        {"text": "package.json", "correct": false},
+        {"text": "requirements.txt", "correct": false},
+        {"text": "build.gradle", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para automatizar la construcción de proyectos Java?",
+      "category_id": 5,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Apache Maven", "correct": true},
+        {"text": "npm", "correct": false},
+        {"text": "RubyGems", "correct": false},
+        {"text": "Django", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa CI/CD en entornos de desarrollo?",
+      "category_id": 5,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Integración continua y entrega continua", "correct": true},
+        {"text": "Control de integración y desarrollo de código", "correct": false},
+        {"text": "Implementación continua y despliegue de código", "correct": false},
+        {"text": "Comunicación interna y control de desarrollo", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué software de contenedores es más utilizado para entornos de desarrollo?",
+      "category_id": 5,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Docker", "correct": true},
+        {"text": "Kubernetes", "correct": false},
+        {"text": "Vagrant", "correct": false},
+        {"text": "Hyper-V", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un entorno virtual en Python?",
+      "category_id": 5,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una herramienta para aislar dependencias del proyecto", "correct": true},
+        {"text": "Un contenedor para ejecutar código en servidores", "correct": false},
+        {"text": "Una interfaz gráfica para programar", "correct": false},
+        {"text": "Una biblioteca para pruebas automatizadas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es JDBC en Java?",
+      "category_id": 6,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una API para conectar aplicaciones Java con bases de datos", "correct": true},
+        {"text": "Un gestor de bases de datos relacional", "correct": false},
+        {"text": "Un framework para desarrollo web", "correct": false},
+        {"text": "Una herramienta para análisis de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué método se utiliza en JDBC para ejecutar una consulta SQL?",
+      "category_id": 6,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "executeQuery()", "correct": true},
+        {"text": "execute()", "correct": false},
+        {"text": "runQuery()", "correct": false},
+        {"text": "executeCommand()", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es Hibernate en el desarrollo de software?",
+      "category_id": 6,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un framework de mapeo objeto-relacional", "correct": true},
+        {"text": "Un lenguaje de programación para bases de datos", "correct": false},
+        {"text": "Un servidor de aplicaciones", "correct": false},
+        {"text": "Un sistema de control de versiones", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué lenguaje se utiliza para realizar consultas en bases de datos relacionales?",
+      "category_id": 6,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SQL", "correct": true},
+        {"text": "NoSQL", "correct": false},
+        {"text": "HTML", "correct": false},
+        {"text": "CSS", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de un pool de conexiones a bases de datos?",
+      "category_id": 6,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Optimizar el uso de conexiones reutilizándolas", "correct": true},
+        {"text": "Evitar el uso de conexiones directas", "correct": false},
+        {"text": "Mejorar la seguridad de las consultas SQL", "correct": false},
+        {"text": "Proveer backups automáticos de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia principal existe entre SQL y NoSQL?",
+      "category_id": 6,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SQL es relacional y NoSQL no relacional", "correct": true},
+        {"text": "SQL es para datos estructurados y NoSQL para no estructurados", "correct": false},
+        {"text": "SQL usa índices y NoSQL no", "correct": false},
+        {"text": "SQL es para análisis y NoSQL para almacenamiento", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué biblioteca de Python se usa comúnmente para acceder a bases de datos?",
+      "category_id": 6,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "sqlite3", "correct": true},
+        {"text": "requests", "correct": false},
+        {"text": "pandas", "correct": false},
+        {"text": "django", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa CRUD en acceso a datos?",
+      "category_id": 6,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Create, Read, Update, Delete", "correct": true},
+        {"text": "Control, Restore, Update, Data", "correct": false},
+        {"text": "Command, Read, Upload, Drop", "correct": false},
+        {"text": "Connect, Reset, Update, Disconnect", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una transacción en el contexto de bases de datos?",
+      "category_id": 6,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una unidad de trabajo que se ejecuta de manera atómica", "correct": true},
+        {"text": "Un conjunto de datos redundantes", "correct": false},
+        {"text": "Una tabla temporal en la base de datos", "correct": false},
+        {"text": "Un índice utilizado para búsquedas rápidas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un procedimiento almacenado en una base de datos?",
+      "category_id": 6,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un conjunto de instrucciones SQL almacenadas y ejecutadas en el servidor", "correct": true},
+        {"text": "Un índice que mejora el rendimiento de las consultas", "correct": false},
+        {"text": "Una clave foránea para vincular tablas", "correct": false},
+        {"text": "Un campo único que identifica registros", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el principio de diseño de interfaces 'Responsive Design'?",
+      "category_id": 7,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Diseñar interfaces que se adapten a diferentes tamaños de pantalla", "correct": true},
+        {"text": "Crear interfaces solo para dispositivos móviles", "correct": false},
+        {"text": "Desarrollar interfaces con animaciones avanzadas", "correct": false},
+        {"text": "Usar solo colores planos en el diseño", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un framework en el desarrollo de interfaces?",
+      "category_id": 7,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una colección de herramientas y librerías para facilitar el desarrollo", "correct": true},
+        {"text": "Un editor de texto avanzado para programación", "correct": false},
+        {"text": "Un lenguaje de programación orientado a interfaces", "correct": false},
+        {"text": "Un sistema de bases de datos relacional", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la principal ventaja de usar CSS en el desarrollo de interfaces?",
+      "category_id": 7,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Permite separar el diseño visual del contenido HTML", "correct": true},
+        {"text": "Facilita el acceso a bases de datos", "correct": false},
+        {"text": "Optimiza el rendimiento del servidor", "correct": false},
+        {"text": "Genera scripts dinámicos para el servidor", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué propiedad de CSS se usa para centrar un elemento horizontalmente con Flexbox?",
+      "category_id": 7,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "justify-content", "correct": true},
+        {"text": "align-items", "correct": false},
+        {"text": "text-align", "correct": false},
+        {"text": "margin", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el término 'User Experience' (UX)?",
+      "category_id": 7,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "La experiencia y emociones del usuario al interactuar con una interfaz", "correct": true},
+        {"text": "El diseño gráfico de una aplicación", "correct": false},
+        {"text": "La estructura del código de una aplicación", "correct": false},
+        {"text": "La funcionalidad técnica de un sistema", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un evento en JavaScript en el contexto de desarrollo de interfaces?",
+      "category_id": 7,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una acción que ocurre en una página web, como un clic o pulsar una tecla", "correct": true},
+        {"text": "Un archivo que contiene estilos CSS", "correct": false},
+        {"text": "Un método para crear bases de datos", "correct": false},
+        {"text": "Un tipo de error en el código", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué librería se utiliza comúnmente para crear interfaces gráficas en Java?",
+      "category_id": 7,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "JavaFX", "correct": true},
+        {"text": "JDBC", "correct": false},
+        {"text": "Spring Boot", "correct": false},
+        {"text": "Hibernate", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué propiedad de CSS permite establecer el tamaño mínimo de un elemento?",
+      "category_id": 7,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "min-width", "correct": true},
+        {"text": "max-width", "correct": false},
+        {"text": "min-height", "correct": false},
+        {"text": "width", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta permite depurar código y diseño directamente en el navegador?",
+      "category_id": 7,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "DevTools", "correct": true},
+        {"text": "Sublime Text", "correct": false},
+        {"text": "Bootstrap", "correct": false},
+        {"text": "Node.js", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué framework se utiliza comúnmente para crear interfaces responsive?",
+      "category_id": 7,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Bootstrap", "correct": true},
+        {"text": "Django", "correct": false},
+        {"text": "Laravel", "correct": false},
+        {"text": "Hibernate", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué lenguaje de programación es el más común para desarrollar aplicaciones Android?",
+      "category_id": 8,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Kotlin", "correct": true},
+        {"text": "Swift", "correct": false},
+        {"text": "Python", "correct": false},
+        {"text": "Ruby", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una 'Activity' en el desarrollo de Android?",
+      "category_id": 8,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una pantalla que representa una interfaz de usuario", "correct": true},
+        {"text": "Un servicio que se ejecuta en segundo plano", "correct": false},
+        {"text": "Un archivo de configuración de la aplicación", "correct": false},
+        {"text": "Una base de datos local en Android", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para emular dispositivos móviles en el desarrollo de aplicaciones Android?",
+      "category_id": 8,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Android Emulator", "correct": true},
+        {"text": "Xcode", "correct": false},
+        {"text": "Docker", "correct": false},
+        {"text": "VirtualBox", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de archivo se genera para instalar una aplicación Android en un dispositivo?",
+      "category_id": 8,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "APK", "correct": true},
+        {"text": "EXE", "correct": false},
+        {"text": "ZIP", "correct": false},
+        {"text": "DMG", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué biblioteca se usa comúnmente para trabajar con gráficos y animaciones en Android?",
+      "category_id": 8,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Canvas API", "correct": true},
+        {"text": "OpenGL ES", "correct": false},
+        {"text": "DirectX", "correct": false},
+        {"text": "Unity", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tecnología permite el desarrollo de aplicaciones móviles multiplataforma?",
+      "category_id": 8,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Flutter", "correct": true},
+        {"text": "Java", "correct": false},
+        {"text": "Kotlin", "correct": false},
+        {"text": "Swift", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué método de la clase Activity en Android se utiliza para inicializar la interfaz de usuario?",
+      "category_id": 8,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "onCreate()", "correct": true},
+        {"text": "onStart()", "correct": false},
+        {"text": "onResume()", "correct": false},
+        {"text": "onDestroy()", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un 'Intent' en Android?",
+      "category_id": 8,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un objeto para comunicar actividades o servicios", "correct": true},
+        {"text": "Una herramienta para diseñar interfaces", "correct": false},
+        {"text": "Un archivo de configuración de permisos", "correct": false},
+        {"text": "Una base de datos integrada", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la plataforma SwiftUI?",
+      "category_id": 8,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un framework para desarrollar interfaces en iOS", "correct": true},
+        {"text": "Una herramienta para diseñar gráficos 3D", "correct": false},
+        {"text": "Un sistema operativo para móviles", "correct": false},
+        {"text": "Un servicio de almacenamiento en la nube", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué se utiliza en iOS para gestionar los diseños de las aplicaciones?",
+      "category_id": 8,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Auto Layout", "correct": true},
+        {"text": "Storyboard Animator", "correct": false},
+        {"text": "UIKit Designer", "correct": false},
+        {"text": "Core Layout", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un servicio en el contexto de la programación de sistemas?",
+      "category_id": 9,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un proceso que se ejecuta en segundo plano para realizar tareas específicas", "correct": true},
+        {"text": "Una aplicación que interactúa directamente con el usuario", "correct": false},
+        {"text": "Un componente gráfico en una interfaz de usuario", "correct": false},
+        {"text": "Un archivo de configuración del sistema", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la función principal de un 'daemon' en sistemas operativos basados en Unix?",
+      "category_id": 9,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Ejecutar tareas en segundo plano sin interacción directa con el usuario", "correct": true},
+        {"text": "Proporcionar una interfaz gráfica para el sistema", "correct": false},
+        {"text": "Almacenar datos en bases de datos relacionales", "correct": false},
+        {"text": "Gestionar las conexiones de red entrantes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta de programación se utiliza comúnmente para gestionar servicios en Windows?",
+      "category_id": 9,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "PowerShell", "correct": true},
+        {"text": "Bash", "correct": false},
+        {"text": "Python", "correct": false},
+        {"text": "JavaScript", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza comúnmente para la comunicación entre servicios en la web?",
+      "category_id": 9,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "HTTP/HTTPS", "correct": true},
+        {"text": "FTP", "correct": false},
+        {"text": "SMTP", "correct": false},
+        {"text": "DNS", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un hilo (thread) en el contexto de la programación concurrente?",
+      "category_id": 9,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una unidad de ejecución dentro de un proceso", "correct": true},
+        {"text": "Un archivo que contiene el código fuente de un programa", "correct": false},
+        {"text": "Una conexión de red entre dos sistemas", "correct": false},
+        {"text": "Un método para compilar aplicaciones en paralelo", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un 'socket' en programación de redes?",
+      "category_id": 9,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un punto de comunicación entre dos programas a través de la red", "correct": true},
+        {"text": "Un archivo binario ejecutable", "correct": false},
+        {"text": "Un mecanismo de autenticación de usuarios", "correct": false},
+        {"text": "Un componente de la interfaz gráfica", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué característica define a un proceso 'multihilo'?",
+      "category_id": 9,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Puede ejecutar múltiples hilos de ejecución simultáneamente", "correct": true},
+        {"text": "Se ejecuta en diferentes sistemas operativos", "correct": false},
+        {"text": "Interactúa con bases de datos relacionales", "correct": false},
+        {"text": "Es una aplicación gráfica de usuario", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué método se utiliza en Java para crear un hilo de ejecución?",
+      "category_id": 9,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Extendiendo la clase Thread o implementando Runnable", "correct": true},
+        {"text": "Usando la clase FileReader", "correct": false},
+        {"text": "Declarando un método main estático", "correct": false},
+        {"text": "Importando la clase ProcessBuilder", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un sistema de colas de mensajes (message queue)?",
+      "category_id": 9,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un mecanismo para enviar mensajes entre procesos o servicios", "correct": true},
+        {"text": "Una base de datos relacional para almacenar mensajes", "correct": false},
+        {"text": "Un archivo de configuración del sistema", "correct": false},
+        {"text": "Un componente para gestionar eventos gráficos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué biblioteca se usa en Python para manejar programación concurrente con hilos?",
+      "category_id": 9,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "threading", "correct": true},
+        {"text": "multiprocessing", "correct": false},
+        {"text": "asyncio", "correct": false},
+        {"text": "socket", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un ERP en el contexto de los sistemas de gestión empresarial?",
+      "category_id": 10,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un software que integra y gestiona los procesos empresariales", "correct": true},
+        {"text": "Un sistema operativo para servidores", "correct": false},
+        {"text": "Un gestor de bases de datos", "correct": false},
+        {"text": "Un lenguaje de programación", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el principal beneficio de implementar un CRM en una empresa?",
+      "category_id": 10,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Mejorar la relación con los clientes", "correct": true},
+        {"text": "Optimizar la producción en cadena", "correct": false},
+        {"text": "Gestionar los recursos humanos", "correct": false},
+        {"text": "Crear aplicaciones web", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el término 'Business Intelligence' (BI)?",
+      "category_id": 10,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El análisis de datos para la toma de decisiones empresariales", "correct": true},
+        {"text": "El diseño de redes empresariales", "correct": false},
+        {"text": "La gestión de software empresarial", "correct": false},
+        {"text": "El desarrollo de sistemas operativos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué módulo de un ERP se utiliza para gestionar la contabilidad y finanzas?",
+      "category_id": 10,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Módulo Financiero", "correct": true},
+        {"text": "Módulo de Recursos Humanos", "correct": false},
+        {"text": "Módulo de Ventas", "correct": false},
+        {"text": "Módulo de Producción", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza comúnmente para visualizar datos en un sistema de BI?",
+      "category_id": 10,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Tableau", "correct": true},
+        {"text": "Eclipse", "correct": false},
+        {"text": "Visual Studio Code", "correct": false},
+        {"text": "Docker", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la planificación de recursos empresariales (ERP)?",
+      "category_id": 10,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un sistema integral que gestiona todos los procesos de la empresa", "correct": true},
+        {"text": "Una técnica de marketing digital", "correct": false},
+        {"text": "Un lenguaje de programación para bases de datos", "correct": false},
+        {"text": "Un protocolo de comunicación en red", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué ventaja proporciona un ERP basado en la nube frente a uno local?",
+      "category_id": 10,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Acceso desde cualquier lugar con conexión a Internet", "correct": true},
+        {"text": "Mayor personalización en el código fuente", "correct": false},
+        {"text": "Requiere hardware especializado", "correct": false},
+        {"text": "No necesita mantenimiento", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es una de las características principales de un sistema SCM?",
+      "category_id": 10,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Gestionar la cadena de suministro de la empresa", "correct": true},
+        {"text": "Controlar las interacciones con los clientes", "correct": false},
+        {"text": "Crear informes financieros detallados", "correct": false},
+        {"text": "Gestionar las nóminas de los empleados", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué aspecto se analiza en un sistema BI para optimizar las ventas?",
+      "category_id": 10,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El comportamiento y tendencias de los clientes", "correct": true},
+        {"text": "La infraestructura de red", "correct": false},
+        {"text": "El diseño de la interfaz gráfica", "correct": false},
+        {"text": "El costo del hardware", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un KPI en el contexto de los sistemas de gestión empresarial?",
+      "category_id": 10,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un indicador clave de rendimiento", "correct": true},
+        {"text": "Una técnica de programación orientada a objetos", "correct": false},
+        {"text": "Un protocolo de intercambio de datos", "correct": false},
+        {"text": "Un módulo de gestión de usuarios", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es JavaScript en el contexto del desarrollo web?",
+      "category_id": 11,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un lenguaje de programación utilizado para añadir interactividad a las páginas web", "correct": true},
+        {"text": "Un sistema operativo para servidores web", "correct": false},
+        {"text": "Un framework para diseño gráfico", "correct": false},
+        {"text": "Una base de datos relacional", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál de las siguientes es una característica del lenguaje HTML?",
+      "category_id": 11,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Define la estructura y el contenido de una página web", "correct": true},
+        {"text": "Gestiona la comunicación entre servidores", "correct": false},
+        {"text": "Proporciona estilos visuales avanzados", "correct": false},
+        {"text": "Permite la programación orientada a objetos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué función cumple CSS en el desarrollo web?",
+      "category_id": 11,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Define el diseño y estilo visual de una página web", "correct": true},
+        {"text": "Controla la lógica de las interacciones", "correct": false},
+        {"text": "Se utiliza para gestionar bases de datos", "correct": false},
+        {"text": "Es un lenguaje de marcado para etiquetas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué método se utiliza en JavaScript para capturar eventos del usuario?",
+      "category_id": 11,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "addEventListener", "correct": true},
+        {"text": "getElementById", "correct": false},
+        {"text": "setTimeout", "correct": false},
+        {"text": "console.log", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es el DOM en el contexto del desarrollo web?",
+      "category_id": 11,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una representación en árbol de los elementos de una página web", "correct": true},
+        {"text": "Un sistema de bases de datos para aplicaciones web", "correct": false},
+        {"text": "Un protocolo para transferencia de datos", "correct": false},
+        {"text": "Un entorno de ejecución para JavaScript", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una API en JavaScript?",
+      "category_id": 11,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un conjunto de funciones y objetos disponibles para interactuar con el entorno web", "correct": true},
+        {"text": "Una herramienta para diseñar interfaces gráficas", "correct": false},
+        {"text": "Un framework para desarrollo backend", "correct": false},
+        {"text": "Un sistema operativo para servidores", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un callback en JavaScript?",
+      "category_id": 11,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una función que se ejecuta después de que otra función haya terminado", "correct": true},
+        {"text": "Una estructura de datos para almacenar variables", "correct": false},
+        {"text": "Un elemento HTML que permite interactividad", "correct": false},
+        {"text": "Una técnica para almacenar datos en el navegador", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué ventaja proporciona el uso de frameworks como React en el desarrollo web?",
+      "category_id": 11,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Facilita la creación de interfaces dinámicas y reutilizables", "correct": true},
+        {"text": "Simplifica la conexión con bases de datos relacionales", "correct": false},
+        {"text": "Optimiza la velocidad de ejecución del servidor", "correct": false},
+        {"text": "Proporciona estilos predefinidos para páginas web", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué propiedad de CSS se utiliza para crear un diseño flexible y adaptable?",
+      "category_id": 11,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "display: flex", "correct": true},
+        {"text": "position: relative", "correct": false},
+        {"text": "text-align: center", "correct": false},
+        {"text": "background-color", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando de JavaScript permite acceder al valor de un campo de formulario?",
+      "category_id": 11,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "document.getElementById('id').value", "correct": true},
+        {"text": "document.querySelectorAll('id').value", "correct": false},
+        {"text": "document.createElement('id').value", "correct": false},
+        {"text": "document.write('id').value", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es PHP en el desarrollo web?",
+      "category_id": 12,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un lenguaje de programación del lado del servidor para crear páginas web dinámicas", "correct": true},
+        {"text": "Un sistema de gestión de bases de datos", "correct": false},
+        {"text": "Un framework de diseño web", "correct": false},
+        {"text": "Un protocolo para transferencia de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cómo se inicia un bloque de código PHP en un archivo?",
+      "category_id": 12,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "<?php", "correct": true},
+        {"text": "<php>", "correct": false},
+        {"text": "<?>", "correct": false},
+        {"text": "<script>", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué función en PHP se utiliza para conectarse a una base de datos MySQL?",
+      "category_id": 12,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "mysqli_connect()", "correct": true},
+        {"text": "connect_mysql()", "correct": false},
+        {"text": "db_connect()", "correct": false},
+        {"text": "mysql_connect()", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué hace la función `isset()` en PHP?",
+      "category_id": 12,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Comprueba si una variable está definida y no es null", "correct": true},
+        {"text": "Comprueba si una variable es un número", "correct": false},
+        {"text": "Elimina una variable de la memoria", "correct": false},
+        {"text": "Convierte una variable en una cadena", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de la superglobal $_POST en PHP?",
+      "category_id": 12,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Capturar datos enviados mediante el método HTTP POST", "correct": true},
+        {"text": "Capturar datos enviados mediante el método HTTP GET", "correct": false},
+        {"text": "Capturar cookies enviadas al servidor", "correct": false},
+        {"text": "Capturar información del entorno del servidor", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cómo se incluye un archivo en otro archivo PHP?",
+      "category_id": 12,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Mediante `include` o `require`", "correct": true},
+        {"text": "Usando la función `add_file()`", "correct": false},
+        {"text": "Con la palabra clave `import`", "correct": false},
+        {"text": "Con el comando `attach`", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa PDO en PHP?",
+      "category_id": 12,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "PHP Data Objects, una extensión para trabajar con bases de datos", "correct": true},
+        {"text": "PHP Database Operations, una biblioteca para manejar datos", "correct": false},
+        {"text": "Programming Database Objects, un estándar de bases de datos", "correct": false},
+        {"text": "Pro Data Options, un sistema avanzado de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué hace la función `header()` en PHP?",
+      "category_id": 12,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Envía encabezados HTTP al navegador", "correct": true},
+        {"text": "Devuelve la cabecera HTML de un archivo", "correct": false},
+        {"text": "Guarda datos en una sesión", "correct": false},
+        {"text": "Genera una respuesta JSON", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cómo se define una clase en PHP?",
+      "category_id": 12,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Usando la palabra clave `class`", "correct": true},
+        {"text": "Usando la palabra clave `object`", "correct": false},
+        {"text": "Usando la palabra clave `define`", "correct": false},
+        {"text": "Usando la palabra clave `struct`", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia existe entre `require` e `include` en PHP?",
+      "category_id": 12,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "`require` detiene la ejecución si falla, mientras que `include` no", "correct": true},
+        {"text": "`include` es más rápido que `require`", "correct": false},
+        {"text": "`require` se usa solo en funciones, mientras que `include` es global", "correct": false},
+        {"text": "No existe diferencia entre ambos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es el despliegue de una aplicación web?",
+      "category_id": 13,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El proceso de instalar y configurar una aplicación web en un servidor para que sea accesible en línea", "correct": true},
+        {"text": "La fase de desarrollo de una aplicación web", "correct": false},
+        {"text": "El diseño de la interfaz de usuario de una aplicación web", "correct": false},
+        {"text": "La prueba de funcionalidades de una aplicación web en local", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un servidor web?",
+      "category_id": 13,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un software que procesa y entrega páginas web al cliente", "correct": true},
+        {"text": "Un dispositivo físico para conectar a internet", "correct": false},
+        {"text": "Un sistema operativo para desarrollar aplicaciones web", "correct": false},
+        {"text": "Un programa que ejecuta scripts de cliente", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza comúnmente para gestionar dependencias en aplicaciones web Ruby on Rails?",
+      "category_id": 13,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Bundler", "correct": true},
+        {"text": "NPM", "correct": false},
+        {"text": "Composer", "correct": false},
+        {"text": "Pip", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un entorno de producción en una aplicación web?",
+      "category_id": 13,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El entorno donde la aplicación está disponible para los usuarios finales", "correct": true},
+        {"text": "El entorno donde los desarrolladores prueban nuevas funcionalidades", "correct": false},
+        {"text": "El entorno donde se diseñan las bases de datos", "correct": false},
+        {"text": "El entorno donde se escriben las pruebas automatizadas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de un sistema de integración continua (CI) en el despliegue?",
+      "category_id": 13,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Automatizar pruebas y despliegues para detectar errores rápidamente", "correct": true},
+        {"text": "Configurar manualmente los servidores para producción", "correct": false},
+        {"text": "Controlar versiones de código", "correct": false},
+        {"text": "Optimizar el diseño de la base de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es Docker en el contexto del despliegue de aplicaciones web?",
+      "category_id": 13,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una herramienta de contenedores para empaquetar aplicaciones y sus dependencias", "correct": true},
+        {"text": "Un sistema operativo para servidores web", "correct": false},
+        {"text": "Un servidor de bases de datos", "correct": false},
+        {"text": "Un editor de texto para programadores", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia hay entre un servidor dedicado y un servidor compartido?",
+      "category_id": 13,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un servidor dedicado es exclusivo para un cliente, mientras que un compartido es utilizado por varios", "correct": true},
+        {"text": "Un servidor compartido solo puede ejecutar aplicaciones de bajo rendimiento", "correct": false},
+        {"text": "Un servidor dedicado no necesita un sistema operativo", "correct": false},
+        {"text": "No hay diferencia, son términos intercambiables", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se usa frecuentemente para manejar configuraciones en servidores web como Apache o Nginx?",
+      "category_id": 13,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Archivo de configuración (.conf)", "correct": true},
+        {"text": "Archivo .htpasswd", "correct": false},
+        {"text": "Archivo robots.txt", "correct": false},
+        {"text": "Archivo SQL", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa HTTPS en el contexto del despliegue web?",
+      "category_id": 13,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Protocolo seguro para la transferencia de datos en la web", "correct": true},
+        {"text": "Una herramienta de diseño de frontend", "correct": false},
+        {"text": "Un lenguaje de programación para servidores", "correct": false},
+        {"text": "Un sistema operativo basado en la web", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de un Load Balancer en una aplicación web?",
+      "category_id": 13,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Distribuir el tráfico entre varios servidores para mejorar el rendimiento", "correct": true},
+        {"text": "Aumentar la velocidad de las consultas a bases de datos", "correct": false},
+        {"text": "Proteger el servidor de ataques DDoS", "correct": false},
+        {"text": "Realizar copias de seguridad automáticas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la usabilidad en el diseño de interfaces web?",
+      "category_id": 14,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "La facilidad con la que los usuarios pueden interactuar con una interfaz", "correct": true},
+        {"text": "La cantidad de colores utilizados en el diseño", "correct": false},
+        {"text": "El rendimiento del servidor web", "correct": false},
+        {"text": "El tiempo de carga de la página", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el principio de diseño 'responsive'?",
+      "category_id": 14,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Que la interfaz se adapta a diferentes tamaños de pantalla", "correct": true},
+        {"text": "Que la interfaz utiliza únicamente HTML", "correct": false},
+        {"text": "Que el diseño es estático y fijo", "correct": false},
+        {"text": "Que la interfaz carga más rápido en dispositivos móviles", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una cuadrícula (grid) en el diseño web?",
+      "category_id": 14,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un sistema para organizar elementos en filas y columnas", "correct": true},
+        {"text": "Un diseño que utiliza colores monocromáticos", "correct": false},
+        {"text": "Una herramienta para optimizar el rendimiento del sitio", "correct": false},
+        {"text": "Un script para manejar eventos del usuario", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de los espacios en blanco (white space) en diseño web?",
+      "category_id": 14,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Mejorar la legibilidad y jerarquía visual", "correct": true},
+        {"text": "Reducir el peso de las imágenes en la web", "correct": false},
+        {"text": "Aumentar el tiempo de carga de la página", "correct": false},
+        {"text": "Definir los bordes de las tablas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un prototipo en el diseño de interfaces web?",
+      "category_id": 14,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una representación preliminar de la interfaz", "correct": true},
+        {"text": "Un documento que describe el código backend", "correct": false},
+        {"text": "Un archivo de configuración del servidor web", "correct": false},
+        {"text": "Un esquema de la base de datos del proyecto", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta es comúnmente utilizada para crear prototipos de interfaces web?",
+      "category_id": 14,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Figma", "correct": true},
+        {"text": "Visual Studio Code", "correct": false},
+        {"text": "Apache", "correct": false},
+        {"text": "MySQL", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué propiedad CSS se utiliza para cambiar el color de fondo de un elemento?",
+      "category_id": 14,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "background-color", "correct": true},
+        {"text": "color", "correct": false},
+        {"text": "border", "correct": false},
+        {"text": "padding", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué técnica mejora la accesibilidad en el diseño de interfaces web?",
+      "category_id": 14,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Uso de etiquetas semánticas y textos alternativos (alt)", "correct": true},
+        {"text": "Aumentar el uso de colores brillantes", "correct": false},
+        {"text": "Reducir los márgenes y espacios en blanco", "correct": false},
+        {"text": "Utilizar únicamente menús desplegables", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un diseño modular en el contexto del diseño web?",
+      "category_id": 14,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un enfoque que divide la interfaz en componentes reutilizables", "correct": true},
+        {"text": "Un diseño basado exclusivamente en tablas", "correct": false},
+        {"text": "Un tipo de diseño solo para dispositivos móviles", "correct": false},
+        {"text": "Una técnica para comprimir archivos CSS", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un diseño centrado en el usuario (user-centered design)?",
+      "category_id": 14,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un enfoque de diseño que prioriza las necesidades y experiencia del usuario", "correct": true},
+        {"text": "Un diseño enfocado en la tecnología del servidor", "correct": false},
+        {"text": "Un método para optimizar las bases de datos", "correct": false},
+        {"text": "Una técnica que utiliza únicamente CSS", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un sistema operativo?",
+      "category_id": 15,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un software que actúa como intermediario entre el hardware y el usuario", "correct": true},
+        {"text": "Un programa para editar imágenes", "correct": false},
+        {"text": "Un componente físico del ordenador", "correct": false},
+        {"text": "Un lenguaje de programación", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué sistema de archivos es comúnmente utilizado en sistemas operativos Linux?",
+      "category_id": 15,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "EXT4", "correct": true},
+        {"text": "NTFS", "correct": false},
+        {"text": "FAT32", "correct": false},
+        {"text": "HFS+", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza para listar los archivos en un directorio en Linux?",
+      "category_id": 15,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ls", "correct": true},
+        {"text": "dir", "correct": false},
+        {"text": "list", "correct": false},
+        {"text": "show", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un servicio en un sistema operativo?",
+      "category_id": 15,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un proceso que se ejecuta en segundo plano para realizar tareas específicas", "correct": true},
+        {"text": "Un archivo temporal que utiliza el sistema", "correct": false},
+        {"text": "Un tipo de hardware especializado", "correct": false},
+        {"text": "Una carpeta del sistema utilizada para backups", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un hipervisor en la virtualización de sistemas operativos?",
+      "category_id": 15,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un software que permite ejecutar múltiples sistemas operativos en un mismo hardware", "correct": true},
+        {"text": "Un controlador para periféricos", "correct": false},
+        {"text": "Un tipo de sistema de archivos", "correct": false},
+        {"text": "Un protocolo de red para transferencias rápidas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es el archivo 'fstab' en Linux?",
+      "category_id": 15,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un archivo de configuración para montar sistemas de archivos automáticamente", "correct": true},
+        {"text": "Un archivo de registro del sistema", "correct": false},
+        {"text": "Un script para instalar programas", "correct": false},
+        {"text": "Un directorio para backups", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza en Windows para gestionar particiones de disco?",
+      "category_id": 15,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Administrador de discos", "correct": true},
+        {"text": "Explorador de archivos", "correct": false},
+        {"text": "Panel de control", "correct": false},
+        {"text": "CMD", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una imagen del sistema operativo?",
+      "category_id": 15,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una copia exacta de un sistema operativo para su despliegue o recuperación", "correct": true},
+        {"text": "Una representación gráfica del sistema operativo", "correct": false},
+        {"text": "Un archivo que almacena únicamente los drivers del sistema", "correct": false},
+        {"text": "Un programa que permite instalar software", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es el gestor de arranque en un sistema operativo?",
+      "category_id": 15,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un programa que carga el sistema operativo al iniciar el equipo", "correct": true},
+        {"text": "Un servicio que gestiona los archivos temporales", "correct": false},
+        {"text": "Un controlador para gestionar hardware", "correct": false},
+        {"text": "Un protocolo de red para iniciar servicios", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la swap en Linux?",
+      "category_id": 15,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un espacio en disco utilizado como memoria virtual", "correct": true},
+        {"text": "Una partición para el sistema operativo", "correct": false},
+        {"text": "Un archivo de registro del sistema", "correct": false},
+        {"text": "Un tipo de sistema de archivos exclusivo de Linux", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una dirección IP?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un identificador único para un dispositivo en una red", "correct": true},
+        {"text": "Un protocolo de transferencia de archivos", "correct": false},
+        {"text": "Un estándar de hardware para redes inalámbricas", "correct": false},
+        {"text": "Un tipo de cable utilizado en redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la función de un servidor DHCP en una red?",
+      "category_id": 16,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Asignar direcciones IP automáticamente a los dispositivos", "correct": true},
+        {"text": "Controlar el acceso a Internet", "correct": false},
+        {"text": "Proteger la red contra ataques", "correct": false},
+        {"text": "Transmitir datos entre redes distintas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de dispositivo se utiliza para conectar dos redes diferentes?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un router", "correct": true},
+        {"text": "Un switch", "correct": false},
+        {"text": "Un hub", "correct": false},
+        {"text": "Un repetidor", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza para resolver direcciones IP en nombres de dominio?",
+      "category_id": 16,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "DNS", "correct": true},
+        {"text": "HTTP", "correct": false},
+        {"text": "FTP", "correct": false},
+        {"text": "TCP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un firewall?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un sistema que protege la red contra accesos no autorizados", "correct": true},
+        {"text": "Un software para optimizar la velocidad de Internet", "correct": false},
+        {"text": "Un protocolo de transferencia de datos", "correct": false},
+        {"text": "Un dispositivo para medir la latencia en redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es el modelo OSI en redes?",
+      "category_id": 16,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un modelo de referencia con siete capas para describir la comunicación en redes", "correct": true},
+        {"text": "Un estándar para cableado estructurado", "correct": false},
+        {"text": "Un protocolo de cifrado para redes inalámbricas", "correct": false},
+        {"text": "Un tipo de hardware de red", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una red de área local (LAN)?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una red que conecta dispositivos en un área geográfica limitada", "correct": true},
+        {"text": "Una red que conecta varias ciudades", "correct": false},
+        {"text": "Una red exclusiva para servidores", "correct": false},
+        {"text": "Una red que funciona solo con conexiones inalámbricas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta permite comprobar la conectividad entre dos dispositivos en una red?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ping", "correct": true},
+        {"text": "netstat", "correct": false},
+        {"text": "tracert", "correct": false},
+        {"text": "ipconfig", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una dirección MAC?",
+      "category_id": 16,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un identificador único asociado a la tarjeta de red de un dispositivo", "correct": true},
+        {"text": "La dirección física de un servidor", "correct": false},
+        {"text": "Un protocolo de enrutamiento en redes LAN", "correct": false},
+        {"text": "Un estándar para redes inalámbricas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de cable se utiliza comúnmente en redes Ethernet?",
+      "category_id": 16,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Cable UTP", "correct": true},
+        {"text": "Cable coaxial", "correct": false},
+        {"text": "Cable de fibra óptica", "correct": false},
+        {"text": "Cable USB", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué componente es conocido como el cerebro de un ordenador?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El procesador (CPU)", "correct": true},
+        {"text": "La memoria RAM", "correct": false},
+        {"text": "La placa base", "correct": false},
+        {"text": "La unidad de almacenamiento", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de memoria es volátil y pierde sus datos al apagar el ordenador?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Memoria RAM", "correct": true},
+        {"text": "Memoria ROM", "correct": false},
+        {"text": "Memoria flash", "correct": false},
+        {"text": "Disco duro", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál de los siguientes puertos se utiliza para conectar monitores modernos?",
+      "category_id": 17,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "HDMI", "correct": true},
+        {"text": "PS/2", "correct": false},
+        {"text": "Serial", "correct": false},
+        {"text": "Ethernet", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué componente es responsable de la conversión de corriente alterna en corriente continua en un ordenador?",
+      "category_id": 17,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "La fuente de alimentación", "correct": true},
+        {"text": "La placa base", "correct": false},
+        {"text": "La tarjeta gráfica", "correct": false},
+        {"text": "El procesador", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa la sigla SSD?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Unidad de estado sólido", "correct": true},
+        {"text": "Sistema de almacenamiento estándar", "correct": false},
+        {"text": "Servicio de soporte dinámico", "correct": false},
+        {"text": "Software de disco sólido", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué dispositivo se utiliza para enfriar el procesador?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un disipador y ventilador", "correct": true},
+        {"text": "Una unidad de fuente de alimentación", "correct": false},
+        {"text": "Un módulo de RAM", "correct": false},
+        {"text": "Una tarjeta de red", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué estándar define las conexiones internas de discos duros modernos?",
+      "category_id": 17,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SATA", "correct": true},
+        {"text": "IDE", "correct": false},
+        {"text": "USB", "correct": false},
+        {"text": "PCIe", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la función de la memoria caché en un procesador?",
+      "category_id": 17,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Almacenar datos frecuentemente usados para acceso rápido", "correct": true},
+        {"text": "Almacenar datos de manera permanente", "correct": false},
+        {"text": "Aumentar la capacidad de la memoria RAM", "correct": false},
+        {"text": "Reducir la velocidad de la CPU", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué diferencia principal hay entre un disco duro HDD y un SSD?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El SSD es más rápido y no tiene partes móviles", "correct": true},
+        {"text": "El HDD es más rápido pero tiene menos capacidad", "correct": false},
+        {"text": "El SSD se utiliza solo en servidores", "correct": false},
+        {"text": "El HDD no requiere energía para funcionar", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué dispositivo se utiliza para realizar la conexión de varios componentes en un ordenador?",
+      "category_id": 17,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "La placa base", "correct": true},
+        {"text": "La tarjeta gráfica", "correct": false},
+        {"text": "La memoria RAM", "correct": false},
+        {"text": "El procesador", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando SQL se utiliza para recuperar datos de una base de datos?",
+      "category_id": 18,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SELECT", "correct": true},
+        {"text": "INSERT", "correct": false},
+        {"text": "DELETE", "correct": false},
+        {"text": "UPDATE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el propósito de una clave foránea en una base de datos?",
+      "category_id": 18,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Establecer relaciones entre tablas", "correct": true},
+        {"text": "Identificar registros de forma única", "correct": false},
+        {"text": "Optimizar las consultas", "correct": false},
+        {"text": "Eliminar redundancia en los datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de relación se representa con una clave primaria en una tabla y una clave foránea en otra?",
+      "category_id": 18,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Uno a muchos", "correct": true},
+        {"text": "Muchos a muchos", "correct": false},
+        {"text": "Uno a uno", "correct": false},
+        {"text": "Autorreferenciada", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando SQL elimina una tabla junto con todos sus datos?",
+      "category_id": 18,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "DROP TABLE", "correct": true},
+        {"text": "DELETE", "correct": false},
+        {"text": "TRUNCATE", "correct": false},
+        {"text": "REMOVE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de índice mejora las búsquedas en columnas con valores únicos?",
+      "category_id": 18,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Índice único", "correct": true},
+        {"text": "Índice compuesto", "correct": false},
+        {"text": "Índice general", "correct": false},
+        {"text": "Índice no clusterizado", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es la diferencia entre TRUNCATE y DELETE?",
+      "category_id": 18,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "TRUNCATE elimina todos los registros sin registros de log, mientras que DELETE puede usar condiciones y genera logs.", "correct": true},
+        {"text": "DELETE elimina columnas y TRUNCATE elimina tablas completas.", "correct": false},
+        {"text": "TRUNCATE genera más logs que DELETE.", "correct": false},
+        {"text": "DELETE requiere confirmación y TRUNCATE no.", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa ACID en sistemas de bases de datos?",
+      "category_id": 18,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Atomicidad, consistencia, aislamiento y durabilidad", "correct": true},
+        {"text": "Adaptabilidad, concurrencia, integridad y disponibilidad", "correct": false},
+        {"text": "Almacenamiento, consistencia, integridad y diseño", "correct": false},
+        {"text": "Atomicidad, concurrencia, interactividad y duración", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de dato es ideal para almacenar texto largo en SQL?",
+      "category_id": 18,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "TEXT", "correct": true},
+        {"text": "VARCHAR(255)", "correct": false},
+        {"text": "CHAR", "correct": false},
+        {"text": "INTEGER", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Cuál es el comando SQL para modificar una estructura de tabla existente?",
+      "category_id": 18,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ALTER TABLE", "correct": true},
+        {"text": "UPDATE TABLE", "correct": false},
+        {"text": "CHANGE TABLE", "correct": false},
+        {"text": "MODIFY TABLE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para realizar copias de seguridad de una base de datos MySQL?",
+      "category_id": 18,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "mysqldump", "correct": true},
+        {"text": "pg_dump", "correct": false},
+        {"text": "sqlite_backup", "correct": false},
+        {"text": "backup_mysql", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando de Linux se utiliza para listar los archivos de un directorio?",
+      "category_id": 19,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ls", "correct": true},
+        {"text": "cd", "correct": false},
+        {"text": "rm", "correct": false},
+        {"text": "pwd", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué archivo se utiliza en Linux para configurar el arranque del sistema?",
+      "category_id": 19,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "GRUB", "correct": true},
+        {"text": "fstab", "correct": false},
+        {"text": "bashrc", "correct": false},
+        {"text": "hosts", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando de Windows se utiliza para verificar la conectividad de red?",
+      "category_id": 19,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ping", "correct": true},
+        {"text": "ipconfig", "correct": false},
+        {"text": "tracert", "correct": false},
+        {"text": "netstat", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el comando chmod en Linux?",
+      "category_id": 19,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Cambiar permisos de archivo", "correct": true},
+        {"text": "Modificar el propietario del archivo", "correct": false},
+        {"text": "Copiar un archivo a otro directorio", "correct": false},
+        {"text": "Eliminar un archivo", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se usa para gestionar procesos en Windows?",
+      "category_id": 19,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Administrador de tareas", "correct": true},
+        {"text": "PowerShell", "correct": false},
+        {"text": "Event Viewer", "correct": false},
+        {"text": "Explorador de archivos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza en Linux para cambiar al usuario root?",
+      "category_id": 19,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "su", "correct": true},
+        {"text": "sudo", "correct": false},
+        {"text": "passwd", "correct": false},
+        {"text": "root", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué sistema de archivos es más utilizado en Linux?",
+      "category_id": 19,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ext4", "correct": true},
+        {"text": "NTFS", "correct": false},
+        {"text": "FAT32", "correct": false},
+        {"text": "HFS+", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué archivo de configuración en Linux almacena información de puntos de montaje?",
+      "category_id": 19,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "/etc/fstab", "correct": true},
+        {"text": "/etc/hosts", "correct": false},
+        {"text": "/etc/passwd", "correct": false},
+        {"text": "/etc/bashrc", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta permite instalar software en sistemas Linux basados en Debian?",
+      "category_id": 19,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "apt", "correct": true},
+        {"text": "yum", "correct": false},
+        {"text": "rpm", "correct": false},
+        {"text": "pacman", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa RAID en sistemas operativos?",
+      "category_id": 19,
+      "level_id": 3,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Redundant Array of Independent Disks", "correct": true},
+        {"text": "Reliable Access for Integrated Devices", "correct": false},
+        {"text": "Rapid Access of Intelligent Disks", "correct": false},
+        {"text": "Random Access of Independent Devices", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza para enviar correos electrónicos?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SMTP", "correct": true},
+        {"text": "POP3", "correct": false},
+        {"text": "IMAP", "correct": false},
+        {"text": "HTTP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué puerto estándar utiliza HTTPS?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "443", "correct": true},
+        {"text": "80", "correct": false},
+        {"text": "25", "correct": false},
+        {"text": "21", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa DNS?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Domain Name System", "correct": true},
+        {"text": "Dynamic Network Service", "correct": false},
+        {"text": "Data Network Server", "correct": false},
+        {"text": "Domain Network Storage", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de servidor traduce nombres de dominio en direcciones IP?",
+      "category_id": 20,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Servidor DNS", "correct": true},
+        {"text": "Servidor DHCP", "correct": false},
+        {"text": "Servidor proxy", "correct": false},
+        {"text": "Servidor FTP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo permite la transferencia segura de archivos?",
+      "category_id": 20,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SFTP", "correct": true},
+        {"text": "FTP", "correct": false},
+        {"text": "HTTP", "correct": false},
+        {"text": "SMTP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para analizar problemas de conectividad de red en Windows?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "tracert", "correct": true},
+        {"text": "ping", "correct": false},
+        {"text": "nslookup", "correct": false},
+        {"text": "netstat", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el protocolo DHCP?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Dynamic Host Configuration Protocol", "correct": true},
+        {"text": "Domain Host Communication Protocol", "correct": false},
+        {"text": "Dynamic Hypertext Communication Protocol", "correct": false},
+        {"text": "Domain Hyperlink Configuration Protocol", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza para navegar por sitios web?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "HTTP", "correct": true},
+        {"text": "FTP", "correct": false},
+        {"text": "SMTP", "correct": false},
+        {"text": "POP3", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando de Linux se utiliza para comprobar la conectividad de red?",
+      "category_id": 20,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ping", "correct": true},
+        {"text": "wget", "correct": false},
+        {"text": "scp", "correct": false},
+        {"text": "curl", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo utiliza el puerto 22 para comunicación segura?",
+      "category_id": 20,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "SSH", "correct": true},
+        {"text": "HTTP", "correct": false},
+        {"text": "Telnet", "correct": false},
+        {"text": "FTP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué servidor web es conocido por ser multiplataforma y de código abierto?",
+      "category_id": 21,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Apache", "correct": true},
+        {"text": "IIS", "correct": false},
+        {"text": "Nginx", "correct": false},
+        {"text": "Tomcat", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa HTTPS en el contexto de servidores web?",
+      "category_id": 21,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Hypertext Transfer Protocol Secure", "correct": true},
+        {"text": "Hyperlink Text Secure Protocol", "correct": false},
+        {"text": "Hyper Transfer Secure Process", "correct": false},
+        {"text": "Hypertext Text System", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para gestionar dependencias en proyectos web basados en Node.js?",
+      "category_id": 21,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "npm", "correct": true},
+        {"text": "Composer", "correct": false},
+        {"text": "Maven", "correct": false},
+        {"text": "Gradle", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué sistema operativo es más utilizado para servidores web?",
+      "category_id": 21,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Linux", "correct": true},
+        {"text": "Windows", "correct": false},
+        {"text": "macOS", "correct": false},
+        {"text": "Unix", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza para iniciar un servidor web con Apache?",
+      "category_id": 21,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "apachectl start", "correct": true},
+        {"text": "httpd", "correct": false},
+        {"text": "apachectl run", "correct": false},
+        {"text": "httpd start", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta permite la virtualización de entornos para aplicaciones web?",
+      "category_id": 21,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Docker", "correct": true},
+        {"text": "Kubernetes", "correct": false},
+        {"text": "VirtualBox", "correct": false},
+        {"text": "Vagrant", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de archivo se utiliza para definir contenedores Docker?",
+      "category_id": 21,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Dockerfile", "correct": true},
+        {"text": "Docker.yaml", "correct": false},
+        {"text": "Container.json", "correct": false},
+        {"text": "Compose.yml", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa CDN en el despliegue de aplicaciones web?",
+      "category_id": 21,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Content Delivery Network", "correct": true},
+        {"text": "Cloud Data Network", "correct": false},
+        {"text": "Centralized Data Node", "correct": false},
+        {"text": "Content Data Network", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué software se utiliza para el control de versiones en proyectos web?",
+      "category_id": 21,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Git", "correct": true},
+        {"text": "Mercurial", "correct": false},
+        {"text": "Subversion", "correct": false},
+        {"text": "Perforce", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta permite la gestión de bases de datos relacionales en Rails?",
+      "category_id": 21,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Active Record", "correct": true},
+        {"text": "Sequelize", "correct": false},
+        {"text": "SQLAlchemy", "correct": false},
+        {"text": "Entity Framework", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza para realizar una copia de seguridad en MySQL?",
+      "category_id": 22,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "mysqldump", "correct": true},
+        {"text": "backupdb", "correct": false},
+        {"text": "restoredb", "correct": false},
+        {"text": "mysqlcopy", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es una transacción en un sistema gestor de bases de datos?",
+      "category_id": 22,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un conjunto de operaciones que se ejecutan como una unidad", "correct": true},
+        {"text": "Un proceso para eliminar datos duplicados", "correct": false},
+        {"text": "Un método para ejecutar consultas más rápidas", "correct": false},
+        {"text": "Un archivo de configuración del servidor", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué propiedad de las transacciones garantiza que los datos siempre estén en un estado consistente?",
+      "category_id": 22,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Consistencia", "correct": true},
+        {"text": "Durabilidad", "correct": false},
+        {"text": "Atomicidad", "correct": false},
+        {"text": "Aislamiento", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando en SQL Server se utiliza para crear una nueva base de datos?",
+      "category_id": 22,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "CREATE DATABASE", "correct": true},
+        {"text": "NEW DATABASE", "correct": false},
+        {"text": "MAKE DATABASE", "correct": false},
+        {"text": "INIT DATABASE", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un índice en una base de datos?",
+      "category_id": 22,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una estructura que mejora la velocidad de búsqueda de datos", "correct": true},
+        {"text": "Una clave primaria de una tabla", "correct": false},
+        {"text": "Un método para almacenar datos temporalmente", "correct": false},
+        {"text": "Un registro duplicado de la tabla principal", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué herramienta se utiliza para monitorear el rendimiento de bases de datos en PostgreSQL?",
+      "category_id": 22,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "pgAdmin", "correct": true},
+        {"text": "phpMyAdmin", "correct": false},
+        {"text": "SQL Monitor", "correct": false},
+        {"text": "Database Studio", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué comando se utiliza para restaurar una copia de seguridad en PostgreSQL?",
+      "category_id": 22,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "pg_restore", "correct": true},
+        {"text": "restoredb", "correct": false},
+        {"text": "pg_backup", "correct": false},
+        {"text": "psql_restore", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de backup incluye todos los datos desde el inicio del sistema hasta el momento actual?",
+      "category_id": 22,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Backup completo", "correct": true},
+        {"text": "Backup incremental", "correct": false},
+        {"text": "Backup diferencial", "correct": false},
+        {"text": "Backup lógico", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué protocolo se utiliza generalmente para conectar aplicaciones con bases de datos relacionales?",
+      "category_id": 22,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "ODBC", "correct": true},
+        {"text": "HTTP", "correct": false},
+        {"text": "FTP", "correct": false},
+        {"text": "SMTP", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el término 'normalización' en bases de datos?",
+      "category_id": 22,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un proceso para organizar los datos y reducir la redundancia", "correct": true},
+        {"text": "Un método para duplicar tablas", "correct": false},
+        {"text": "Un formato para exportar datos", "correct": false},
+        {"text": "Un sistema para analizar la estructura de índices", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un firewall en el contexto de seguridad informática?",
+      "category_id": 23,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un sistema que controla el tráfico de red según reglas de seguridad", "correct": true},
+        {"text": "Un software que elimina virus", "correct": false},
+        {"text": "Un sistema para aumentar la velocidad de la red", "correct": false},
+        {"text": "Un dispositivo que mejora la disponibilidad del sistema", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué técnica se utiliza para proteger los datos mediante su conversión en un formato ilegible sin una clave?",
+      "category_id": 23,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Cifrado", "correct": true},
+        {"text": "Compresión", "correct": false},
+        {"text": "Redundancia", "correct": false},
+        {"text": "Autenticación", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué significa el término 'alta disponibilidad' en sistemas informáticos?",
+      "category_id": 23,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "El sistema está diseñado para asegurar su funcionamiento continuo", "correct": true},
+        {"text": "El sistema tiene un alto rendimiento en todas las condiciones", "correct": false},
+        {"text": "El sistema es fácil de actualizar y modificar", "correct": false},
+        {"text": "El sistema es capaz de almacenar grandes volúmenes de datos", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué tipo de ataque de red se utiliza para interrumpir el funcionamiento de un sistema sobrecargando su capacidad?",
+      "category_id": 23,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Ataque de denegación de servicio (DoS)", "correct": true},
+        {"text": "Phishing", "correct": false},
+        {"text": "Spear Phishing", "correct": false},
+        {"text": "Spoofing", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué método se utiliza para garantizar que un sistema sigue funcionando correctamente en caso de fallo de uno de sus componentes?",
+      "category_id": 23,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Redundancia", "correct": true},
+        {"text": "Seguridad", "correct": false},
+        {"text": "Balanceo de carga", "correct": false},
+        {"text": "Cifrado", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un 'backup' en el contexto de seguridad informática?",
+      "category_id": 23,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Una copia de seguridad de los datos", "correct": true},
+        {"text": "Un sistema para mejorar la velocidad de los procesos", "correct": false},
+        {"text": "Un firewall avanzado para proteger la red", "correct": false},
+        {"text": "Un software para escanear posibles amenazas", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es la autenticación multifactor (MFA)?",
+      "category_id": 23,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un proceso que requiere más de una prueba de identidad para acceder a un sistema", "correct": true},
+        {"text": "Un software para autenticar el sistema de forma automática", "correct": false},
+        {"text": "Un método para cifrar contraseñas en una base de datos", "correct": false},
+        {"text": "Una herramienta para monitorizar el acceso a redes", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un ataque de 'phishing'?",
+      "category_id": 23,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un intento de obtener información confidencial mediante suplantación de identidad", "correct": true},
+        {"text": "Un ataque que interrumpe la conectividad de la red", "correct": false},
+        {"text": "Un ataque que sobrecarga los servidores con tráfico", "correct": false},
+        {"text": "Un ataque que modifica los archivos del sistema", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué estrategia de seguridad protege los sistemas contra fallos inesperados mediante el uso de servidores duplicados?",
+      "category_id": 23,
+      "level_id": 2,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Alta disponibilidad", "correct": true},
+        {"text": "Cifrado", "correct": false},
+        {"text": "Autenticación", "correct": false},
+        {"text": "Segmentación de red", "correct": false}
+      ]
+    },
+    {
+      "text": "¿Qué es un 'denial of service' (DoS)?",
+      "category_id": 23,
+      "level_id": 1,
+      "status": 1,
+      "author_id": 2,
+      "revisor_id": 2,
+      "answers": [
+        {"text": "Un ataque que intenta hacer que un servicio no esté disponible al sobrecargarlo", "correct": true},
+        {"text": "Un software para detectar vulnerabilidades de red", "correct": false},
+        {"text": "Una técnica para cifrar la información de la red", "correct": false},
+        {"text": "Un protocolo para garantizar la seguridad en la transferencia de datos", "correct": false}
+      ]
+    }
+  ]
+}

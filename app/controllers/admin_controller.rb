@@ -43,10 +43,17 @@ class AdminController < ApplicationController
 
     def validate_questions(questions)
       errors = []
+      valid_statuses = Question.statuses.values
 
       questions.each_with_index do |question_data, index|
         if question_data['text'].blank?
           errors << "Pregunta ##{index + 1}: El campo 'text' no puede estar vacío."
+        end
+
+        if question_data.key?('status')
+          unless question_data['status'].in?(valid_statuses)
+            errors << "Pregunta ##{index + 1}: El status '#{question_data['status']}' no es válido. Debe ser 'pending', 'approved' o 'rejected'."
+          end
         end
 
         category = Category.find_by(id: question_data['category_id'])
@@ -85,9 +92,9 @@ class AdminController < ApplicationController
         question_text: question_data['text'],
         category: category,
         level: level,
-        approved: question_data['approved'].nil? ? true : question_data['approved'],
-        author_id: question_data['author_id'].present? ? question_data['author_id'] : current_user.id,
-        revisor_id: question_data['revisor_id'].present? ? question_data['revisor_id'] : current_user.id
+        status: question_data.key?('status') ? question_data['status'] : 0,
+        author_id: question_data.key?('author_id') ? question_data['author_id'] : current_user.id,
+        revisor_id: question_data.key?('revisor_id') ? question_data['revisor_id'] : current_user.id
       )
   
       question_data['answers'].each do |answer_data|

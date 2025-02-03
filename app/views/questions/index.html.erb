@@ -8,26 +8,30 @@
   </h1>
 
   <ul class="nav nav-tabs" id="questionsTab" role="tablist">
-    <% if current_user.role.name == 'student' %>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="created-questions-tab" data-bs-toggle="tab" data-bs-target="#created-questions" type="button" role="tab" aria-controls="created-questions" aria-selected="true">
+        Mis Preguntas
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="pending-review-questions-tab" data-bs-toggle="tab" data-bs-target="#pending-review-questions" type="button" role="tab" aria-controls="pending-review-questions" aria-selected="false">
+        Preguntas pendientes de revisar
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="reviewed-questions-tab" data-bs-toggle="tab" data-bs-target="#reviewed-questions" type="button" role="tab" aria-controls="reviewed-questions" aria-selected="false">
+        Preguntas Revisadas
+      </button>
+    </li>
+    <% if current_user.role.name == 'teacher' %>
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="created-questions-tab" data-bs-toggle="tab" data-bs-target="#created-questions" type="button" role="tab" aria-controls="created-questions" aria-selected="true">
-          Mis Preguntas
-        </button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link" id="reviewed-questions-tab" data-bs-toggle="tab" data-bs-target="#reviewed-questions" type="button" role="tab" aria-controls="reviewed-questions" aria-selected="false">
-          Preguntas Revisadas
-        </button>
-      </li>
-    <% elsif current_user.role.name == 'teacher' %>
-      <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="course-questions-tab" data-bs-toggle="tab" data-bs-target="#course-questions" type="button" role="tab" aria-controls="course-questions" aria-selected="true">
+        <button class="nav-link" id="course-questions-tab" data-bs-toggle="tab" data-bs-target="#course-questions" type="button" role="tab" aria-controls="course-questions" aria-selected="true">
           Preguntas del Curso de <%= current_user.course.course_display_name  unless current_user.course.blank? %>
         </button>
       </li>
     <% elsif current_user.role.name == 'admin' %>
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="all-questions-tab" data-bs-toggle="tab" data-bs-target="#all-questions" type="button" role="tab" aria-controls="all-questions" aria-selected="true">
+        <button class="nav-link" id="all-questions-tab" data-bs-toggle="tab" data-bs-target="#all-questions" type="button" role="tab" aria-controls="all-questions" aria-selected="true">
           Todas las Preguntas
         </button>
       </li>
@@ -35,19 +39,21 @@
   </ul>
 
   <div class="tab-content mt-3" id="questionsTabContent">
-    <% if current_user.role.name == 'student' %>
       <div class="tab-pane fade show active" id="created-questions" role="tabpanel" aria-labelledby="created-questions-tab">
         <%= render 'questions_table', questions: @questions_created %>
+      </div>
+      <div class="tab-pane fade" id="pending-review-questions" role="tabpanel" aria-labelledby="pending-review-questions-tab">
+        <%= render 'questions_table', questions: @questions_pending_review %>
       </div>
       <div class="tab-pane fade" id="reviewed-questions" role="tabpanel" aria-labelledby="reviewed-questions-tab">
         <%= render 'questions_table', questions: @questions_reviewed %>
       </div>
-    <% elsif current_user.role.name == 'teacher' %>
-      <div class="tab-pane fade show active" id="course-questions" role="tabpanel" aria-labelledby="course-questions-tab">
+    <% if current_user.role.name == 'teacher' %>
+      <div class="tab-pane fade" id="course-questions" role="tabpanel" aria-labelledby="course-questions-tab">
         <%= render 'questions_table', questions: @questions_for_course %>
       </div>
     <% elsif current_user.role.name == 'admin' %>
-      <div class="tab-pane fade show active" id="all-questions" role="tabpanel" aria-labelledby="all-questions-tab">
+      <div class="tab-pane fade" id="all-questions" role="tabpanel" aria-labelledby="all-questions-tab">
         <%= render 'questions_table', questions: @all_questions %>
       </div>
     <% end %>

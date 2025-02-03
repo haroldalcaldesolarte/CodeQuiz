@@ -8,4 +8,12 @@ class Question < ApplicationRecord
   has_many :game_responses
 
   enum status: { pending: 0, approved: 1, rejected: 2 }
+
+  def editable?(current_user)
+    (self.pending? && self.author == current_user)
+  end
+
+  def reviewable?(current_user)
+    (self.pending? && (self.revisor == current_user || current_user.superuser?))
+  end
 end
