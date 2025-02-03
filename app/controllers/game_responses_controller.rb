@@ -1,4 +1,6 @@
 class GameResponsesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_game_response, only: %i[ show edit update destroy ]
 
   # GET /game_responses or /game_responses.json

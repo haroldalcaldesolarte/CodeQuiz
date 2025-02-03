@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :game_responses
-  resources :answers
   resources :questions do
     member do
       get :review

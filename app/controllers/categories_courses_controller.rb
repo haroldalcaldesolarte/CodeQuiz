@@ -1,4 +1,6 @@
 class CategoriesCoursesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_permissions
   before_action :set_categories_course, only: %i[ show edit update destroy ]
   before_action :set_init_variables, only: %i[ new edit update create]
 
@@ -74,5 +76,10 @@ class CategoriesCoursesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def categories_course_params
       params.require(:categories_course).permit(:category_id, :course_id)
+    end
+    def check_permissions
+      unless current_user.superuser?
+        redirect_to authenticated_root_path, alert: "No tienes permiso para acceder a esta sección."
+      end
     end
 end

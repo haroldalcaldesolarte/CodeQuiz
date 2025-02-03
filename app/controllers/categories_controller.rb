@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_permissions
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
@@ -66,5 +68,11 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
       params.require(:category).permit(:name)
+    end
+
+    def check_permissions
+      unless current_user.superuser?
+        redirect_to authenticated_root_path, alert: "No tienes permiso para acceder a esta sección."
+      end
     end
 end

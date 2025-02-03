@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_question, only: %i[ show edit update destroy review update_status]
   before_action :init_variables, only: %i[ new edit update create]
 

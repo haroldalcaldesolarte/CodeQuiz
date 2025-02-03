@@ -1,4 +1,6 @@
 class AdminController < ApplicationController
+  before_action :authenticate_user!
+   before_action :check_permissions
   def index
   
   end
@@ -102,6 +104,12 @@ class AdminController < ApplicationController
           answer_text: answer_data['text'],
           correct: answer_data['correct']
         )
+      end
+    end
+
+    def check_permissions
+      unless current_user.superuser?
+        redirect_to authenticated_root_path, alert: "No tienes permiso para acceder a esta sección."
       end
     end
 end

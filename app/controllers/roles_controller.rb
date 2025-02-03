@@ -1,4 +1,6 @@
 class RolesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_permissions
   before_action :set_role, only: %i[ show edit update destroy ]
 
   # GET /roles or /roles.json
@@ -66,5 +68,11 @@ class RolesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def role_params
       params.require(:role).permit(:name)
+    end
+
+    def check_permissions
+      unless current_user.superuser?
+        redirect_to authenticated_root_path, alert: "No tienes permiso para acceder a esta sección."
+      end
     end
 end

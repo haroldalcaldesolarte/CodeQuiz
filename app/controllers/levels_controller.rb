@@ -1,4 +1,6 @@
 class LevelsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_permissions
   before_action :set_level, only: %i[ show edit update destroy ]
 
   # GET /levels or /levels.json
@@ -66,5 +68,11 @@ class LevelsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def level_params
       params.require(:level).permit(:name)
+    end
+
+    def check_permissions
+      unless current_user.superuser?
+        redirect_to authenticated_root_path, alert: "No tienes permiso para acceder a esta sección."
+      end
     end
 end
