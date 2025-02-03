@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>Rol</th>
         <th>Email</th>
         <th>Nombre</th>
         <th>Apellidos</th>
@@ -15,16 +16,17 @@
       <% users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
+          <td><%= get_icon_rol(user.role.name) %></td>
           <td><%= user.email %></td>
           <td><%= user.name %></td>
           <td><%= user.surname %></td>
           <td><%= user.username %></td>
           <td><%= user.course.course_display_name %></td>
           <td>
-            <%= link_to 'Editar <i class="far fa-pen-to-square"></i>'.html_safe, edit_user_path(user), class: "btn btn-warning btn-sm" %>
+            <%= link_to '<i class="far fa-pen-to-square" title="Editar usuario"></i>'.html_safe, edit_user_path(user), class: "btn btn-warning btn-sm" %>
             <% if current_user.admin? %>
-              <%= link_to 'Eliminar <i class="far fa-trash-can"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn btn-danger btn-sm" %>
-              <%= link_to 'Cambiar contraseña <i class="far fa-pen-to-square"></i>'.html_safe, edit_password_user_path(user), class: "btn btn-warning btn-sm" %>
+              <%= link_to '<i class="far fa-trash-can" title="Eliminar usuario"></i>'.html_safe, user_path(user), method: :delete, data: { confirm: "¿Estás seguro?" }, class: "btn btn-danger btn-sm" %>
+              <%= link_to 'Cambiar contraseña <i class="far fa-pen-to-square" tittle="Cambiar contraseña"></i>'.html_safe, edit_password_user_path(user), class: "btn btn-warning btn-sm" %>
             <% end %>
           </td>
         </tr>

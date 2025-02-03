@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Historial de Partidas</h1>
+
+  <div class="table-responsive" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Categoría</th>
+          <th>Puntuación</th>
+          <th>Fecha</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @game_sessions.each do |game| %>
+          <tr>
+            <td><%= game.id %></td>
+            <td><%= game.category.name %> (<%= get_course_category(game.category.id) %>)</td>
+            <td><%= game.score %> puntos</td>
+            <td><%= game.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= link_to "Ver detalles", game_session_path(game), class: "btn btn-primary btn-sm" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>

@@ -1,5 +1,8 @@
 class GameSessionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_game_session, only: %i[ destroy ]
+
+   NUMBER_OF_QUESTIONS_PER_GAME = 5
 
   # GET /game_sessions or /game_sessions.json
   def index
@@ -11,7 +14,15 @@ class GameSessionsController < ApplicationController
     when 'admin'
       @categories = Category.all
     end
-    
+  end
+  
+  def history
+    @game_sessions = current_user.game_sessions.order(created_at: :desc) 
+  end
+
+  def show
+    @game_session = current_user.game_sessions.find(params[:id])
+    @game_responses = @game_session.game_responses.includes(:question)
   end
 
   # POST /game_sessions or /game_sessions.json
@@ -21,9 +32,9 @@ class GameSessionsController < ApplicationController
 
     #Controlar que si no hay 10 preguntas no se puede empezar la partida
     if @level.name.include?('mix')
-      @questions = Question.where(category: @category, status: 1).shuffle.take(3)
+      @questions = Question.where(category: @category, status: 1).shuffle.take(NUMBER_OF_QUESTIONS_PER_GAME)
     else
-      @questions = Question.where(category: @category, level: @level, status: 1).shuffle.take(3)
+      @questions = Question.where(category: @category, level: @level, status: 1).shuffle.take(NUMBER_OF_QUESTIONS_PER_GAME)
     end
 
     @game_session = GameSession.create(user: current_user, category: @category, score: 0)
