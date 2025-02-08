@@ -1,0 +1,21 @@
+<div class="container d-flex flex-column align-items-center justify-content-center text-center">
+  <div class="card shadow p-4">
+    <h3 class="mb-4">Introduce el código de la partida</h2>
+
+    <%= form_with(model: @kahoot_game, url: kahoot_participants_path, local: true) do |form| %>
+      <div class="input-group input-group-lg mb-3">
+        <input type="text" name="kahoot_game_id" id="kahoot_game_id" class="form-control text-center" 
+               maxlength="8" pattern="\d*" inputmode="numeric" placeholder="Ej: 12345678" required>
+      </div>
+
+      <%= form.submit "Unirse!", class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  #kahoot_game_id {
+    font-size: 24px;
+    letter-spacing: 3px;
+  }
+</style>

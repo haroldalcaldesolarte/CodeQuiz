@@ -56,7 +56,9 @@ Rails.application.routes.draw do
       post :start
     end
   end
-  
+
+  resources :kahoot_participants, only: [:new ,:create]
+
   match "*path", to: "application#handle_not_found", via: :all
   
 end
