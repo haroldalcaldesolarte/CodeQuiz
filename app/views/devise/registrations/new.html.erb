@@ -6,44 +6,44 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="form-floating mb-3">
-        <%= f.text_field :name, autofocus: true, required: true, autocomplete: "Nombre", class: "form-control" %>
-        <%= f.label :name, 'Nombre' %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Nombre", autofocus: true, required: true %>
+        <%= f.label :name, "Nombre", for: "user_name" %>
       </div>
 
       <div class="form-floating mb-3">
-        <%= f.text_field :surname, autofocus: true, required: true, autocomplete: "Apellidos", class: "form-control" %>
-        <%= f.label :surname, 'Apellidos' %>
+        <%= f.text_field :surname, class: "form-control", placeholder: "Apellidos", required: true  %>
+        <%= f.label :surname, "Apellidos", for: "user_surname" %>
       </div>
 
       <div class="form-floating mb-3">
-        <%= f.email_field :email, autofocus: true, required: true, autocomplete: "email", class: "form-control" %>
-        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control", placeholder: "Email", required: true %>
+        <%= f.label :email, "Email", for: "user_email" %>
       </div>
       <div class="row g-2">
         <div class="col-md">
-          <div class="form-floating mb-3">
-            <%= f.collection_select :course_id, Course.all, :id, :course_display_name, {}, {class: "form-select", required: true} %>
-            <%= f.label :course, 'Curso' %>
+          <div class="form-floating">
+            <%= f.collection_select :course_id, Course.all, :id, :course_display_name, { prompt: "Seleccione un curso" }, { class: "form-select", required: true } %>
+            <%= f.label :course_id, "Curso", for: "user_course_id" %>
           </div>
         </div>
 
         <div class="col-md">
           <div class="form-floating mb-3">
-            <%= f.text_field :username, autofocus: true, required: true, autocomplete: "Username", class: "form-control" %>
-            <%= f.label :username, 'Username' %>
+            <%= f.text_field :username, class: "form-control",placeholder: "Username", required: true %>
+            <%= f.label :username, 'Username', for: "user_username" %>
           </div>
         </div>
       </div>
 
       <div class="form-floating mb-3 position-relative">
-        <%= f.password_field :password, required: true, autocomplete: "new-password", class: "form-control" %>
-        <%= f.label :password, "Password (#{@minimum_password_length} characters minimum)" %>
+        <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+        <%= f.label :password, "Password (#{@minimum_password_length} caracteres mínimo)" %>
         <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" onclick="togglePassword('user_password')"></i>
       </div>
 
       <div class="form-floating mb-3 position-relative">
-        <%= f.password_field :password_confirmation, required: true, autocomplete: "new-password", class: "form-control" %>
-        <%= f.label :password_confirmation, 'Confirma Contraseña' %>
+        <%= f.password_field :password_confirmation, required: true, class: "form-control", placeholder: "Confirmar password" %>
+        <%= f.label :password_confirmation, 'Confirma Password' %>
         <i class="fas fa-eye position-absolute top-50 end-0 translate-middle-y pe-3" onclick="togglePassword('user_password_confirmation')"></i>
       </div>
 
