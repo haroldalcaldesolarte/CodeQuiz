@@ -113,6 +113,6 @@ class GameSessionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_session_params
-      params.require(:game_session).permit(:user_id, :category_id, :score, :level_id)
+      params.require(:game_session).permit(:category_id, :level_id)
     end
 end

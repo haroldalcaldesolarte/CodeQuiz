@@ -50,6 +50,12 @@ Rails.application.routes.draw do
       patch :update_password
     end
   end
+
+  resources :kahoot_games, only: [:new, :create, :show, :destroy] do
+    member do
+      post :start
+    end
+  end
   
   match "*path", to: "application#handle_not_found", via: :all
   
