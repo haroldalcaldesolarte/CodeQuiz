@@ -106,7 +106,7 @@ class GameSessionsController < ApplicationController
     @game_session.destroy
 
     respond_to do |format|
-      format.html { redirect_to game_sessions_path, status: :see_other, notice: "Game session was successfully destroyed." }
+      format.html { redirect_to game_sessions_path, status: :see_other, notice: "Partida cancelada." }
       format.json { head :no_content }
     end
   end
