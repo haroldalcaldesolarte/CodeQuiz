@@ -7,6 +7,7 @@
         <tr>
           <th>ID</th>
           <th>Categoría</th>
+          <th>Nivel</th>
           <th>Puntuación</th>
           <th>Fecha</th>
           <th>Acción</th>
@@ -18,6 +19,7 @@
           <tr>
             <td><%= game.id %></td>
             <td><%= game.category.name %> (<%= get_course_category(game.category.id) %>)</td>
+            <td><span class="badge rounded-pill bg-<%= game.level.get_color %>"><%= game.level.name %></span></td>
             <td><%= game.score %> puntos</td>
             <td><%= game.created_at.strftime("%d/%m/%Y %H:%M") %></td>
             <td><%= link_to "Ver detalles", game_session_path(game), class: "btn btn-primary btn-sm" %></td>

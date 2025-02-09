@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_08_100734) do
+ActiveRecord::Schema.define(version: 2025_02_09_101756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,10 @@ ActiveRecord::Schema.define(version: 2025_02_08_100734) do
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "level_id"
+    t.integer "status", default: 0, null: false
     t.index ["category_id"], name: "index_game_sessions_on_category_id"
+    t.index ["level_id"], name: "index_game_sessions_on_level_id"
     t.index ["user_id"], name: "index_game_sessions_on_user_id"
   end
 
@@ -167,6 +170,7 @@ ActiveRecord::Schema.define(version: 2025_02_08_100734) do
   add_foreign_key "game_responses", "game_sessions"
   add_foreign_key "game_responses", "questions"
   add_foreign_key "game_sessions", "categories"
+  add_foreign_key "game_sessions", "levels"
   add_foreign_key "game_sessions", "users"
   add_foreign_key "kahoot_games", "categories"
   add_foreign_key "kahoot_games", "levels"
