@@ -6,13 +6,23 @@ class KahootParticipantsController < ApplicationController
   end
   
   def create
-    if @kahoot_game.waiting?
-      @participant = @kahoot_game.kahoot_participants.build(user: current_user, score: 0)
+    if current_user == @kahoot_game.host
+     redirect_to @kahoot_game, alert: "Como host de la partida no puedes unirte como participante."
+     return
+    end
 
-      if @participant.save
-        redirect_to @kahoot_game, notice: "Te has unido a la partida."
+    ids_kahoot_participants = @kahoot_game.kahoot_participants.collect(&:user_id)
+    if @kahoot_game.waiting?
+      if ids_kahoot_participants.include?(current_user.id)
+        redirect_to @kahoot_game, notice: "Ya te has unido a la partida."
       else
-        redirect_to @kahoot_game, alert: "No se pudo unir a la partida."
+        @participant = @kahoot_game.kahoot_participants.build(user: current_user, score: 0)
+
+        if @participant.save
+          redirect_to @kahoot_game, notice: "Te has unido a la partida."
+        else
+          redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. Vuelva a intentarlo!"
+        end
       end
     else
       redirect_to root_path, alert: "No te puedes unir a esta partida."

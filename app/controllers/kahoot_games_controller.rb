@@ -2,6 +2,7 @@ class KahootGamesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_permissions, only: %i[new start create]
   before_action :set_kahoot_game, only: %i[show start destroy]
+  before_action :check_participants, only: [:show]
 
   def new
     @kahoot_game = KahootGame.new
@@ -20,7 +21,7 @@ class KahootGamesController < ApplicationController
     @kahoot_game.host = current_user
 
     if @kahoot_game.save
-      redirect_to @kahoot_game, notice: "Partida creada. Esperando jugadores..."
+      redirect_to @kahoot_game
     else
       render :new, status: :unprocessable_entity
     end
@@ -61,6 +62,14 @@ class KahootGamesController < ApplicationController
   def check_permissions
     unless current_user.superuser?
       redirect_to authenticated_root_path, alert: "No tienes permiso para crear una partida kahoot."
+    end
+  end
+
+  def check_participants
+    if current_user.id != @kahoot_game.host.id
+      unless @kahoot_game.kahoot_participants.collect(&:user_id).include?(current_user.id)
+        redirect_to new_kahoot_participant_path, alert: "Debes unirte a la partida primero."
+      end
     end
   end
 end
