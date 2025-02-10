@@ -103,11 +103,13 @@ class GameSessionsController < ApplicationController
 
   # DELETE /game_sessions/1 or /game_sessions/1.json
   def destroy
-    @game_session.destroy
+    if current_user == @game_session.user
+      @game_session.destroy
 
-    respond_to do |format|
-      format.html { redirect_to game_sessions_path, status: :see_other, notice: "Partida cancelada." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to game_sessions_path, status: :see_other, notice: "Partida cancelada." }
+        format.json { head :no_content }
+      end
     end
   end
 
