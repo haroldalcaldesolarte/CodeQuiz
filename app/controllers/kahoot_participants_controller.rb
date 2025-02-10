@@ -19,6 +19,7 @@ class KahootParticipantsController < ApplicationController
         @participant = @kahoot_game.kahoot_participants.build(user: current_user, score: 0)
 
         if @participant.save
+          KahootGameChannel.broadcast_to(@kahoot_game, {type: "new_player", username: current_user.username})
           redirect_to @kahoot_game, notice: "Te has unido a la partida."
         else
           redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. Vuelva a intentarlo!"

@@ -4,17 +4,14 @@
     <div class="flex-grow-1 overflow-auto px-3">
       <h5 class="card-subtitle mb-3 text-muted">Participantes</h5>
       <div class="container">
-        <% if @participants.count > 0 %>
-          <div class="row row-cols-1 row-cols-md-4 g-3">
-            <% @participants.each do |participant| %>
-              <div class="col">
-                <div class="p-2 bg-light border rounded"><%= participant.user.username %></div>
-              </div>
-            <% end %>
-          </div>
-        <% else %>
-          <span class="mt-5 fs-6 font-monospace badge rounded-pill bg-warning text-dark">Esperando participantes...</span>
-        <% end %>
+        <span class="my-2 fs-6 font-monospace badge rounded-pill bg-warning text-dark">Esperando participantes...</span>
+        <div class="row row-cols-1 row-cols-md-4 g-3" id="participants_container">
+          <% @participants.each do |participant| %>
+            <div class="col">
+              <div class="p-2 bg-light border rounded"><%= participant.user.username %></div>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
 
@@ -25,4 +22,10 @@
     <% end %>
   </div>
 </div>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function() {
+    initKahootGameChannel(<%= @kahoot_game.id %>);
+  });
+</script>
 
