@@ -18,7 +18,8 @@ const initKahootGameChannel = (gameId) => {
 
           if (participantsContainer) {
             const colDiv = document.createElement("div");
-            colDiv.className = "col";
+            colDiv.classList.add("col", "participant");
+            colDiv.setAttribute("data-user-id", data.user_id);
 
             const playerDiv = document.createElement("div");
             playerDiv.className = "p-2 bg-light border rounded";
@@ -26,6 +27,12 @@ const initKahootGameChannel = (gameId) => {
 
             colDiv.appendChild(playerDiv);
             participantsContainer.appendChild(colDiv);
+          }
+        }
+        if (data.type === "player_left"){
+          const playerDiv = document.querySelector(`.participant[data-user-id='${data.user_id}']`);
+          if (playerDiv) {
+            playerDiv.remove();
           }
         }
       }

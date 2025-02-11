@@ -6,4 +6,8 @@ module KahootGamesHelper
   def get_waiting_kahoot_game_id(user)
     user.kahoot_games.where(status: [:waiting]).first.id
   end
+
+  def get_kahoot_participant(user, kahoot_game)
+    user.kahoot_participants.find_by(kahoot_game: kahoot_game)
+  end
 end
