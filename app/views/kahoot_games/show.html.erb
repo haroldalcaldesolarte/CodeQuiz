@@ -1,10 +1,16 @@
 <% if @kahoot_game.waiting? %>
   <%= render 'waiting' %>
 <% elsif @kahoot_game.in_progress? %>
-
+  <%= render 'in_progress'%>
 <% elsif @kahoot_game.finished? %>
 
 <% elsif @kahoot_game.canceled? %>
   <%= render 'canceled' %>
 <% end %>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function() {
+    initKahootGameChannel(<%= @kahoot_game.id %>);
+  });
+</script>
 

@@ -3,7 +3,7 @@ class GameSessionsController < ApplicationController
   before_action :set_game_session, only: %i[play answer result destroy]
   before_action :check_game_session_finished, only: :result
 
-   NUMBER_OF_QUESTIONS_PER_GAME = 3
+  NUMBER_OF_QUESTIONS_PER_GAME = 3
 
   # GET /game_sessions or /game_sessions.json
   def index
