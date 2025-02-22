@@ -4,5 +4,7 @@
 
 <% elsif @kahoot_game.finished? %>
 
+<% elsif @kahoot_game.canceled? %>
+  <%= render 'canceled' %>
 <% end %>
 

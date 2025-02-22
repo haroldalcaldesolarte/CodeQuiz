@@ -5,7 +5,7 @@ class KahootGame < ApplicationRecord
   has_many :kahoot_participants, dependent: :destroy
   has_many :kahoot_questions, dependent: :destroy
 
-  enum status: { waiting: 0, in_progress: 1, finished: 2 }
+  enum status: { waiting: 0, in_progress: 1, finished: 2, canceled: 3 }
 
   validates :status, presence: true
 end

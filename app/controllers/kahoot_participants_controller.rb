@@ -32,6 +32,7 @@ class KahootParticipantsController < ApplicationController
   end
 
   def destroy
+    session[:left_game] = true # Marca que el usuario salió manualmente
     kahoot_game = @participant.kahoot_game
     if @participant.destroy
       KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: current_user.id })
@@ -49,10 +50,6 @@ class KahootParticipantsController < ApplicationController
 
   def set_participant
     @participant = KahootParticipant.find_by(id: params[:id], user: current_user)
-  
-    unless @participant
-      redirect_to new_kahoot_participant_path, alert: "No estás en esta partida."
-    end
   end
 
   def kahoot_participant_params

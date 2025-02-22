@@ -29,6 +29,17 @@ const initKahootGameChannel = (gameId) => {
             participantsContainer.appendChild(colDiv);
           }
         }
+        if (data.type == "game_canceled"){
+          const alertDiv = document.getElementById("kahoot_channel_alert");
+          if (alertDiv) {
+            alertDiv.textContent = "La partida ha sido cancelada por el host.";
+            alertDiv.classList.add("show");
+          }
+
+          setTimeout(() => {
+            window.location.href = "/kahoot_participants/new";
+          }, 3000);
+        }
         if (data.type === "player_left"){
           const playerDiv = document.querySelector(`.participant[data-user-id='${data.user_id}']`);
           if (playerDiv) {
