@@ -32,7 +32,7 @@ class GameSessionsController < ApplicationController
     @level = Level.find(params[:level_id])
 
     if @level.name.include?('mix')
-      @questions = Question.where(category: @category, status: 1).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_GAME)
+      @questions = Question.where(category: @category, status: :approved).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_GAME)
     else
       @questions = Question.where(category: @category, level: @level, status: 1).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_GAME)
     end
