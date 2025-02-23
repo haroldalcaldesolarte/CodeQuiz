@@ -46,6 +46,35 @@ const initKahootGameChannel = (gameId) => {
             playerDiv.remove();
           }
         }
+        if (data.type === "game_started") {
+          console.log("La partida ha comenzado. Mostrando la vista de juego...");
+
+          document.getElementById("waiting_container").style.display = "none";
+          document.getElementById("in_progress_container").style.display = "block";
+        }
+        if (data.type === "new_question") {
+
+          const questionContainer = document.getElementById("question_container");
+          const answersContainer = document.getElementById("answers_container");
+          const timerContainer = document.getElementById("timer_container");
+        
+          if (questionContainer && answersContainer && timerContainer) {
+            questionContainer.textContent = data.question.text;
+            answersContainer.innerHTML = "";
+
+            data.question.answers.forEach(answer => {
+              const button = document.createElement("button");
+              button.classList.add("btn", "btn-outline-primary", "btn-lg", "btn-outline-primary", "w-100", "py-3", "shadow-sm");
+              button.textContent = answer.answer_text;
+              button.dataset.answerId = answer.id;
+        
+              const answerDiv = document.createElement("div");
+              answerDiv.classList.add("col");
+              answerDiv.appendChild(button);
+              answersContainer.appendChild(answerDiv);
+            });
+          }
+        }        
       }
     }
   );

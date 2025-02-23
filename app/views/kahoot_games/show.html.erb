@@ -1,19 +1,25 @@
-  <div id="kahoot_channel_alert" class="alert alert-success alert-dismissible fade" role="alert">
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-<% if @kahoot_game.waiting? %>
-  <%= render 'waiting' %>
-<% elsif @kahoot_game.in_progress? %>
-  <%= render 'in_progress'%>
-<% elsif @kahoot_game.finished? %>
+<div id="kahoot_channel_alert" class="alert alert-success alert-dismissible fade" role="alert">
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
-<% elsif @kahoot_game.canceled? %>
-  <%= render 'canceled' %>
-<% end %>
+<div id="waiting_container" <%= "style=display:none;" unless @kahoot_game.waiting? %>>
+  <%= render 'waiting' %>
+</div>
+
+<div id="in_progress_container" <%= "style=display:none;" unless @kahoot_game.in_progress? %>>
+  <%= render 'in_progress' %>
+</div>
+
+<div id="finished_container" <%= "style='display:none;'" unless @kahoot_game.finished? %>>
+  <%= render 'finished' if @kahoot_game.finished? %>
+</div>
+
+<div id="canceled_container" <%= "style='display:none;'" unless @kahoot_game.canceled? %>>
+  <%= render 'canceled' if @kahoot_game.canceled? %>
+</div>
 
 <script type="module">
   document.addEventListener("DOMContentLoaded", function() {
     initKahootGameChannel(<%= @kahoot_game.id %>);
   });
 </script>
-

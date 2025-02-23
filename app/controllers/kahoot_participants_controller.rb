@@ -27,7 +27,7 @@ class KahootParticipantsController < ApplicationController
         end
       end
     else
-      redirect_to root_path, alert: "No te puedes unir a esta partida."
+      redirect_to new_kahoot_participant_path, alert: "No te puedes unir a esta partida."
     end
   end
 
