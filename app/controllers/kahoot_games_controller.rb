@@ -50,6 +50,14 @@ class KahootGamesController < ApplicationController
     end
   end
 
+  def submit_answer
+    puts "Entra"
+    render json: { status: "success", message: "OKay"}
+  rescue => e
+    render json: { status: "error", message: e.message }, status: :unprocessable_entity
+  end
+  
+
   def destroy
     if @kahoot_game.host == current_user
       @kahoot_game.destroy

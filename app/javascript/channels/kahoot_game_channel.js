@@ -47,16 +47,30 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type === "game_started") {
-          console.log("La partida ha comenzado. Mostrando la vista de juego...");
-
           document.getElementById("waiting_container").style.display = "none";
           document.getElementById("in_progress_container").style.display = "block";
         }
         if (data.type === "new_question") {
+          let questionContainer = document.getElementById("question_container");
+          let answersContainer = document.getElementById("answers_container");
+          let timerContainer = document.getElementById("timer_container");
+          let submitButton = document.getElementById("submit_answer_button");
+          let selectedAnswerId = localStorage.getItem("selectedAnswer");
 
-          const questionContainer = document.getElementById("question_container");
-          const answersContainer = document.getElementById("answers_container");
-          const timerContainer = document.getElementById("timer_container");
+          function selectAnswer(button) {
+            document.querySelectorAll(".answer-button").forEach(btn => {
+              btn.classList.remove("btn-success");
+              btn.classList.add("btn-outline-primary");
+            });
+  
+            button.classList.remove("btn-outline-primary");
+            button.classList.add("btn-success");
+  
+            selectedAnswerId = button.dataset.answerId;
+            localStorage.setItem("selectedAnswer", selectedAnswerId);
+  
+            submitButton.disabled = false;
+          }
         
           if (questionContainer && answersContainer && timerContainer) {
             questionContainer.textContent = data.question.text;
@@ -64,7 +78,7 @@ const initKahootGameChannel = (gameId) => {
 
             data.question.answers.forEach(answer => {
               const button = document.createElement("button");
-              button.classList.add("btn", "btn-outline-primary", "btn-lg", "btn-outline-primary", "w-100", "py-3", "shadow-sm");
+              button.classList.add("btn", "btn-outline-primary", "btn-lg", "answer-button", "w-100", "py-3", "shadow-sm");
               button.textContent = answer.answer_text;
               button.dataset.answerId = answer.id;
         
@@ -72,6 +86,10 @@ const initKahootGameChannel = (gameId) => {
               answerDiv.classList.add("col");
               answerDiv.appendChild(button);
               answersContainer.appendChild(answerDiv);
+
+              button.addEventListener("click", function () {
+                selectAnswer(button);
+              });
             });
           }
         }        

@@ -27,27 +27,87 @@
     index_question = @kahoot_game.current_question_index
   
   %>
+  <body data-kahoot-game-id="<%= @kahoot_game.id %>">
+    <div class="container py-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="text-primary fw-bold">Pregunta <%= index_question + 1 %> de <%= number_of_questions %></h4>
+        <h4 id="timer_container" class="text-black fw-bold">Tiempo: </h4>
+      </div>
 
-  <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h4 class="text-primary fw-bold">Pregunta <%= index_question + 1 %> de <%= number_of_questions %></h4>
-      <h4 id="timer_container" class="text-black fw-bold">Tiempo: </h4>
-    </div>
+      <div class="text-center mb-5">
+        <h5 class="text-muted" title="Categoría"><%= @kahoot_game.category.name %> <span title="Nivel" class="badge rounded-pill bg-<%= @kahoot_game.level.get_color %>"><%= @kahoot_game.level.name %></span></h5>
+        <h3 id="question_container" class="fw-bold text-dark" title="Pregunta"><%= question.question_text %></h3>
+      </div>
 
-    <div class="text-center mb-5">
-      <h5 class="text-muted" title="Categoría"><%= @kahoot_game.category.name %> <span title="Nivel" class="badge rounded-pill bg-<%= @kahoot_game.level.get_color %>"><%= @kahoot_game.level.name %></span></h5>
-      <h3 class="fw-bold text-dark" title="Pregunta"><%= question.question_text %></h3>
-    </div>
+      <div id="answers_container" class="row row-cols-1 row-cols-md-2 g-4">
+        <% get_answers(question).each do |answer| %>
+          <div class="col">
+            <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button shadow-sm" data-answer-id="<%= answer.id %>" data-answer-correct="<%= answer.correct %>">
+              <%= answer.answer_text %>
+            </button>
+          </div>
+        <% end %>
+      </div>
 
-    <div class="row row-cols-1 row-cols-md-2 g-4">
-      <% get_answers(question).each do |answer| %>
-        <div class="col">
-          <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button shadow-sm" data-answer-id="<%= answer.id %>" data-answer-correct="<%= answer.correct %>">
-            <%= answer.answer_text %>
-          </button>
-        </div>
-      <% end %>
+      <div class="text-center mt-5">
+        <button id="submit_answer_button" type="button" class="btn btn-primary btn-lg" disabled>Enviar</button>
+      </div>
     </div>
-  </div>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const submitButton = document.getElementById("submit_answer_button");
+      let selectedAnswerId = localStorage.getItem("selectedAnswer");
+
+      function selectAnswer(button) {
+        document.querySelectorAll(".answer-button").forEach(btn => {
+          btn.classList.remove("btn-success");
+          btn.classList.add("btn-outline-primary");
+        });
+
+        button.classList.remove("btn-outline-primary");
+        button.classList.add("btn-success");
+
+        selectedAnswerId = button.dataset.answerId;
+        localStorage.setItem("selectedAnswer", selectedAnswerId);
+
+        submitButton.disabled = false;
+      }
+
+      document.querySelectorAll(".answer-button").forEach(button => {
+        button.addEventListener("click", function () {
+          selectAnswer(button);
+        });
+
+        //Volver a marcar el btn seleccionado si el usuario recarga la página
+        if (selectedAnswerId && selectedAnswerId === button.dataset.answerId) {
+          selectAnswer(button);
+        }
+      });
+
+      submitButton.addEventListener("click", function () {
+        if (selectedAnswerId) {
+          console.log("Respuesta enviada:", selectedAnswerId);
+          const kahootGameId = document.body.dataset.kahootGameId;
+
+          fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+            },
+            body: JSON.stringify({ answer_id: selectedAnswerId }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log("Respuesta procesada:", data);
+            submitButton.disabled = true;
+          })
+          .catch(error => console.error("Error enviando respuesta:", error));
+        }
+      });
+    });
+  </script>
 
 

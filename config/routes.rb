@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   resources :kahoot_games, only: [:new, :create, :show, :destroy] do
     member do
       post :start
+      post :submit_answer
     end
   end
 
