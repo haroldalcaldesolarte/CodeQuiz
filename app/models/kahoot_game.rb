@@ -20,12 +20,24 @@ class KahootGame < ApplicationRecord
     else
       selected_questions = Question.where(category: category, level: level, status: :approved).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_KAHOOT)
     end
-    return false if selected_questions.empty?
+
     selected_questions.each_with_index do |question, index|
-      kahoot_questions.create!(question: question, order: index)
+      kahoot_questions.create!(question: question, order: index+1)
     end
 
     self.current_question_index = 0
     save!
+  end
+
+  def self.can_add_questions?(category_id, level_id) #Comprobar si hay suficientes preguntas para empezar la partida
+    level = Level.find(level_id)
+    category = Category.find(category_id)
+    if level && category
+      if level.name == "mix"
+        Question.where(category_id: category_id, status: :approved).count >= NUMBER_OF_QUESTIONS_PER_KAHOOT
+      else
+        Question.where(category_id: category_id, level_id: level_id, status: :approved).count >= NUMBER_OF_QUESTIONS_PER_KAHOOT
+      end
+    end
   end
 end

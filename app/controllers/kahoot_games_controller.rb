@@ -22,10 +22,15 @@ class KahootGamesController < ApplicationController
     @kahoot_game = KahootGame.new(kahoot_game_params)
     @kahoot_game.host = current_user
 
-    if @kahoot_game.save
-      redirect_to @kahoot_game
+    if KahootGame.can_add_questions?(kahoot_game_params[:category_id], kahoot_game_params[:level_id])
+      if @kahoot_game.save
+        @kahoot_game.add_questions
+        redirect_to @kahoot_game, notice: 'Kahoot creado correctamente.'
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to new_kahoot_game_path, alert: "No se ha podido crear el Kahoot. No hay suficientes preguntas disponibles en esta categoría y nivel."
     end
   end
 
@@ -35,15 +40,11 @@ class KahootGamesController < ApplicationController
 
   def start
     if @kahoot_game.host == current_user
-      if @kahoot_game.add_questions
-        @kahoot_game.update(status: :in_progress)
+      @kahoot_game.update(status: :in_progress)
 
-        KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_started" })
-        send_question
-        redirect_to @kahoot_game, notice: "Ha empezado la partida!!!"
-      else
-        redirect_to @kahoot_game, alert: "No hay suficientes preguntas disponibles en esta categoría y nivel."
-      end
+      KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_started" })
+      send_question
+      redirect_to @kahoot_game, notice: "Ha empezado la partida!!!"
     else
       redirect_to @kahoot_game, alert: "No tienes permisos para iniciar esta partida."
     end
@@ -52,7 +53,7 @@ class KahootGamesController < ApplicationController
   def destroy
     if @kahoot_game.host == current_user
       @kahoot_game.destroy
-      redirect_to root_path, notice: "Partida eliminada."
+      redirect_to new_kahoot_game_path, notice: "Partida eliminada."
     else
       redirect_to @kahoot_game, alert: "No puedes eliminar esta partida."
     end
@@ -92,7 +93,7 @@ class KahootGamesController < ApplicationController
           question: {
             id: question.id,
             text: question.question_text,
-            answers: question.answers.shuffle.map { |answer| { id: answer.id, answer_text: answer.answer_text } },
+            answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
             time_limit: TIME_LIMIT
           } 
         })
