@@ -1,8 +1,8 @@
 class KahootGamesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_permissions, only: %i[new start create]
-  before_action :set_kahoot_game, only: %i[show start destroy]
-  before_action :check_participants, only: [:show]
+  before_action :set_kahoot_game, only: %i[show start destroy submit_answer]
+  before_action :check_participants, only: %i[show]
 
   TIME_LIMIT = 45
 
@@ -43,16 +43,42 @@ class KahootGamesController < ApplicationController
       @kahoot_game.update(status: :in_progress)
 
       KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_started" })
-      send_question
-      redirect_to @kahoot_game, notice: "Ha empezado la partida!!!"
+      redirect_to @kahoot_game
     else
       redirect_to @kahoot_game, alert: "No tienes permisos para iniciar esta partida."
     end
   end
 
   def submit_answer
-    puts "Entra"
-    render json: { status: "success", message: "OKay"}
+    participant = @kahoot_game.kahoot_participants.find_by(user: current_user)
+
+    unless participant
+      return render json: {error: "No estás en la partida"}, status: :forbidden
+    end
+
+    kahoot_question = @kahoot_game.current_question
+    unless kahoot_question
+      return render json: { error: "La pregunta no está en la partida." }, status: :unprocessable_entity
+    end
+    question = kahoot_question.question
+    selected_answer = question.answers.find_by(id: params[:answer_id])
+    
+    unless selected_answer
+      return render json: { error: "Respuesta no válida." }, status: :unprocessable_entity
+    end
+
+    correct = selected_answer.correct
+    score = correct ? 100 : 0  #Ajustar cuando se ponga el tiempo
+    
+    KahootResponse.create!(
+      kahoot_participant: participant,
+      kahoot_question: kahoot_question,
+      answered_at: Time.current,
+      correct: correct,
+      score: score
+    )
+  
+    render json: { correct: correct, score: score }
   rescue => e
     render json: { status: "error", message: e.message }, status: :unprocessable_entity
   end

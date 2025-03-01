@@ -22,7 +22,7 @@ class KahootGame < ApplicationRecord
     end
 
     selected_questions.each_with_index do |question, index|
-      kahoot_questions.create!(question: question, order: index+1)
+      kahoot_questions.create!(question: question, order: index)
     end
 
     self.current_question_index = 0
@@ -39,5 +39,10 @@ class KahootGame < ApplicationRecord
         Question.where(category_id: category_id, level_id: level_id, status: :approved).count >= NUMBER_OF_QUESTIONS_PER_KAHOOT
       end
     end
+  end
+
+  def current_question
+    order = self.current_question_index
+    self.kahoot_questions.find_by(order: order)
   end
 end

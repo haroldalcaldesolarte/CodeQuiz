@@ -3,5 +3,5 @@ class KahootQuestion < ApplicationRecord
   belongs_to :question
   has_many :kahoot_responses, dependent: :destroy
 
-  validates :order, presence: true, numericality: { only_integer: true, greater_than: 0 }
+  validates :order, presence: true, numericality: { only_integer: true }
 end

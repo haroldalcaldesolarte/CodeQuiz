@@ -91,6 +91,28 @@ const initKahootGameChannel = (gameId) => {
                 selectAnswer(button);
               });
             });
+
+            submitButton.addEventListener("click", function () {
+              if (selectedAnswerId) {
+                console.log("Respuesta enviada:", selectedAnswerId);
+                const kahootGameId = document.body.dataset.kahootGameId;
+      
+                fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+                  },
+                  body: JSON.stringify({ answer_id: selectedAnswerId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                  console.log("Respuesta procesada:", data);
+                  submitButton.disabled = true;
+                })
+                .catch(error => console.error("Error enviando respuesta:", error));
+              }
+            });
           }
         }        
       }
