@@ -51,11 +51,11 @@ const initKahootGameChannel = (gameId) => {
           document.getElementById("in_progress_container").style.display = "block";
         }
         if (data.type === "new_question") {
-          let questionContainer = document.getElementById("question_container");
-          let answersContainer = document.getElementById("answers_container");
-          let timerContainer = document.getElementById("timer_container");
-          let submitButton = document.getElementById("submit_answer_button");
-          let selectedAnswerId = localStorage.getItem("selectedAnswer");
+          const questionContainer = document.getElementById("question_container");
+          const answersContainer = document.getElementById("answers_container");
+          const timerContainer = document.getElementById("timer_container");
+          const submitButton = document.getElementById("submit_answer_button");
+          const selectedAnswerId = localStorage.getItem("selectedAnswer");
 
           function selectAnswer(button) {
             document.querySelectorAll(".answer-button").forEach(btn => {
@@ -105,16 +105,36 @@ const initKahootGameChannel = (gameId) => {
                   },
                   body: JSON.stringify({ answer_id: selectedAnswerId }),
                 })
-                .then(response => response.json())
-                .then(data => {
-                  console.log("Respuesta procesada:", data);
-                  submitButton.disabled = true;
+                .then(response => {
+                  if (response.ok) {
+                    console.log("Respuesta procesada correctamente");
+                    submitButton.disabled = true;
+                  } else {
+                    console.error("Error en la respuesta:", response.status);
+                  }
                 })
                 .catch(error => console.error("Error enviando respuesta:", error));
               }
             });
           }
-        }        
+        }
+        if (data.type === "answer_feedback") {
+          const overlay = document.getElementById("overlay");
+          const feedbackMessage = document.getElementById("feedback_message");
+          const feedbackIcon = document.getElementById("feedback_icon");
+
+          if (overlay && feedbackMessage && feedbackIcon) {
+            if (data.correct) {
+              feedbackMessage.textContent = "¡Respuesta correcta!";
+              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+            } else {
+              feedbackMessage.textContent = "¡Respuesta incorrecta!";
+              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-danger"></i>';
+            }
+        
+            overlay.classList.remove("d-none");
+          }
+        } 
       }
     }
   );

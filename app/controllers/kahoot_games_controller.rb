@@ -77,8 +77,13 @@ class KahootGamesController < ApplicationController
       correct: correct,
       score: score
     )
-  
-    render json: { correct: correct, score: score }
+
+    KahootGameChannel.broadcast_to(participant, {
+      type: "answer_feedback",
+      correct: correct
+    })
+
+    head :ok
   rescue => e
     render json: { status: "error", message: e.message }, status: :unprocessable_entity
   end

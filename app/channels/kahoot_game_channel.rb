@@ -1,8 +1,10 @@
 class KahootGameChannel < ApplicationCable::Channel
   def subscribed
     kahoot_game = KahootGame.find(params[:game_id])
+    participant = KahootParticipant.find_by(user: current_user, kahoot_game: kahoot_game)
+    
     stream_for kahoot_game
-
+    stream_for participant
     connection.kahoot_game_id = kahoot_game.id
   end
 

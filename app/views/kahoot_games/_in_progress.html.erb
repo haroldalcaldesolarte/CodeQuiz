@@ -98,10 +98,13 @@
             },
             body: JSON.stringify({ answer_id: selectedAnswerId }),
           })
-          .then(response => response.json())
-          .then(data => {
-            console.log("Respuesta procesada:", data);
-            submitButton.disabled = true;
+          .then(response => {
+            if (response.ok) {
+              console.log("Respuesta procesada correctamente");
+              submitButton.disabled = true;
+            } else {
+              console.error("Error en la respuesta:", response.status);
+            }
           })
           .catch(error => console.error("Error enviando respuesta:", error));
         }
