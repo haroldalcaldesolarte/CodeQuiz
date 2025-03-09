@@ -3,6 +3,108 @@ import consumer from "./consumer";
 let kahootGameChannel;
 
 const initKahootGameChannel = (gameId) => {
+  if (kahootGameChannel) {
+    consumer.subscriptions.remove(kahootGameChannel);
+  }
+
+  function updateQuestionUI(data) {
+    const questionContainer = document.getElementById("question_container");
+    const answersContainer = document.getElementById("answers_container");
+    const timerContainer = document.getElementById("timer_container");
+    const sendAnswerContainer = document.getElementById("send_answer_container");
+    let selectedAnswerId = localStorage.getItem("selectedAnswer");
+    const overlay = document.getElementById("overlay");
+  
+    if (overlay) {
+      overlay.classList.add("d-none");
+    }
+  
+    const existingSubmitButton = document.getElementById("submit_answer_button");
+    if (existingSubmitButton) {
+      existingSubmitButton.remove();
+    }
+
+    const submitButton = document.createElement("button");
+    submitButton.id = "submit_answer_button";
+    submitButton.classList.add("btn", "btn-primary", "btn-lg");
+    submitButton.textContent = "Enviar";
+    submitButton.disabled = true;
+  
+    function selectAnswer(button) {
+      document.querySelectorAll(".answer-button").forEach(btn => {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline-primary");
+      });
+  
+      button.classList.remove("btn-outline-primary");
+      button.classList.add("btn-primary");
+  
+      selectedAnswerId = button.dataset.answerId;
+      localStorage.setItem("selectedAnswer", selectedAnswerId);
+  
+      submitButton.disabled = false;
+    }
+  
+    if (questionContainer && answersContainer && timerContainer) {
+      questionContainer.textContent = data.question.text;
+      answersContainer.innerHTML = "";
+  
+      data.question.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.classList.add("answer-button", "btn", "btn-outline-primary", "btn-lg", "w-100", "py-3", "shadow-sm");
+        button.textContent = answer.answer_text;
+        button.dataset.answerId = answer.id;
+  
+        const answerDiv = document.createElement("div");
+        answerDiv.classList.add("col");
+        answerDiv.appendChild(button);
+        answersContainer.appendChild(answerDiv);
+  
+        button.addEventListener("click", function () {
+          selectAnswer(button);
+        });
+      });
+  
+      document.querySelectorAll(".answer-button").forEach(button => {
+        button.addEventListener("click", function () {
+          selectAnswer(button);
+        });
+  
+        // Volver a marcar el btn seleccionado si el usuario recarga la página
+        if (selectedAnswerId && selectedAnswerId === button.dataset.answerId) {
+          selectAnswer(button);
+        }
+      });
+  
+      submitButton.addEventListener("click", function () {
+        if (selectedAnswerId) {
+          console.log("Respuesta enviada:", selectedAnswerId);
+          const kahootGameId = document.body.dataset.kahootGameId;
+  
+          fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+            },
+            body: JSON.stringify({ answer_id: selectedAnswerId }),
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log("Respuesta procesada correctamente");
+              submitButton.disabled = true;
+            } else {
+              console.error("Error en la respuesta:", response.message);
+            }
+          })
+          .catch(error => console.error("Error enviando respuesta:", error));
+        }
+      });
+  
+      sendAnswerContainer.appendChild(submitButton);
+    }
+  }
+
   kahootGameChannel = consumer.subscriptions.create(
     { channel: "KahootGameChannel", game_id: gameId },
     {
@@ -51,90 +153,7 @@ const initKahootGameChannel = (gameId) => {
           document.getElementById("in_progress_container").style.display = "block";
         }
         if (data.type === "new_question") {
-          const questionContainer = document.getElementById("question_container");
-          const answersContainer = document.getElementById("answers_container");
-          const timerContainer = document.getElementById("timer_container");
-          const submitButton = document.getElementById("submit_answer_button");
-          let selectedAnswerId = localStorage.getItem("selectedAnswer");
-          const overlay = document.getElementById("overlay");
-
-          if (overlay) {
-            overlay.classList.add("d-none");
-          }
-
-          submitButton.disabled = true;
-
-          function selectAnswer(button) {
-            document.querySelectorAll(".answer-button").forEach(btn => {
-              btn.classList.remove("btn-primary");
-              btn.classList.add("btn-outline-primary");
-            });
-  
-            button.classList.remove("btn-outline-primary");
-            button.classList.add("btn-primary");
-  
-            selectedAnswerId = button.dataset.answerId;
-            localStorage.setItem("selectedAnswer", selectedAnswerId);
-  
-            submitButton.disabled = false;
-          }
-        
-          if (questionContainer && answersContainer && timerContainer) {
-            questionContainer.textContent = data.question.text;
-            answersContainer.innerHTML = "";
-
-            data.question.answers.forEach(answer => {
-              const button = document.createElement("button");
-              button.classList.add("btn", "btn-outline-primary", "btn-lg", "answer-button", "w-100", "py-3", "shadow-sm");
-              button.textContent = answer.answer_text;
-              button.dataset.answerId = answer.id;
-        
-              const answerDiv = document.createElement("div");
-              answerDiv.classList.add("col");
-              answerDiv.appendChild(button);
-              answersContainer.appendChild(answerDiv);
-
-              button.addEventListener("click", function () {
-                selectAnswer(button);
-              });
-            });
-
-            document.querySelectorAll(".answer-button").forEach(button => {
-              button.addEventListener("click", function () {
-                selectAnswer(button);
-              });
-      
-              //Volver a marcar el btn seleccionado si el usuario recarga la página
-              if (selectedAnswerId && selectedAnswerId === button.dataset.answerId) {
-                selectAnswer(button);
-              }
-            });
-
-            submitButton.addEventListener("click", function () {
-              if (selectedAnswerId) {
-                console.log("Respuesta enviada:", selectedAnswerId);
-                const kahootGameId = document.body.dataset.kahootGameId;
-      
-                fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
-                  },
-                  body: JSON.stringify({ answer_id: selectedAnswerId }),
-                })
-                .then(response => {
-                  if (response.ok) {
-                    console.log("Respuesta procesada correctamente");
-                    submitButton.disabled = true;
-                  } else {
-                    console.error("Error en la respuesta:", response.message);
-                  }
-                })
-                .catch(error => console.error("Error enviando respuesta:", error));
-              }
-            });
-          }
+          updateQuestionUI(data);
         }
         if (data.type === "answer_feedback") {
           const overlay = document.getElementById("overlay");
