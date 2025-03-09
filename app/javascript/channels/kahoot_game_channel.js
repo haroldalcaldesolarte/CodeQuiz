@@ -55,16 +55,23 @@ const initKahootGameChannel = (gameId) => {
           const answersContainer = document.getElementById("answers_container");
           const timerContainer = document.getElementById("timer_container");
           const submitButton = document.getElementById("submit_answer_button");
-          const selectedAnswerId = localStorage.getItem("selectedAnswer");
+          let selectedAnswerId = localStorage.getItem("selectedAnswer");
+          const overlay = document.getElementById("overlay");
+
+          if (overlay) {
+            overlay.classList.add("d-none");
+          }
+
+          submitButton.disabled = true;
 
           function selectAnswer(button) {
             document.querySelectorAll(".answer-button").forEach(btn => {
-              btn.classList.remove("btn-success");
+              btn.classList.remove("btn-primary");
               btn.classList.add("btn-outline-primary");
             });
   
             button.classList.remove("btn-outline-primary");
-            button.classList.add("btn-success");
+            button.classList.add("btn-primary");
   
             selectedAnswerId = button.dataset.answerId;
             localStorage.setItem("selectedAnswer", selectedAnswerId);
@@ -92,6 +99,17 @@ const initKahootGameChannel = (gameId) => {
               });
             });
 
+            document.querySelectorAll(".answer-button").forEach(button => {
+              button.addEventListener("click", function () {
+                selectAnswer(button);
+              });
+      
+              //Volver a marcar el btn seleccionado si el usuario recarga la página
+              if (selectedAnswerId && selectedAnswerId === button.dataset.answerId) {
+                selectAnswer(button);
+              }
+            });
+
             submitButton.addEventListener("click", function () {
               if (selectedAnswerId) {
                 console.log("Respuesta enviada:", selectedAnswerId);
@@ -110,7 +128,7 @@ const initKahootGameChannel = (gameId) => {
                     console.log("Respuesta procesada correctamente");
                     submitButton.disabled = true;
                   } else {
-                    console.error("Error en la respuesta:", response.status);
+                    console.error("Error en la respuesta:", response.message);
                   }
                 })
                 .catch(error => console.error("Error enviando respuesta:", error));
@@ -134,7 +152,10 @@ const initKahootGameChannel = (gameId) => {
         
             overlay.classList.remove("d-none");
           }
-        } 
+        }
+        if (data.type === "game_finished"){
+
+        }
       }
     }
   );

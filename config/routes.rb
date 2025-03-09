@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     member do
       post :start
       post :submit_answer
+      post :next_question
     end
   end
 

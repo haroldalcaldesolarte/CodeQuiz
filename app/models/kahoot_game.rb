@@ -42,7 +42,18 @@ class KahootGame < ApplicationRecord
   end
 
   def current_question
-    order = self.current_question_index
-    self.kahoot_questions.find_by(order: order)
+    kahoot_questions.find_by(order: current_question_index)
+  end
+
+  def has_next_question?
+    current_question_index < (kahoot_questions.count - 1)
+  end
+
+  def next_question
+    kahoot_questions.find_by(order: current_question_index+1) if has_next_question?
+  end
+
+  def advance_question #actualizar el index cuando se va a enviar la siguiente pregunta
+    update(current_question_index: current_question_index + 1) if has_next_question?
   end
 end

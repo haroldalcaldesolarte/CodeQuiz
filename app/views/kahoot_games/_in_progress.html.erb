@@ -9,12 +9,12 @@
     color: white !important;
   }
 
-  .answer-button {
+  .answer-button, .answer-button-host {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
   }
 
-  .answer-button:hover {
+  .answer-button:hover, .answer-button-host:hover {
     transform: scale(1.05);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
@@ -41,9 +41,15 @@
       <div id="answers_container" class="row row-cols-1 row-cols-md-2 g-4">
         <% get_answers(question).each do |answer| %>
           <div class="col">
-            <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button shadow-sm" data-answer-id="<%= answer.id %>" data-answer-correct="<%= answer.correct %>">
-              <%= answer.answer_text %>
-            </button>
+            <% if @kahoot_game.host == current_user %>
+              <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button-host shadow-sm">
+                <%= answer.answer_text %>
+              </button>
+            <% else %>
+              <button type="button" class="btn btn-outline-primary btn-lg w-100 py-3 answer-button shadow-sm" data-answer-id="<%= answer.id %>" data-answer-correct="<%= answer.correct %>">
+                <%= answer.answer_text %>
+              </button>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -51,13 +57,21 @@
       <div class="text-center mt-5">
         <button id="submit_answer_button" type="button" class="btn btn-primary btn-lg" disabled>Enviar</button>
       </div>
+
+      <% if @kahoot_game.host == current_user && @kahoot_game.has_next_question? %>
+        <div class="text-center mt-5">
+          <button id="next_question_button" class="btn btn-primary btn-lg">Siguiente Pregunta</button>
+        </div>
+      <% end %>
     </div>
   </body>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const submitButton = document.getElementById("submit_answer_button");
+      const nextQuestionButton = document.getElementById("next_question_button");
       let selectedAnswerId = localStorage.getItem("selectedAnswer");
+      localStorage.removeItem("selectedAnswer");
 
       function selectAnswer(button) {
         document.querySelectorAll(".answer-button").forEach(btn => {
@@ -85,30 +99,54 @@
         }
       });
 
-      submitButton.addEventListener("click", function () {
-        if (selectedAnswerId) {
-          console.log("Respuesta enviada:", selectedAnswerId);
+      if (submitButton) {
+        submitButton.addEventListener("click", function () {
+          if (selectedAnswerId) {
+            console.log("Respuesta enviada:", selectedAnswerId);
+            const kahootGameId = document.body.dataset.kahootGameId;
+
+            fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
+              },
+              body: JSON.stringify({ answer_id: selectedAnswerId }),
+            })
+            .then(response => {
+              if (response.ok) {
+                console.log("Respuesta procesada correctamente");
+                submitButton.disabled = true;
+              } else {
+                console.error("Error en la respuesta:", response.status);
+              }
+            })
+            .catch(error => console.error("Error enviando respuesta:", error));
+          }
+        });
+      }
+
+      if (nextQuestionButton) {
+        nextQuestionButton.addEventListener("click", function () {
           const kahootGameId = document.body.dataset.kahootGameId;
 
-          fetch(`/kahoot_games/${kahootGameId}/submit_answer`, {
+          fetch(`/kahoot_games/${kahootGameId}/next_question`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
               "X-CSRF-Token": document.querySelector("meta[name='csrf-token']").content,
-            },
-            body: JSON.stringify({ answer_id: selectedAnswerId }),
+            }
           })
           .then(response => {
             if (response.ok) {
-              console.log("Respuesta procesada correctamente");
-              submitButton.disabled = true;
+              console.log("Siguiente pregunta enviada");
             } else {
-              console.error("Error en la respuesta:", response.status);
+              console.error("Error enviando siguiente pregunta");
             }
           })
-          .catch(error => console.error("Error enviando respuesta:", error));
-        }
-      });
+          .catch(error => console.error("Error en la solicitud:", error));
+        });
+      }
     });
   </script>
 

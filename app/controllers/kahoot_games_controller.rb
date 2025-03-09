@@ -1,7 +1,7 @@
 class KahootGamesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_permissions, only: %i[new start create]
-  before_action :set_kahoot_game, only: %i[show start destroy submit_answer]
+  before_action :set_kahoot_game, only: %i[show start destroy submit_answer next_question]
   before_action :check_participants, only: %i[show]
 
   TIME_LIMIT = 45
@@ -88,6 +88,17 @@ class KahootGamesController < ApplicationController
     render json: { status: "error", message: e.message }, status: :unprocessable_entity
   end
   
+  def next_question
+    return head :forbidden unless current_user == @kahoot_game.host
+
+    if @kahoot_game.has_next_question?
+      send_question
+      @kahoot_game.advance_question
+    else
+      @kahoot_game.update(status: :finished)
+      KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_finished" })
+    end
+  end
 
   def destroy
     if @kahoot_game.host == current_user
@@ -123,23 +134,19 @@ class KahootGamesController < ApplicationController
   end
 
   def send_question
-    if @kahoot_game.host == current_user && @kahoot_game.in_progress?
-      question = @kahoot_game.questions[@kahoot_game.current_question_index]
-
-      if question
-        KahootGameChannel.broadcast_to(@kahoot_game, {
-          type: "new_question",
-          question: {
-            id: question.id,
-            text: question.question_text,
-            answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
-            time_limit: TIME_LIMIT
-          } 
-        })
-      else
-        @kahoot_game.update(status: :finished)
-        KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_finished" })
-      end
+    kahoot_question = @kahoot_game.next_question
+    question = kahoot_question.question
+    if question
+      KahootGameChannel.broadcast_to(@kahoot_game, {
+        type: "new_question",
+        question: {
+          id: question.id,
+          text: question.question_text,
+          answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
+          time_limit: TIME_LIMIT
+        } 
+      })
+      head :ok
     end
   end
 end
