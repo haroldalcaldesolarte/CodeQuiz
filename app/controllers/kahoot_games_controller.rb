@@ -51,9 +51,10 @@ class KahootGamesController < ApplicationController
 
   def submit_answer
     participant = @kahoot_game.kahoot_participants.find_by(user: current_user)
+    host = @kahoot_game.host
 
     unless participant
-      return render json: {error: "No estás en la partida"}, status: :forbidden
+      return render json: {message: "No estás en la partida"}, status: :forbidden
     end
 
     kahoot_question = @kahoot_game.current_question
@@ -78,9 +79,16 @@ class KahootGamesController < ApplicationController
       score: score
     )
 
+    total_responses = kahoot_question.kahoot_responses.count
+
     KahootGameChannel.broadcast_to(participant, {
       type: "answer_feedback",
       correct: correct
+    })
+
+    KahootGameChannel.broadcast_to(host, {
+      type: "update_counter",
+      count: total_responses
     })
 
     head :ok
@@ -92,8 +100,8 @@ class KahootGamesController < ApplicationController
     return head :forbidden unless current_user == @kahoot_game.host
 
     if @kahoot_game.has_next_question?
-      send_question
       @kahoot_game.advance_question
+      send_question
     else
       @kahoot_game.update(status: :finished)
       KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_finished" })
@@ -134,11 +142,13 @@ class KahootGamesController < ApplicationController
   end
 
   def send_question
-    kahoot_question = @kahoot_game.next_question
+    host = @kahoot_game.host
+    kahoot_question = @kahoot_game.current_question
     question = kahoot_question.question
     if question
       KahootGameChannel.broadcast_to(@kahoot_game, {
         type: "new_question",
+        index_question: @kahoot_game.current_question_index + 1,
         question: {
           id: question.id,
           text: question.question_text,
@@ -146,6 +156,12 @@ class KahootGamesController < ApplicationController
           time_limit: TIME_LIMIT
         } 
       })
+
+      KahootGameChannel.broadcast_to(host, {
+        type: "update_counter",
+        count: 0
+      })
+
       head :ok
     end
   end

@@ -29,13 +29,31 @@
   <body data-kahoot-game-id="<%= @kahoot_game.id %>">
     <div class="container py-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h4 class="text-primary fw-bold">Pregunta <%= index_question + 1 %> de <%= number_of_questions %></h4>
-        <h4 id="timer_container" class="text-black fw-bold">Tiempo: </h4>
+        <h4 class="fw-bold">
+          <span class="badge rounded-pill bg-secondary">
+            Pregunta <span id="index_question_container"><%= index_question + 1 %></span> de <%= number_of_questions %>
+          </span>
+        </h4>
+        
+        <% if @kahoot_game.host == current_user && @kahoot_game.has_next_question? %>
+          <h4>
+            <button id="next_question_button" class="btn btn-outline-primary flex-shrink-0 rounded-pill">
+              Siguiente Pregunta
+            </button>
+           </h4>
+        <% end %>
+        <% if @kahoot_game.host == current_user %>
+          <h4 class="fw-bold">
+            <span class="badge rounded-pill bg-secondary">
+              Respuestas <span id="counter_participants_container">0</span>/<%= @kahoot_game.kahoot_participants.count %>
+            </span>
+          </h4>
+        <% end %>
       </div>
 
       <div class="text-center mb-5">
         <h5 class="text-muted" title="Categoría"><%= @kahoot_game.category.name %> <span title="Nivel" class="badge rounded-pill bg-<%= @kahoot_game.level.get_color %>"><%= @kahoot_game.level.name %></span></h5>
-        <h3 id="question_container" class="fw-bold text-dark" title="Pregunta"><%= question.question_text %></h3>
+        <h3 id="question_container" class="fw-bold text-dark" title="Pregunta"><%= question.question_text %> </h3>
       </div>
 
       <div id="answers_container" class="row row-cols-1 row-cols-md-2 g-4">
@@ -57,12 +75,6 @@
       <div id="send_answer_container" class="text-center mt-5">
         <button id="submit_answer_button" type="button" class="btn btn-primary btn-lg" disabled>Enviar</button>
       </div>
-
-      <% if @kahoot_game.host == current_user && @kahoot_game.has_next_question? %>
-        <div class="text-center mt-5">
-          <button id="next_question_button" class="btn btn-primary btn-lg">Siguiente Pregunta</button>
-        </div>
-      <% end %>
     </div>
   </body>
 

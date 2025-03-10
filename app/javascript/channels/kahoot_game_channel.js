@@ -10,13 +10,17 @@ const initKahootGameChannel = (gameId) => {
   function updateQuestionUI(data) {
     const questionContainer = document.getElementById("question_container");
     const answersContainer = document.getElementById("answers_container");
-    const timerContainer = document.getElementById("timer_container");
     const sendAnswerContainer = document.getElementById("send_answer_container");
+    const indexQuestionContainer = document.getElementById("index_question_container");
     let selectedAnswerId = localStorage.getItem("selectedAnswer");
     const overlay = document.getElementById("overlay");
   
     if (overlay) {
       overlay.classList.add("d-none");
+    }
+
+    if (indexQuestionContainer){
+      indexQuestionContainer.textContent = data.index_question
     }
   
     const existingSubmitButton = document.getElementById("submit_answer_button");
@@ -45,7 +49,7 @@ const initKahootGameChannel = (gameId) => {
       submitButton.disabled = false;
     }
   
-    if (questionContainer && answersContainer && timerContainer) {
+    if (questionContainer && answersContainer) {
       questionContainer.textContent = data.question.text;
       answersContainer.innerHTML = "";
   
@@ -174,6 +178,12 @@ const initKahootGameChannel = (gameId) => {
         }
         if (data.type === "game_finished"){
 
+        }
+        if (data.type === "update_counter"){
+          const counterParticipantsContainer =  document.getElementById("counter_participants_container");
+          if(counterParticipantsContainer){
+            counterParticipantsContainer.innerText = data.count;
+          }
         }
       }
     }
