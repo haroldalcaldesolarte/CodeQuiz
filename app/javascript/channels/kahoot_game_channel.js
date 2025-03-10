@@ -12,11 +12,16 @@ const initKahootGameChannel = (gameId) => {
     const answersContainer = document.getElementById("answers_container");
     const sendAnswerContainer = document.getElementById("send_answer_container");
     const indexQuestionContainer = document.getElementById("index_question_container");
+    const alertDuplicateAnswerContainer = document.getElementById("alert_duplicate_answer_container");
     let selectedAnswerId = localStorage.getItem("selectedAnswer");
     const overlay = document.getElementById("overlay");
   
     if (overlay) {
       overlay.classList.add("d-none");
+    }
+
+    if (alertDuplicateAnswerContainer){
+      alertDuplicateAnswerContainer.classList.add("d-none");
     }
 
     if (indexQuestionContainer){
@@ -46,7 +51,9 @@ const initKahootGameChannel = (gameId) => {
       selectedAnswerId = button.dataset.answerId;
       localStorage.setItem("selectedAnswer", selectedAnswerId);
   
-      submitButton.disabled = false;
+      if (submitButton){
+        submitButton.disabled = false;
+      }
     }
   
     if (questionContainer && answersContainer) {

@@ -59,8 +59,8 @@
       <div id="answers_container" class="row row-cols-1 row-cols-md-2 g-4">
         <% get_answers(question).each do |answer| %>
           <div class="col">
-            <% if @kahoot_game.host == current_user %>
-              <button type="button" class="answer-button-host btn btn-outline-primary btn-lg w-100 py-3 shadow-sm">
+            <% if @kahoot_game.host == current_user or check_duplicate_answers(current_user, @kahoot_game.current_question) %>
+              <button type="button" class="answer-button-host btn btn-outline-primary btn-lg w-100 py-3 shadow-sm" disabled>
                 <%= answer.answer_text %>
               </button>
             <% else %>
@@ -71,9 +71,14 @@
           </div>
         <% end %>
       </div>
-
       <div id="send_answer_container" class="text-center mt-5">
         <button id="submit_answer_button" type="button" class="btn btn-primary btn-lg" disabled>Enviar</button>
+        
+        <% if check_duplicate_answers(current_user, @kahoot_game.current_question) %>
+          <div id="alert_duplicate_answer_container">
+           <span class="badge rounded-pill bg-warning text-dark">Ya has respondido a esta pregunta.</span>
+          </div>
+        <% end %>
       </div>
     </div>
   </body>

@@ -54,13 +54,18 @@ class KahootGamesController < ApplicationController
     host = @kahoot_game.host
 
     unless participant
-      return render json: {message: "No estás en la partida"}, status: :forbidden
+      return render json: {type: "", status: "error" ,message: "No estás en la partida"}, status: :forbidden
     end
 
     kahoot_question = @kahoot_game.current_question
     unless kahoot_question
       return render json: { error: "La pregunta no está en la partida." }, status: :unprocessable_entity
     end
+
+    if KahootResponse.exists?(kahoot_participant: participant, kahoot_question: kahoot_question)
+      return render json: { error: "Ya has respondido a esta pregunta." }, status: :unprocessable_entity
+    end
+
     question = kahoot_question.question
     selected_answer = question.answers.find_by(id: params[:answer_id])
     
