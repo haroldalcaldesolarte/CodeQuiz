@@ -49,6 +49,14 @@
             </span>
           </h4>
         <% end %>
+
+        <% unless @kahoot_game.host == current_user %>
+          <h4 class="fw-bold">
+            <span class="badge rounded-pill bg-success">
+              Puntuación: <span id="score_participant_container"><%= get_kahoot_participant(current_user, @kahoot_game).score %></span>
+            </span>
+          </h4>
+        <% end %>
       </div>
 
       <div class="text-center mb-5">

@@ -84,11 +84,15 @@ class KahootGamesController < ApplicationController
       score: score
     )
 
+    participant.update(score: participant.score + score)
+
     total_responses = kahoot_question.kahoot_responses.count
 
     KahootGameChannel.broadcast_to(participant, {
       type: "answer_feedback",
-      correct: correct
+      correct: correct,
+      question_score: score,
+      total_score: participant.score
     })
 
     KahootGameChannel.broadcast_to(host, {

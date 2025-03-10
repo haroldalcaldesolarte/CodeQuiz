@@ -170,16 +170,23 @@ const initKahootGameChannel = (gameId) => {
           const overlay = document.getElementById("overlay");
           const feedbackMessage = document.getElementById("feedback_message");
           const feedbackIcon = document.getElementById("feedback_icon");
+          const feedbackScore = document.getElementById("feedback_score");
+          const feedbackTotalScore = document.getElementById("feedback_total_score");
+          const scoreParticipantContainer = document.getElementById("score_participant_container");
 
-          if (overlay && feedbackMessage && feedbackIcon) {
+          if (overlay && feedbackMessage && feedbackIcon && feedbackScore && feedbackTotalScore && scoreParticipantContainer) {
             if (data.correct) {
               feedbackMessage.textContent = "¡Respuesta correcta!";
-              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check text-success"></i>';
+              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-check text-success fa-3x"></i>';
+              feedbackScore.textContent = `Puntos ganados: +${data.question_score}`;
             } else {
               feedbackMessage.textContent = "¡Respuesta incorrecta!";
-              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-danger"></i>';
+              feedbackIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-danger fa-3x"></i>';
+              feedbackScore.textContent = "Puntos ganados: 0";
             }
         
+            feedbackTotalScore.textContent = `Puntuación total: ${data.total_score}`;
+            scoreParticipantContainer.textContent = `${data.total_score}`;
             overlay.classList.remove("d-none");
           }
         }

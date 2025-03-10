@@ -2,9 +2,11 @@
   <div class="card text-center shadow p-4 d-flex flex-column" style="width: 80rem; min-height: 20rem;">
     <h3 class="card-title mb-4">Partida en espera...</h3>
     <div class="flex-grow-1 overflow-auto px-3">
-      <h2 class="mb-3">
-        <span class="badge bg-secondary">PIN de juego: <%= @kahoot_game.id %></span>
-      </h2>
+      <% if @kahoot_game.host == current_user %>
+        <h2 class="mb-3">
+          <span class="badge bg-secondary">PIN de juego: <%= @kahoot_game.id %></span>
+        </h2>
+      <% end %>
       <div class="container">
         <span class="my-2 fs-6 font-monospace badge rounded-pill bg-warning text-dark">Esperando participantes...</span>
         <div class="row row-cols-1 row-cols-md-4 g-3" id="participants_container">
