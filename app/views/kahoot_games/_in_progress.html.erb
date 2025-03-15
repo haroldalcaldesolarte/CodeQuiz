@@ -35,7 +35,7 @@
           </span>
         </h4>
         
-        <% if @kahoot_game.host == current_user && @kahoot_game.has_next_question? %>
+        <% if @kahoot_game.host == current_user && @kahoot_game.in_progress? %>
           <h4>
             <button id="next_question_button" class="btn btn-outline-primary flex-shrink-0 rounded-pill">
               Siguiente Pregunta

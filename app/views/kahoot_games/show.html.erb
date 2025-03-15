@@ -8,10 +8,6 @@
   </div>
 </div>
 
-<div id="kahoot_channel_alert" class="alert alert-success alert-dismissible fade" role="alert">
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-
 <div id="waiting_container" <%= "style=display:none;" unless @kahoot_game.waiting? %>>
   <%= render 'waiting' %>
 </div>
@@ -20,8 +16,8 @@
   <%= render 'in_progress' %>
 </div>
 
-<div id="finished_container" <%= "style='display:none;'" unless @kahoot_game.finished? %>>
-  <%= render 'finished' if @kahoot_game.finished? %>
+<div id="finished_container" <%= "style=display:none;" unless @kahoot_game.finished? %>>
+  <%= render 'finished' %>
 </div>
 
 <div id="canceled_container" <%= "style='display:none;'" unless @kahoot_game.canceled? %>>

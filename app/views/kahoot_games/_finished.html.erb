@@ -1,1 +1,66 @@
-<p>ranking</p>
+<style>
+  .podium {
+    width: 120px;
+    text-align: center;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  #first_place {
+    transform: translateY(-20px);
+  }
+
+  #second_place {
+    transform: translateY(0);
+  }
+
+  #third_place {
+    transform: translateY(10px);
+  }
+</style>
+<% players = @kahoot_game.ranking if @kahoot_game.finished? %>
+<div class="container text-center mt-5">
+  <h3 class="fw-bold text-primary">🏆 <span class="badge rounded-pill bg-primary">Ranking Final</span> 🏆</h3>
+
+  <div class="d-flex justify-content-center align-items-end gap-3 mt-5 mb-4">
+    <div id="second_place" class="podium bg-secondary text-white p-3 rounded">
+      <h4>🥈</h4>
+      <p class="fw-bold fs-5" id="second_name"><%= players[1][:name] unless players.blank? %></p>
+      <p class="fw-bold" id="second_score"><%= players[1][:score] unless players.blank? %></p>
+    </div>
+
+    <div id="first_place" class="podium bg-warning text-dark p-4 rounded">
+      <h3>🥇</h3>
+      <p class="fw-bold fs-4" id="first_name"><%= players[0][:name] unless players.blank? %></p>
+      <p class="fw-bold fs-5" id="first_score"><%= players[0][:score] unless players.blank? %></p>
+    </div>
+
+    <div id="third_place" class="podium bg-info text-white p-3 rounded">
+      <h4>🥉</h4>
+      <p class="fw-bold fs-5" id="third_name"><%= players[2][:name] unless players.blank? %></p>
+      <p class="fw-bold" id="third_score"><%= players[2][:score] unless players.blank? %></p>
+    </div>
+  </div>
+
+  <div class="table-responsive mb-2" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+  <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th>Puesto</th>
+          <th>Nombre</th>
+          <th>Puntuación</th>
+        </tr>
+      </thead>
+      <tbody id="other_players">
+        <% unless players.blank? %>
+          <% players.drop(3).each_with_index do |player, index| %>
+            <tr>
+              <td>#<%= index + 4 %></td>
+              <td><%= player[:name] %></td>
+              <td><%= player[:score] %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

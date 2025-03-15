@@ -56,4 +56,8 @@ class KahootGame < ApplicationRecord
   def advance_question #actualizar el index cuando se va a enviar la siguiente pregunta
     update(current_question_index: current_question_index + 1) if has_next_question?
   end
+
+  def ranking
+    kahoot_participants.joins(:user).select("users.name, kahoot_participants.score").order(score: :desc).map { |p| { name: p.name, score: p.score } }
+  end
 end

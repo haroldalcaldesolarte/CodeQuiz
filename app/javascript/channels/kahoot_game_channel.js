@@ -143,11 +143,12 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type == "game_canceled"){
-          const alertDiv = document.getElementById("kahoot_channel_alert");
+          //Si hace falta que se cree el div si no que no ocupe espacio
+          /*const alertDiv = document.getElementById("kahoot_channel_alert");
           if (alertDiv) {
             alertDiv.textContent = "La partida ha sido cancelada por el host.";
             alertDiv.classList.add("show");
-          }
+          }*/
 
           setTimeout(() => {
             window.location.href = "/kahoot_participants/new";
@@ -191,7 +192,51 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type === "game_finished"){
+          const in_progress_container = document.getElementById("in_progress_container");
+          const finished_container = document.getElementById("finished_container");
+          const firstPlace = document.getElementById("first_place");
+          const secondPlace = document.getElementById("second_place");
+          const thirdPlace = document.getElementById("third_place");
+          const otherPlayers = document.getElementById("other_players");
 
+          if(in_progress_container){
+            in_progress_container.style.display = "none";
+          }
+
+          if (finished_container && firstPlace && secondPlace && thirdPlace && otherPlayers) {
+            const players = data.ranking; // Se asume que `data.ranking` es un array de objetos con { name, score }
+
+            if (players.length > 0) {
+              firstPlace.querySelector("#first_name").textContent = players[0]?.name || "-";
+              firstPlace.querySelector("#first_score").textContent = players[0]?.score || "0";
+            }
+            
+            if (players.length > 1) {
+              secondPlace.querySelector("#second_name").textContent = players[1]?.name || "-";
+              secondPlace.querySelector("#second_score").textContent = players[1]?.score || "0";
+            }
+
+            if (players.length > 2) {
+              thirdPlace.querySelector("#third_name").textContent = players[2]?.name || "-";
+              thirdPlace.querySelector("#third_score").textContent = players[2]?.score || "0";
+            }
+
+            // Llenar la tabla con los demás jugadores
+            otherPlayers.innerHTML = "";
+            for (let index = 0; index < 10; index++) {
+              players.slice(3).forEach((player, index) => {
+                const row = `
+                  <tr>
+                    <td>#${index + 4}</td>
+                    <td>${player.name}</td>
+                    <td>${player.score}</td>
+                  </tr>`;
+                otherPlayers.innerHTML += row;
+              });
+            }
+  
+            finished_container.style.display = "block";
+          }
         }
         if (data.type === "update_counter"){
           const counterParticipantsContainer =  document.getElementById("counter_participants_container");
