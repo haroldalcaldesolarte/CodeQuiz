@@ -115,7 +115,7 @@ class KahootGamesController < ApplicationController
       @kahoot_game.update(status: :finished)
       if @kahoot_game.finished?
         ranking = @kahoot_game.ranking
-        KahootGameChannel.broadcast_to(@kahoot_game.host, { type: "game_finished", ranking: ranking })
+        KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_finished", ranking: ranking })
       end
       
     end

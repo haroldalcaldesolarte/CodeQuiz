@@ -2,6 +2,28 @@ import consumer from "./consumer";
 
 let kahootGameChannel;
 
+function showLoadingScreen(){
+  const countdownContainer = document.getElementById("countdown_container");
+  const countdownNumber = document.getElementById("countdown_number");
+
+  if (countdownContainer && countdownNumber) {
+    countdownContainer.classList.remove("d-none");
+
+    let countdown = 3;
+    countdownNumber.textContent = countdown;
+
+    const interval = setInterval(() => {
+        countdown -= 1;
+        countdownNumber.textContent = countdown;
+        
+        if (countdown <= 0) {
+          clearInterval(interval);
+          countdownContainer.classList.add("d-none");
+        }
+    }, 1000);
+  }
+}
+
 const initKahootGameChannel = (gameId) => {
   if (kahootGameChannel) {
     consumer.subscriptions.remove(kahootGameChannel);
@@ -126,6 +148,10 @@ const initKahootGameChannel = (gameId) => {
         console.log("Desconectado de KahootGameChannel");
       },
       received(data) {
+        const waiting_container = document.getElementById("waiting_container");
+        const in_progress_container = document.getElementById("in_progress_container");
+        const finished_container = document.getElementById("finished_container");
+        const overlay = document.getElementById("overlay");
         if (data.type === "new_player") {
           const participantsContainer = document.getElementById("participants_container");
 
@@ -161,10 +187,14 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type === "game_started") {
-          document.getElementById("waiting_container").style.display = "none";
-          document.getElementById("in_progress_container").style.display = "block";
+          if (waiting_container && in_progress_container){
+            waiting_container.classList.add("d-none");
+            showLoadingScreen(waiting_container, in_progress_container);
+            in_progress_container.classList.remove("d-none");
+          }
         }
         if (data.type === "new_question") {
+          showLoadingScreen();
           updateQuestionUI(data);
         }
         if (data.type === "answer_feedback") {
@@ -192,16 +222,20 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type === "game_finished"){
-          const in_progress_container = document.getElementById("in_progress_container");
-          const finished_container = document.getElementById("finished_container");
           const firstPlace = document.getElementById("first_place");
           const secondPlace = document.getElementById("second_place");
           const thirdPlace = document.getElementById("third_place");
           const otherPlayers = document.getElementById("other_players");
 
           if(in_progress_container){
-            in_progress_container.style.display = "none";
+            in_progress_container.classList.add("d-none");
           }
+
+          if (overlay){
+            overlay.classList.add("d-none");
+          }
+          
+          showLoadingScreen();
 
           if (finished_container && firstPlace && secondPlace && thirdPlace && otherPlayers) {
             const players = data.ranking; // Se asume que `data.ranking` es un array de objetos con { name, score }
@@ -223,19 +257,17 @@ const initKahootGameChannel = (gameId) => {
 
             // Llenar la tabla con los demás jugadores
             otherPlayers.innerHTML = "";
-            for (let index = 0; index < 10; index++) {
-              players.slice(3).forEach((player, index) => {
-                const row = `
-                  <tr>
-                    <td>#${index + 4}</td>
-                    <td>${player.name}</td>
-                    <td>${player.score}</td>
-                  </tr>`;
-                otherPlayers.innerHTML += row;
-              });
-            }
-  
-            finished_container.style.display = "block";
+            players.slice(3).forEach((player, index) => {
+              const row = `
+                <tr>
+                  <td>#${index + 4}</td>
+                  <td>${player.name}</td>
+                  <td>${player.score}</td>
+                </tr>`;
+              otherPlayers.innerHTML += row;
+            });
+            
+            finished_container.classList.remove("d-none");
           }
         }
         if (data.type === "update_counter"){
@@ -250,3 +282,4 @@ const initKahootGameChannel = (gameId) => {
 };
 
 window.initKahootGameChannel = initKahootGameChannel;
+window.showLoadingScreen = showLoadingScreen;
