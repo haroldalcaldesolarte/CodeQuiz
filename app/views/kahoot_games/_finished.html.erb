@@ -24,20 +24,20 @@
   <div class="d-flex justify-content-center align-items-end gap-3 mt-5 mb-4">
     <div id="second_place" class="podium bg-secondary text-white p-3 rounded">
       <h4>🥈</h4>
-      <p class="fw-bold fs-5" id="second_name"><%= players[1][:name] unless players.blank? %></p>
-      <p class="fw-bold" id="second_score"><%= players[1][:score] unless players.blank? %></p>
+      <p class="fw-bold fs-5" id="second_name"><%= players[1][:name] if (players.present? && players[1])%></p>
+      <p class="fw-bold" id="second_score"><%= players[1][:score] if (players.present? && players[1]) %></p>
     </div>
 
     <div id="first_place" class="podium bg-warning text-dark p-4 rounded">
       <h3>🥇</h3>
-      <p class="fw-bold fs-4" id="first_name"><%= players[0][:name] unless players.blank? %></p>
-      <p class="fw-bold fs-5" id="first_score"><%= players[0][:score] unless players.blank? %></p>
+      <p class="fw-bold fs-4" id="first_name"><%= players[0][:name] if (players.present? && players[0]) %></p>
+      <p class="fw-bold fs-5" id="first_score"><%= players[0][:score] if (players.present? && players[0]) %></p>
     </div>
 
     <div id="third_place" class="podium bg-info text-white p-3 rounded">
       <h4>🥉</h4>
-      <p class="fw-bold fs-5" id="third_name"><%= players[2][:name] unless players.blank? %></p>
-      <p class="fw-bold" id="third_score"><%= players[2][:score] unless players.blank? %></p>
+      <p class="fw-bold fs-5" id="third_name"><%= players[2][:name] if (players.present? && players[2]) %></p>
+      <p class="fw-bold" id="third_score"><%= players[2][:score] if (players.present? && players[2]) %></p>
     </div>
   </div>
 
