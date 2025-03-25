@@ -8,4 +8,12 @@ module KahootGamesHelper
     kahoot_participant = get_kahoot_participant(user, kahoot_question.kahoot_game)
     KahootResponse.exists?(kahoot_participant: kahoot_participant, kahoot_question: kahoot_question)
   end
+
+  def get_category(participant)
+    participant.kahoot_game.category
+  end
+  
+  def get_level(participant)
+    participant.kahoot_game.level
+  end
 end

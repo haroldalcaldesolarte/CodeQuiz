@@ -121,6 +121,10 @@ class KahootGamesController < ApplicationController
     end
   end
 
+  def history
+    @participation = KahootParticipant.where(user_id: current_user.id)
+  end
+
   def destroy
     if @kahoot_game.host == current_user
       @kahoot_game.destroy

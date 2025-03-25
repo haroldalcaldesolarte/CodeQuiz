@@ -60,6 +60,10 @@ Rails.application.routes.draw do
       post :submit_answer
       post :next_question
     end
+
+    collection do
+      get :history
+    end
   end
 
   resources :kahoot_participants, only: [:new ,:create, :destroy]

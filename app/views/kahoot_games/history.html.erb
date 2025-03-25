@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h1 class="mb-4 text-center">Historial de Partidas Kahoot</h1>
+
+  <div class="table-responsive" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Categoría</th>
+          <th>Nivel</th>
+          <th>Puntuación</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @participation.each do |participant| %>
+          <% category = get_category(participant) %>
+          <% level = get_level(participant) %>
+          <tr>
+            <td><%= participant.kahoot_game_id %></td>
+            <td><%= category.name %> (<%= get_course_category(category.id) %>)</td>
+            <td><span class="badge rounded-pill bg-<%= level.get_color %>"><%= level.name %></span></td>
+            <td><%= participant.score %> puntos</td>
+            <td><%= participant.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>
