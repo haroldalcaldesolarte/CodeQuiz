@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_03_10_160943) do
+ActiveRecord::Schema.define(version: 2025_03_25_111508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2025_03_10_160943) do
     t.integer "order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "sent_at"
     t.index ["kahoot_game_id"], name: "index_kahoot_questions_on_kahoot_game_id"
     t.index ["question_id"], name: "index_kahoot_questions_on_question_id"
   end

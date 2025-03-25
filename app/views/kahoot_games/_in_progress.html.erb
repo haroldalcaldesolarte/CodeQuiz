@@ -23,7 +23,7 @@
 
   <% 
     index_question = @kahoot_game.current_question_index
-    question = @kahoot_game.kahoot_questions[index_question].question
+    question = @kahoot_game.current_question.question
     number_of_questions = @kahoot_game.kahoot_questions.count
   %>
   <body data-kahoot-game-id="<%= @kahoot_game.id %>">

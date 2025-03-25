@@ -40,6 +40,8 @@ class KahootGamesController < ApplicationController
     if @kahoot_game.host == current_user
       @kahoot_game.update(status: :in_progress)
 
+      @kahoot_game.current_question.update(sent_at: Time.current)
+
       KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_started" })
       redirect_to @kahoot_game
     else
@@ -72,12 +74,13 @@ class KahootGamesController < ApplicationController
     end
 
     correct = selected_answer.correct
-    score = correct ? 100 : 0  #Ajustar cuando se ponga el tiempo
+    answered_at = Time.current
+    score = correct ? calculate_score(answered_at, kahoot_question.sent_at) : 0
     
     KahootResponse.create!(
       kahoot_participant: participant,
       kahoot_question: kahoot_question,
-      answered_at: Time.current,
+      answered_at: answered_at,
       correct: correct,
       score: score
     )
@@ -134,6 +137,19 @@ class KahootGamesController < ApplicationController
 
   private
 
+  def calculate_score(answered_at, sent_at)
+    max_score = 1000
+    penalty_per_second = 20
+
+    return if answered_at.nil?
+
+    sent_time = sent_at
+    return if sent_time.nil?
+
+    response_time = (answered_at - sent_time).to_i
+    [max_score - (response_time * penalty_per_second), 0].max
+  end
+
   def set_kahoot_game
     @kahoot_game = KahootGame.find(params[:id])
   end
@@ -161,6 +177,7 @@ class KahootGamesController < ApplicationController
     kahoot_question = @kahoot_game.current_question
     question = kahoot_question.question
     if question
+      kahoot_question.update(sent_at: Time.current)
       KahootGameChannel.broadcast_to(@kahoot_game, {
         type: "new_question",
         index_question: @kahoot_game.current_question_index + 1,
