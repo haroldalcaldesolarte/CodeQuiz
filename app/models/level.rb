@@ -15,4 +15,9 @@ class Level < ApplicationRecord
       "secondary"
     end
   end
+
+  def self.get_possible_levels
+    levels = Level.distinct.pluck(:id, :name).to_h
+    levels.reject! { |_, name| name == "mix" }
+  end
 end
