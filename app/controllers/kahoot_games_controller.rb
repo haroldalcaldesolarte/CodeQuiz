@@ -4,8 +4,6 @@ class KahootGamesController < ApplicationController
   before_action :set_kahoot_game, only: %i[show start destroy submit_answer next_question]
   before_action :check_participants, only: %i[show]
 
-  TIME_LIMIT = 45
-
   def new
     @kahoot_game = KahootGame.new
     @levels = Level.all
@@ -122,7 +120,7 @@ class KahootGamesController < ApplicationController
   end
 
   def history
-    @participation = KahootParticipant.where(user_id: current_user.id)
+    @participation = KahootParticipant.where(user_id: current_user.id).order(created_at: :desc )
   end
 
   def destroy
@@ -170,7 +168,6 @@ class KahootGamesController < ApplicationController
           id: question.id,
           text: question.question_text,
           answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
-          time_limit: TIME_LIMIT
         } 
       })
 
