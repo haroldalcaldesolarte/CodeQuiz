@@ -33,7 +33,7 @@
             <% if current_user.superuser? %>
               <li class="nav-item"><%= link_to '<i class="fa fa-shapes me-1"></i>Crear Kahoot'.html_safe, new_kahoot_game_path, class: "nav-link" %></li>
             <% end %>
-            <li class="nav-item"><%= link_to '<i class="fa fa-scroll me-1"></i>Historial Kahoot'.html_safe, history_game_sessions_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '<i class="fa fa-scroll me-1"></i>Historial Kahoot'.html_safe, history_kahoot_games_path, class: "nav-link" %></li>
         </ul>
 
         <ul class="navbar-nav ms-auto">
