@@ -178,12 +178,28 @@ class KahootGamesController < ApplicationController
 
   def send_question
     host = @kahoot_game.host
+    participants = @kahoot_game.kahoot_participants
     kahoot_question = @kahoot_game.current_question
     question = kahoot_question.question
     if question
       kahoot_question.update(sent_at: Time.current)
-      KahootGameChannel.broadcast_to(@kahoot_game, {
+
+      participants.each do |participant|
+        KahootGameChannel.broadcast_to(participant, {
+          type: "new_question",
+          host: "false",
+          index_question: @kahoot_game.current_question_index + 1,
+          question: {
+            id: question.id,
+            text: question.question_text,
+            answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
+          } 
+        })
+      end
+
+      KahootGameChannel.broadcast_to(host, {
         type: "new_question",
+        host: "true",
         index_question: @kahoot_game.current_question_index + 1,
         question: {
           id: question.id,

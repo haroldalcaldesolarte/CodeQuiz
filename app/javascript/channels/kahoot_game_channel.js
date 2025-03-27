@@ -85,6 +85,9 @@ const initKahootGameChannel = (gameId) => {
       data.question.answers.forEach(answer => {
         const button = document.createElement("button");
         button.classList.add("answer-button", "btn", "btn-outline-primary", "btn-lg", "w-100", "py-3", "shadow-sm");
+        if(data.host == "true"){
+          button.disabled = true;
+        }
         button.textContent = answer.answer_text;
         button.dataset.answerId = answer.id;
   
