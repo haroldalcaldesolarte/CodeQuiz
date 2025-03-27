@@ -128,6 +128,10 @@ class KahootGamesController < ApplicationController
 
   def destroy
     if @kahoot_game.host == current_user
+      participants = @kahoot_game.kahoot_participants
+      participants.each do |participant|
+        KahootGameChannel.broadcast_to(participant, { type: "game_canceled" })
+      end
       @kahoot_game.destroy
       redirect_to new_kahoot_game_path, notice: "Partida eliminada."
     else

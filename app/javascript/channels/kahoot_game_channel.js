@@ -151,6 +151,7 @@ const initKahootGameChannel = (gameId) => {
         const waiting_container = document.getElementById("waiting_container");
         const in_progress_container = document.getElementById("in_progress_container");
         const finished_container = document.getElementById("finished_container");
+        const canceled_container = document.getElementById("canceled_container");
         const overlay = document.getElementById("overlay");
         if (data.type === "new_player") {
           const participantsContainer = document.getElementById("participants_container");
@@ -169,16 +170,10 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type == "game_canceled"){
-          //Si hace falta que se cree el div si no que no ocupe espacio
-          /*const alertDiv = document.getElementById("kahoot_channel_alert");
-          if (alertDiv) {
-            alertDiv.textContent = "La partida ha sido cancelada por el host.";
-            alertDiv.classList.add("show");
-          }*/
-
-          setTimeout(() => {
-            window.location.href = "/kahoot_participants/new";
-          }, 3000);
+          if (waiting_container && canceled_container){
+            waiting_container.classList.add("d-none");
+            canceled_container.classList.remove("d-none");
+          }
         }
         if (data.type === "player_left"){
           const playerDiv = document.querySelector(`.participant[data-user-id='${data.user_id}']`);
