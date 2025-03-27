@@ -140,7 +140,6 @@ class KahootGamesController < ApplicationController
   end
 
   private
-
   def calculate_score(answered_at, sent_at)
     max_score = 1000
     penalty_per_second = 20

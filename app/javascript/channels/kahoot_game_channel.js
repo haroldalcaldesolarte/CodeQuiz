@@ -180,6 +180,7 @@ const initKahootGameChannel = (gameId) => {
         }
         if (data.type === "player_left"){
           const playerDiv = document.querySelector(`.participant[data-user-id='${data.user_id}']`);
+
           if (playerDiv) {
             playerDiv.remove();
           }
@@ -239,17 +240,17 @@ const initKahootGameChannel = (gameId) => {
             const players = data.ranking; // Se asume que `data.ranking` es un array de objetos con { name, score }
 
             if (players.length > 0) {
-              firstPlace.querySelector("#first_name").textContent = players[0]?.name || "-";
+              firstPlace.querySelector("#first_username").textContent = players[0]?.username || "-";
               firstPlace.querySelector("#first_score").textContent = players[0]?.score || "0";
             }
             
             if (players.length > 1) {
-              secondPlace.querySelector("#second_name").textContent = players[1]?.name || "-";
+              secondPlace.querySelector("#second_username").textContent = players[1]?.username || "-";
               secondPlace.querySelector("#second_score").textContent = players[1]?.score || "0";
             }
 
             if (players.length > 2) {
-              thirdPlace.querySelector("#third_name").textContent = players[2]?.name || "-";
+              thirdPlace.querySelector("#third_username").textContent = players[2]?.username || "-";
               thirdPlace.querySelector("#third_score").textContent = players[2]?.score || "0";
             }
 
@@ -259,7 +260,7 @@ const initKahootGameChannel = (gameId) => {
               const row = `
                 <tr>
                   <td>#${index + 4}</td>
-                  <td>${player.name}</td>
+                  <td>${player.username}</td>
                   <td>${player.score}</td>
                 </tr>`;
               otherPlayers.innerHTML += row;

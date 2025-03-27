@@ -58,6 +58,6 @@ class KahootGame < ApplicationRecord
   end
 
   def ranking
-    kahoot_participants.joins(:user).select("users.name, kahoot_participants.score").order(score: :desc).map { |p| { name: p.name, score: p.score } }
+    kahoot_participants.joins(:user).select("users.username, kahoot_participants.score").order(score: :desc).map { |p| { username: p.username, score: p.score } }
   end
 end
