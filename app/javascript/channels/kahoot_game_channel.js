@@ -172,6 +172,16 @@ const initKahootGameChannel = (gameId) => {
             participantsContainer.appendChild(colDiv);
           }
         }
+        if (data.type == "update_start_btn"){
+          const game_start_btn = document.getElementById("start_game_btn");
+          if (game_start_btn){
+            if (data.show == "true"){
+              game_start_btn.disabled = false;
+            }else{
+              game_start_btn.disabled = true;
+            }
+          }
+        }
         if (data.type == "game_canceled"){
           if (waiting_container && canceled_container){
             waiting_container.classList.add("d-none");

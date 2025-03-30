@@ -21,7 +21,7 @@
 
     <div class="d-flex flex-row justify-content-center mt-5">
       <% if current_user == @kahoot_game.host %>
-        <%= button_to "Iniciar Partida", start_kahoot_game_path(@kahoot_game), method: :post, class: "btn btn-primary btn-lg mx-2" %>
+        <%= button_to "Iniciar Partida", start_kahoot_game_path(@kahoot_game), id:"start_game_btn", method: :post, class: "btn btn-primary btn-lg mx-2", disabled: @participants.count == 0 %>
         <%= button_to "Cancelar Partida", kahoot_game_path(@kahoot_game), method: :delete, class: "btn btn-danger btn-lg mx-2" %>
       <% else %>
         <%= button_to "Dejar la Partida", kahoot_participant_path(get_kahoot_participant(current_user, @kahoot_game)), 

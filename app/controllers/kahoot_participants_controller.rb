@@ -21,6 +21,7 @@ class KahootParticipantsController < ApplicationController
 
         if @participant.save
           KahootGameChannel.broadcast_to(@kahoot_game, {type: "new_player", username: current_user.username, user_id: current_user.id})
+          KahootGameChannel.broadcast_to(@kahoot_game.host, {type: "update_start_btn", show: "true"})
           redirect_to @kahoot_game, notice: "Te has unido a la partida."
         else
           redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. Vuelva a intentarlo!"
@@ -35,6 +36,8 @@ class KahootParticipantsController < ApplicationController
     session[:left_game] = true # Marca que el usuario salió manualmente
     kahoot_game = @participant.kahoot_game
     if @participant.destroy
+      show = kahoot_game.kahoot_participants.count > 0 ? "true" : "false"
+      KahootGameChannel.broadcast_to(kahoot_game.host, {type: "update_start_btn", show: show})
       KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: current_user.id })
       redirect_to new_kahoot_participant_path, notice: "Has salido de la partida."
     else
