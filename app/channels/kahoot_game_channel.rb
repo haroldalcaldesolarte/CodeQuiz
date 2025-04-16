@@ -1,32 +1,43 @@
 class KahootGameChannel < ApplicationCable::Channel
   def subscribed
-    kahoot_game = KahootGame.find(params[:game_id])
-    participant = KahootParticipant.find_by(user: current_user, kahoot_game: kahoot_game)
-    host = kahoot_game.host
+    @kahoot_game = KahootGame.find(params[:game_id])
+    participant = KahootParticipant.find_by(user: current_user, kahoot_game: @kahoot_game)
+    host = @kahoot_game.host
     
-    stream_for kahoot_game
+    stream_for @kahoot_game
     stream_for participant if participant
     stream_for host if current_user == host
-    connection.kahoot_game_id = kahoot_game.id
+    connection.kahoot_game_id = @kahoot_game.id
   end
 
   def unsubscribed
-    return unless connection.kahoot_game_id
-    return if session.delete(:left_game) # Si salió manualmente, no hacer nada
-
-    kahoot_game = KahootGame.find_by(id: connection.kahoot_game_id)
-    return unless kahoot_game
-
-    user = current_user
-    participant = kahoot_game.kahoot_participants.find_by(user: user)
-
-    if kahoot_game.host == user
-      kahoot_game.kahoot_participants.destroy_all
-      kahoot_game.update(status: :canceled)
-      KahootGameChannel.broadcast_to(kahoot_game, { type: "game_canceled" })
-    else
-      participant.destroy
-      KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: user.id })
+    return if @kahoot_game.nil?
+  
+    # Esperamos 3 segundos a ver si se vuelve a conectar
+    Thread.new do
+      sleep 3
+  
+      user = current_user
+  
+      if !ActionCable.server.connections.any? { |conn| conn.current_user == user } #comprobar reconexion
+  
+        if @kahoot_game.waiting? || @kahoot_game.in_progress?
+          if user == @kahoot_game.host
+            @kahoot_game.update(status: :canceled)
+            KahootGameChannel.broadcast_to(@kahoot_game, { type: "game_canceled" })
+          else
+            participant = KahootParticipant.find_by(user: user, kahoot_game: @kahoot_game)
+            if participant
+              if participant.destroy
+                KahootResponse.where(kahoot_participant: participant).delete_all
+                KahootGameChannel.broadcast_to(@kahoot_game, { type: "player_left", user_id: user.id })
+              end
+            end
+          end
+        end
+      else
+        Rails.logger.info "Usuario #{user.id} volvió a conectarse. No se hace nada."
+      end
     end
-  end
+  end  
 end

@@ -183,8 +183,9 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type == "game_canceled"){
-          if (waiting_container && canceled_container){
+          if (waiting_container && canceled_container && in_progress_container){
             waiting_container.classList.add("d-none");
+            in_progress_container.classList.add("d-none");
             canceled_container.classList.remove("d-none");
           }
         }

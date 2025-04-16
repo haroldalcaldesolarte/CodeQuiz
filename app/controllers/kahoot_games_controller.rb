@@ -123,7 +123,11 @@ class KahootGamesController < ApplicationController
   end
 
   def history
-    @participation = KahootParticipant.where(user_id: current_user.id).order(created_at: :desc )
+    @participations = KahootParticipant
+    .includes(:kahoot_game)
+    .where(user_id: current_user.id, kahoot_games: { status: :finished })
+    .references(:kahoot_game)
+    .order(created_at: :desc)
   end
 
   def destroy
@@ -132,10 +136,10 @@ class KahootGamesController < ApplicationController
       participants.each do |participant|
         KahootGameChannel.broadcast_to(participant, { type: "game_canceled" })
       end
-      @kahoot_game.destroy
-      redirect_to new_kahoot_game_path, notice: "Partida eliminada."
+      @kahoot_game.update(status: :canceled)
+      redirect_to new_kahoot_game_path, notice: "Partida cancelada."
     else
-      redirect_to @kahoot_game, alert: "No puedes eliminar esta partida."
+      redirect_to @kahoot_game, alert: "No puedes cancelar esta partida."
     end
   end
 
@@ -143,6 +147,7 @@ class KahootGamesController < ApplicationController
   def calculate_score(answered_at, sent_at)
     max_score = 1000
     penalty_per_second = 20
+    min_score = 100
 
     return if answered_at.nil?
 
@@ -150,7 +155,7 @@ class KahootGamesController < ApplicationController
     return if sent_time.nil?
 
     response_time = (answered_at - sent_time).to_i
-    [max_score - (response_time * penalty_per_second), 0].max
+    [min_score + max_score - (response_time * penalty_per_second), 0].max
   end
 
   def set_kahoot_game
