@@ -41,7 +41,8 @@ class KahootParticipantsController < ApplicationController
         if kahoot_game.waiting?
           KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: current_user.id})
         elsif kahoot_game.in_progress?
-          KahootGameChannel.broadcast_to(kahoot_game.host, { type: "player_left_to_host"})
+          count_participants= @kahoot_game.kahoot_participants.size
+          KahootGameChannel.broadcast_to(kahoot_game.host, { type: "player_left_to_host", count_participants: count_participants})
         end
         redirect_to new_kahoot_participant_path, notice: "Has salido de la partida."
       else

@@ -198,6 +198,7 @@ const initKahootGameChannel = (gameId) => {
         }
         if (data.type === "player_left_to_host"){
           const alert_player_left = document.getElementById("alert_player_left");
+          const counter_participants_container = document.getElementById("counter_participants_container");
           if (alert_player_left) {
             alert_player_left.classList.remove("d-none");
             
@@ -205,6 +206,10 @@ const initKahootGameChannel = (gameId) => {
             void alert_player_left.offsetWidth;
         
             alert_player_left.classList.add("show");
+
+            if(counter_participants_container){
+              counter_participants_container.innerText = data.count_participants;
+            }
         
             setTimeout(() => {
               alert_player_left.classList.remove("show");
@@ -299,7 +304,7 @@ const initKahootGameChannel = (gameId) => {
           }
         }
         if (data.type === "update_counter"){
-          const counterParticipantsContainer =  document.getElementById("counter_participants_container");
+          const counterParticipantsContainer =  document.getElementById("counter_participants_response_container");
           if(counterParticipantsContainer){
             counterParticipantsContainer.innerText = data.count;
           }

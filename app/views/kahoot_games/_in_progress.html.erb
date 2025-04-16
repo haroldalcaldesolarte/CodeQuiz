@@ -56,7 +56,7 @@
         <% if @kahoot_game.host == current_user %>
           <h4 class="fw-bold">
             <span class="badge rounded-pill bg-secondary">
-              Respuestas <span id="counter_participants_container">0</span>/<%= @kahoot_game.kahoot_participants.count %>
+              Respuestas <span id="counter_participants_response_container">0</span>/<span id="counter_participants_container"><%= @kahoot_game.kahoot_participants.count %></span>
             </span>
           </h4>
         <% end %>
