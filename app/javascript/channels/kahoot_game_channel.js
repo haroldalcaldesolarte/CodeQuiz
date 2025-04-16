@@ -196,6 +196,24 @@ const initKahootGameChannel = (gameId) => {
             playerDiv.remove();
           }
         }
+        if (data.type === "player_left_to_host"){
+          const alert_player_left = document.getElementById("alert_player_left");
+          if (alert_player_left) {
+            alert_player_left.classList.remove("d-none");
+            
+            // forzar reflow para aplicar la transición
+            void alert_player_left.offsetWidth;
+        
+            alert_player_left.classList.add("show");
+        
+            setTimeout(() => {
+              alert_player_left.classList.remove("show");
+              setTimeout(() => {
+                alert_player_left.classList.add("d-none");
+              }, 500);
+            }, 3000);
+          }
+        }
         if (data.type === "game_started") {
           if (waiting_container && in_progress_container){
             waiting_container.classList.add("d-none");

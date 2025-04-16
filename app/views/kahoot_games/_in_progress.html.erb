@@ -19,6 +19,14 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
   }
 
+  .fade-alert {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-alert.show {
+    opacity: 1;
+  }
 </style>
 
   <% 
@@ -27,7 +35,10 @@
     number_of_questions = @kahoot_game.kahoot_questions.count
   %>
   <body data-kahoot-game-id="<%= @kahoot_game.id %>">
-    <div class="container py-5">
+    <div class="container py-5 text-center">
+      <% if @kahoot_game.host == current_user && @kahoot_game.in_progress? %>
+        <span id="alert_player_left" class="my-2 fs-6 badge rounded-pill bg-warning text-dark fade-alert">Un participante ha abandonado la partida</span>
+      <% end %>
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h4 class="fw-bold">
           <span class="badge rounded-pill bg-primary">

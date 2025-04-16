@@ -11,6 +11,7 @@ class KahootGameChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
+    @kahoot_game = KahootGame.find(params[:game_id])
     return if @kahoot_game.nil?
   
     # Esperamos 3 segundos a ver si se vuelve a conectar
@@ -30,7 +31,11 @@ class KahootGameChannel < ApplicationCable::Channel
             if participant
               if participant.destroy
                 KahootResponse.where(kahoot_participant: participant).delete_all
-                KahootGameChannel.broadcast_to(@kahoot_game, { type: "player_left", user_id: user.id })
+                if @kahoot_game.waiting?
+                  KahootGameChannel.broadcast_to(@kahoot_game, { type: "player_left", user_id: current_user.id})
+                elsif @kahoot_game.in_progress?
+                  KahootGameChannel.broadcast_to(@kahoot_game.host, { type: "player_left_to_host"})
+                end
               end
             end
           end

@@ -38,7 +38,11 @@ class KahootParticipantsController < ApplicationController
       if @participant.destroy
         show = kahoot_game.kahoot_participants.count > 0 ? "true" : "false"
         KahootGameChannel.broadcast_to(kahoot_game.host, {type: "update_start_btn", show: show})
-        KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: current_user.id})
+        if kahoot_game.waiting?
+          KahootGameChannel.broadcast_to(kahoot_game, { type: "player_left", user_id: current_user.id})
+        elsif kahoot_game.in_progress?
+          KahootGameChannel.broadcast_to(kahoot_game.host, { type: "player_left_to_host"})
+        end
         redirect_to new_kahoot_participant_path, notice: "Has salido de la partida."
       else
         redirect_to kahoot_game, alert: "No se pudo salir de la partida."
