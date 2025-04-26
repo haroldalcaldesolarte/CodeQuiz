@@ -5,7 +5,7 @@
       <div class="row mb-3">
         <%= form.label 'Categoría' , class: "col-sm-2 col-form-label" %>
         <div class="col-sm-10">
-          <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
+          <%= form.collection_select :category_id, @categories, :id, :name_with_course, { prompt: "Selecciona una categoría" }, { class: "form-select mb-3", required: true} %>
         </div>
       </div>
 

@@ -17,14 +17,20 @@ class KahootParticipantsController < ApplicationController
       if ids_kahoot_participants.include?(current_user.id)
         redirect_to @kahoot_game, notice: "Ya te has unido a la partida."
       else
-        @participant = @kahoot_game.kahoot_participants.build(user: current_user, score: 0)
+        course_category = CategoriesCourse.where(category_id: @kahoot_game.category_id)
+        course = Course.where(id: course_category.first.course_id).first
+        if course.id === current_user.course_id
+          @participant = @kahoot_game.kahoot_participants.build(user: current_user, score: 0)
 
-        if @participant.save
-          KahootGameChannel.broadcast_to(@kahoot_game, {type: "new_player", username: current_user.username, user_id: current_user.id})
-          KahootGameChannel.broadcast_to(@kahoot_game.host, {type: "update_start_btn", show: "true"})
-          redirect_to @kahoot_game, notice: "Te has unido a la partida."
+          if @participant.save
+            KahootGameChannel.broadcast_to(@kahoot_game, {type: "new_player", username: current_user.username, user_id: current_user.id})
+            KahootGameChannel.broadcast_to(@kahoot_game.host, {type: "update_start_btn", show: "true"})
+            redirect_to @kahoot_game, notice: "Te has unido a la partida."
+          else
+            redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. Vuelva a intentarlo!"
+          end
         else
-          redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. Vuelva a intentarlo!"
+          redirect_to new_kahoot_participant_path, alert: "No se pudo unir a la partida. No pertenece al curso de la categoría!"
         end
       end
     else
