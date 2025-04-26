@@ -13,11 +13,14 @@ Rails.application.routes.draw do
   resources :roles
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  resources :game_sessions, only: [:index, :show, :new, :create] do
-    collection do
+  resources :game_sessions, only: [:index, :show, :new, :create, :destroy] do
+    member do
       get :play
       post :answer
       get :result
+    end
+    
+    collection do
       get :history
     end
   end
@@ -50,7 +53,21 @@ Rails.application.routes.draw do
       patch :update_password
     end
   end
-  
-  match "*path", to: "application#handle_not_found", via: :all
+
+  resources :kahoot_games, only: [:new, :create, :show, :destroy] do
+    member do
+      post :start
+      post :submit_answer
+      post :next_question
+    end
+
+    collection do
+      get :history
+    end
+  end
+
+  resources :kahoot_participants, only: [:new ,:create, :destroy]
+
+  #match "*path", to: "application#handle_not_found", via: :all
   
 end

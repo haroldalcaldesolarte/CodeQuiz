@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :authored_questions, class_name: "Question", foreign_key: "author_id"
   has_many :revised_questions, class_name: "Question", foreign_key: "revisor_id"
   has_many :game_sessions
+  has_many :kahoot_games, foreign_key: "host_id"
+  has_many :kahoot_participants, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

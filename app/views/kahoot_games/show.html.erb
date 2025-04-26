@@ -1,0 +1,44 @@
+<div id="overlay" class="d-none position-fixed top-0 left-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center" 
+    style="z-index: 9999; background-color: rgba(0, 0, 0, 0.5);">
+  <div class="p-5 bg-light rounded shadow-lg text-center">
+    <div id="feedback_icon" class="fs-1"></div>
+    <p id="feedback_message" class="mt-2 fs-4 fw-bold"></p>
+    <p id="feedback_score" class="fs-5 text-primary fw-bold"></p>
+    <p id="feedback_total_score" class="fs-6 text-dark"></p>
+  </div>
+</div>
+
+<div id="countdown_container" class="d-none position-fixed top-0 left-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center bg-dark text-white"
+    style="z-index: 9999;">
+  <h1 id="countdown_number" class="fw-bold display-1">3</h1>
+  <div class="spinner-border text-danger" style="width: 4rem; height: 4rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div id="waiting_container" <%= "class=d-none" unless @kahoot_game.waiting? %>>
+  <%= render 'waiting' %>
+</div>
+
+<div id="in_progress_container" <%= "class=d-none" unless @kahoot_game.in_progress? %>>
+  <%= render 'in_progress' %>
+</div>
+
+<div id="finished_container" <%= "class=d-none" unless @kahoot_game.finished? %>>
+  <%= render 'finished' %>
+</div>
+
+<div id="canceled_container" <%= "class=d-none" unless @kahoot_game.canceled? %>>
+  <%= render 'canceled' %>
+</div>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function() {
+    initKahootGameChannel(<%= @kahoot_game.id %>);
+    const inProgress = <%= @kahoot_game.in_progress? %>;
+    const indexQuestion = <%= @kahoot_game.current_question_index %>;
+    if (inProgress && indexQuestion === 0) {
+      showLoadingScreen();
+    }
+  });
+</script>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_02_123449) do
+ActiveRecord::Schema.define(version: 2025_03_25_111508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,8 +65,58 @@ ActiveRecord::Schema.define(version: 2025_02_02_123449) do
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "level_id"
+    t.integer "status", default: 0, null: false
     t.index ["category_id"], name: "index_game_sessions_on_category_id"
+    t.index ["level_id"], name: "index_game_sessions_on_level_id"
     t.index ["user_id"], name: "index_game_sessions_on_user_id"
+  end
+
+  create_table "kahoot_games", force: :cascade do |t|
+    t.bigint "host_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "level_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "current_question_index", default: 0
+    t.index ["category_id"], name: "index_kahoot_games_on_category_id"
+    t.index ["host_id"], name: "index_kahoot_games_on_host_id"
+    t.index ["level_id"], name: "index_kahoot_games_on_level_id"
+  end
+
+  create_table "kahoot_participants", force: :cascade do |t|
+    t.bigint "kahoot_game_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kahoot_game_id"], name: "index_kahoot_participants_on_kahoot_game_id"
+    t.index ["user_id"], name: "index_kahoot_participants_on_user_id"
+  end
+
+  create_table "kahoot_questions", force: :cascade do |t|
+    t.bigint "kahoot_game_id", null: false
+    t.bigint "question_id", null: false
+    t.integer "order"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "sent_at"
+    t.index ["kahoot_game_id"], name: "index_kahoot_questions_on_kahoot_game_id"
+    t.index ["question_id"], name: "index_kahoot_questions_on_question_id"
+  end
+
+  create_table "kahoot_responses", force: :cascade do |t|
+    t.bigint "kahoot_participant_id", null: false
+    t.bigint "kahoot_question_id", null: false
+    t.datetime "answered_at"
+    t.boolean "correct"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kahoot_participant_id", "kahoot_question_id"], name: "index_unique_participant_question", unique: true
+    t.index ["kahoot_participant_id"], name: "index_kahoot_responses_on_kahoot_participant_id"
+    t.index ["kahoot_question_id"], name: "index_kahoot_responses_on_kahoot_question_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -123,7 +173,17 @@ ActiveRecord::Schema.define(version: 2025_02_02_123449) do
   add_foreign_key "game_responses", "game_sessions"
   add_foreign_key "game_responses", "questions"
   add_foreign_key "game_sessions", "categories"
+  add_foreign_key "game_sessions", "levels"
   add_foreign_key "game_sessions", "users"
+  add_foreign_key "kahoot_games", "categories"
+  add_foreign_key "kahoot_games", "levels"
+  add_foreign_key "kahoot_games", "users", column: "host_id"
+  add_foreign_key "kahoot_participants", "kahoot_games"
+  add_foreign_key "kahoot_participants", "users"
+  add_foreign_key "kahoot_questions", "kahoot_games"
+  add_foreign_key "kahoot_questions", "questions"
+  add_foreign_key "kahoot_responses", "kahoot_participants"
+  add_foreign_key "kahoot_responses", "kahoot_questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "levels"
   add_foreign_key "questions", "users", column: "author_id"

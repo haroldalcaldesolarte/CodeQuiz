@@ -1,8 +1,9 @@
 class GameSessionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_game_session, only: %i[ destroy ]
+  before_action :set_game_session, only: %i[play answer result destroy]
+  before_action :check_game_session_finished, only: :result
 
-   NUMBER_OF_QUESTIONS_PER_GAME = 5
+  NUMBER_OF_QUESTIONS_PER_GAME = 3
 
   # GET /game_sessions or /game_sessions.json
   def index
@@ -30,55 +31,60 @@ class GameSessionsController < ApplicationController
     @category = Category.find(params[:category_id])
     @level = Level.find(params[:level_id])
 
-    #Controlar que si no hay 10 preguntas no se puede empezar la partida
     if @level.name.include?('mix')
-      @questions = Question.where(category: @category, status: 1).shuffle.take(NUMBER_OF_QUESTIONS_PER_GAME)
+      @questions = Question.where(category: @category, status: :approved).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_GAME)
     else
-      @questions = Question.where(category: @category, level: @level, status: 1).shuffle.take(NUMBER_OF_QUESTIONS_PER_GAME)
+      @questions = Question.where(category: @category, level: @level, status: 1).order(Arel.sql("RANDOM()")).limit(NUMBER_OF_QUESTIONS_PER_GAME)
     end
 
-    @game_session = GameSession.create(user: current_user, category: @category, score: 0)
+    if @questions.empty?
+      redirect_to game_sessions_path, alert: "No hay preguntas disponibles para esta categoría y nivel."
+      return
+    end
+
+    @game_session = GameSession.create(user: current_user, category: @category, level: @level, score: 0)
 
     session[:game_session_id] = @game_session.id
     session[:question_ids] = @questions.map(&:id)
     session[:current_question_index] = 0
 
-    redirect_to play_game_sessions_path
+    redirect_to play_game_session_path(@game_session)
   end
 
   def play
-    @game_session = GameSession.find(session[:game_session_id])
+    @level = @game_session.level
+    @category_name = @game_session.category.name
     current_index = session[:current_question_index]
     question_ids = session[:question_ids]
 
     if current_index < question_ids.size
       @question = Question.find(question_ids[current_index])
-      @categoy_name = @question.category.name
-    else
-      redirect_to result_game_sessions_path
     end
   end
 
   def answer
-    game_session = GameSession.find(session[:game_session_id])
     question = Question.find(params[:question_id])
     user_answer = Answer.find(params[:answer_id])
 
     correct = user_answer.correct
-    GameResponse.create(game_session: game_session, question: question, correct: correct)
+    GameResponse.create(game_session: @game_session, question: question, correct: correct)
 
-    game_session.increment!(:score, 10) if correct
+    @game_session.increment!(:score, 10) if correct
     session[:current_question_index] += 1
+
+    if session[:current_question_index] >= session[:question_ids].size
+      @game_session.update!(status: :finished)
+    end
 
     render json: {
       correct: correct,
       next_question_index: session[:current_question_index] < session[:question_ids].size,
-      question_path: play_game_sessions_path
+      question_path: play_game_session_path(@game_session),
+      result_path: result_game_session_path(@game_session)
     }
   end
 
   def result
-    @game_session = GameSession.find(session[:game_session_id])
     @responses = @game_session.game_responses.includes(:question)
   end
 
@@ -97,22 +103,34 @@ class GameSessionsController < ApplicationController
 
   # DELETE /game_sessions/1 or /game_sessions/1.json
   def destroy
-    @game_session.destroy
+    if current_user == @game_session.user
+      @game_session.destroy
 
-    respond_to do |format|
-      format.html { redirect_to game_sessions_path, status: :see_other, notice: "Game session was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to game_sessions_path, status: :see_other, notice: "Partida cancelada." }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game_session
-      @game_session = GameSession.find(params[:id])
+      @game_session = GameSession.find_by(id: params[:id], user: current_user)
+
+      if @game_session.nil? || @game_session.id != session[:game_session_id]
+        redirect_to game_sessions_path, alert: "No tienes acceso a esta partida o no es la partida activa."
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def game_session_params
-      params.require(:game_session).permit(:user_id, :category_id, :score, :level_id)
+      params.require(:game_session).permit(:category_id, :level_id)
+    end
+
+    def check_game_session_finished
+      unless @game_session.finished?
+        redirect_to play_game_session_path(@game_session), alert: "La partida no ha terminado aún."
+      end
     end
 end

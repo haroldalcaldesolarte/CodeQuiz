@@ -12,16 +12,28 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <% if user_signed_in? %>
         <ul class="navbar-nav me-auto">
-          <% if current_user.admin? %>
-            <li class="nav-item"><%= link_to "Categorías", categories_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Cursos", courses_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Roles", roles_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Niveles", levels_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Cursos Categorias", categories_courses_path, class: "nav-link" %></li>
+          <% if current_user.superuser? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownEntidades" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-database me-1"></i>Entidades
+              </a>
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownEntidades">
+                <li class="nav-item"><%= link_to "Categorías", categories_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Cursos", courses_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Roles", roles_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Niveles", levels_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "Cursos Categorias", categories_courses_path, class: "nav-link" %></li>
+              </ul>
+            </li>
           <% end %>
-            <li class="nav-item"><%= link_to "Preguntas", questions_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Jugar", game_sessions_path, class: "nav-link" %></li>
-            <li class="nav-item"><%= link_to "Historial de Partidas", history_game_sessions_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '<i class="fa fa-circle-question"></i> Preguntas'.html_safe, questions_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '<i class="fa fa-gamepad me-1"></i>Jugar'.html_safe, game_sessions_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '<i class="fa fa-scroll me-1"></i>Historial Partidas'.html_safe, history_game_sessions_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to '<i class="fa fa-right-to-bracket me-1"></i>Unirse a partida'.html_safe, new_kahoot_participant_path, class: "nav-link" %></li>
+            <% if current_user.superuser? %>
+              <li class="nav-item"><%= link_to '<i class="fa fa-shapes me-1"></i>Crear Kahoot'.html_safe, new_kahoot_game_path, class: "nav-link" %></li>
+            <% end %>
+            <li class="nav-item"><%= link_to '<i class="fa fa-scroll me-1"></i>Historial Kahoot'.html_safe, history_kahoot_games_path, class: "nav-link" %></li>
         </ul>
 
         <ul class="navbar-nav ms-auto">

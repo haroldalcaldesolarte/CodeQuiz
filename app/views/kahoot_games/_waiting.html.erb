@@ -1,0 +1,35 @@
+<div class="container d-flex justify-content-center my-5">
+  <div class="card text-center shadow p-4 d-flex flex-column" style="width: 80rem; min-height: 20rem;">
+    <h3 class="card-title mb-4">Partida en espera...</h3>
+    <div class="flex-grow-1 overflow-auto px-3">
+      <% if @kahoot_game.host == current_user %>
+        <h2 class="mb-3">
+          <span class="badge bg-secondary">PIN de juego: <%= @kahoot_game.id %></span>
+        </h2>
+      <% end %>
+      <div class="container">
+        <span class="my-2 fs-6 font-monospace badge rounded-pill bg-warning text-dark">Esperando participantes...</span>
+        <div class="row row-cols-1 row-cols-md-4 g-3" id="participants_container">
+          <% @participants.each do |participant| %>
+            <div class="col participant" data-user-id="<%= participant.user.id %>">
+              <div class="p-2 bg-light border rounded"><%= participant.user.username %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row justify-content-center mt-5">
+      <% if current_user == @kahoot_game.host %>
+        <%= button_to "Iniciar Partida", start_kahoot_game_path(@kahoot_game), id:"start_game_btn", method: :post, class: "btn btn-primary btn-lg mx-2", disabled: @participants.count == 0 %>
+        <%= button_to "Cancelar Partida", kahoot_game_path(@kahoot_game), method: :delete, class: "btn btn-danger btn-lg mx-2" %>
+      <% else %>
+        <%= button_to "Dejar la Partida", kahoot_participant_path(get_kahoot_participant(current_user, @kahoot_game)), 
+            method: :delete, 
+            data: { confirm: "¿Seguro que quieres salir de la partida?" }, 
+            class: "btn btn-danger btn-lg mx-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
