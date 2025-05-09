@@ -13,4 +13,4 @@ docker exec -u postgres "$CONTAINER" pg_restore --data-only --disable-triggers -
 echo "Limpiando archivos temporales..."
 docker exec $CONTAINER rm /tmp/$DUMP_FILE
 
-echo "✅ Base de datos restaurada correctamente."
+echo "Base de datos restaurada correctamente."
