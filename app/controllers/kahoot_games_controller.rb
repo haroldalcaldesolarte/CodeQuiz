@@ -1,4 +1,5 @@
 class KahootGamesController < ApplicationController
+  include GameSessionsHelper
   before_action :authenticate_user!
   before_action :check_permissions, only: %i[new start create]
   before_action :set_kahoot_game, only: %i[show start destroy submit_answer next_question]
@@ -128,6 +129,8 @@ class KahootGamesController < ApplicationController
     .where(user_id: current_user.id, kahoot_games: { status: :finished })
     .references(:kahoot_game)
     .order(created_at: :desc)
+
+    @hosted_games= KahootGame.where(host_id: current_user.id) if current_user.superuser?
   end
 
   def destroy
@@ -187,6 +190,7 @@ class KahootGamesController < ApplicationController
     question = kahoot_question.question
     if question
       kahoot_question.update(sent_at: Time.current)
+      answers = get_random_answers(question)
 
       participants.each do |participant|
         KahootGameChannel.broadcast_to(participant, {
@@ -196,7 +200,7 @@ class KahootGamesController < ApplicationController
           question: {
             id: question.id,
             text: question.question_text,
-            answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
+            answers: answers.map { |answer| { id: answer.id, answer_text: answer.answer_text } },
           } 
         })
       end
@@ -208,7 +212,7 @@ class KahootGamesController < ApplicationController
         question: {
           id: question.id,
           text: question.question_text,
-          answers: question.answers.order(:id).map { |answer| { id: answer.id, answer_text: answer.answer_text } },
+          answers: answers.map { |answer| { id: answer.id, answer_text: answer.answer_text } },
         } 
       })
 

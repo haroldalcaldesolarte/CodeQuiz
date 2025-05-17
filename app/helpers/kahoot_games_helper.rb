@@ -12,6 +12,18 @@ module KahootGamesHelper
   def get_category(participant)
     participant.kahoot_game.category
   end
+
+  def get_category_by_game(game)
+    game.category
+  end
+
+  def get_level_by_game(game)
+    game.level
+  end
+
+  def get_number_of_participants(game)
+    game.kahoot_participants&.count || 0
+  end
   
   def get_level(participant)
     participant.kahoot_game.level

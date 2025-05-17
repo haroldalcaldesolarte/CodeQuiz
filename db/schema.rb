@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2025_03_25_111508) do
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "level_id"
+    t.bigint "level_id", null: false
     t.integer "status", default: 0, null: false
     t.index ["category_id"], name: "index_game_sessions_on_category_id"
     t.index ["level_id"], name: "index_game_sessions_on_level_id"

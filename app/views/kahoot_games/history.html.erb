@@ -1,32 +1,80 @@
 <div class="container mt-4">
   <h1 class="mb-4 text-center">Historial de Partidas Kahoot</h1>
 
-  <div class="table-responsive" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
-    <table class="table table-striped mb-0">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Categoría</th>
-          <th>Nivel</th>
-          <th>Puntuación</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
+  <ul class="nav nav-tabs" id="rankingTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="participations-tab" data-bs-toggle="tab" data-bs-target="#participations" type="button" role="tab" aria-controls="participations" aria-selected="true">Participaciones</button>
+    </li>
+    <% if current_user.superuser? %>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="hosts-tab" data-bs-toggle="tab" data-bs-target="#hosts" type="button" role="tab" aria-controls="hosts" aria-selected="false">Hosted</button>
+    </li>
+    <% end %>
+  </ul>
 
-      <tbody>
-        <% @participations.each do |participant| %>
-          <% category = get_category(participant) %>
-          <% level = get_level(participant) %>
-          <tr>
-            <td><%= participant.kahoot_game_id %></td>
-            <td><%= category.name %> (<%= get_course_category(category.id) %>)</td>
-            <td><span class="badge rounded-pill bg-<%= level.get_color %>"><%= level.name %></span></td>
-            <td><%= participant.score %> puntos</td>
-            <td><%= participant.created_at.strftime("%d/%m/%Y %H:%M") %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="tab-content mt-4" id="userTabsContent">
+    <div class="tab-pane fade show active" id="participations" role="tabpanel" aria-labelledby="participations-tab">
+      <div class="table-responsive" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+        <table class="table table-striped mb-0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Categoría</th>
+              <th>Nivel</th>
+              <th>Puntuación</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @participations.each do |participant| %>
+              <% category = get_category(participant) %>
+              <% level = get_level(participant) %>
+              <tr>
+                <td><%= participant.kahoot_game_id %></td>
+                <td><%= category.name %> (<%= get_course_category(category.id) %>)</td>
+                <td><span class="badge rounded-pill bg-<%= level.get_color %>"><%= level.name %></span></td>
+                <td><%= participant.score %> puntos</td>
+                <td><%= participant.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <% if current_user.superuser? %>
+    <div class="tab-pane fade" id="hosts" role="tabpanel" aria-labelledby="hosts-tab">
+      <div class="table-responsive" style="max-height: 500px; overflow-y: auto; border: 1px solid #ddd; border-radius: 8px;">
+        <table class="table table-striped mb-0">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Categoría</th>
+              <th>Nivel</th>
+              <th>Nº participantes</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @hosted_games.each do |game| %>
+              <% category = get_category_by_game(game) %>
+              <% level = get_level_by_game(game) %>
+              <% number_of_participants = get_number_of_participants(game) %>
+              <tr>
+                <td><%= game.id %></td>
+                <td><%= category.name %> (<%= get_course_category(category.id) %>)</td>
+                <td><span class="badge rounded-pill bg-<%= level.get_color %>"><%= level.name %></span></td>
+                <td><%= number_of_participants %></td>
+                <td><%= game.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% end %>
   </div>
   <br>
 </div>
