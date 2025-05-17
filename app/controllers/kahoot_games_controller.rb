@@ -129,6 +129,8 @@ class KahootGamesController < ApplicationController
     .where(user_id: current_user.id, kahoot_games: { status: :finished })
     .references(:kahoot_game)
     .order(created_at: :desc)
+
+    @hosted_games= KahootGame.where(host_id: current_user.id) if current_user.superuser?
   end
 
   def destroy
