@@ -158,7 +158,7 @@ class KahootGamesController < ApplicationController
     return if sent_time.nil?
 
     response_time = (answered_at - sent_time).to_i
-    [min_score + max_score - (response_time * penalty_per_second), 0].max
+    [max_score - (response_time * penalty_per_second), min_score].max
   end
 
   def set_kahoot_game
