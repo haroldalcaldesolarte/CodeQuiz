@@ -2,7 +2,7 @@
 
 DUMP_FILE=codequiz.dump
 CONTAINER=codequiz_db
-DB_NAME=CodeQuiz_development
+DB_NAME=CodeQuiz_production
 
 echo "Copiando '$DUMP_FILE' al contenedor '$CONTAINER'..."
 docker cp $DUMP_FILE $CONTAINER:/tmp/$DUMP_FILE

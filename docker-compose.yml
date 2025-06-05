@@ -5,30 +5,39 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: CodeQuiz_development
+      POSTGRES_DB: CodeQuiz_production
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "14052:5432"
+  
+  redis:
+    image: redis:7
+    container_name: codequiz_redis
+    ports:
+      - "14050:6379"
 
   web:
     build: .
     container_name: codequiz_web
-    command: bash -c "bundle exec rails db:prepare && bundle exec rails s -b 0.0.0.0"
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
     volumes:
       - .:/app
       - ./config/master.key:/app/config/master.key:ro
     ports:
-      - "3000:3000"
+      - "14051:3000"
     depends_on:
       - db
+      - redis
     environment:
+      RAILS_ENV: production
+      NODE_ENV: production
       DATABASE_HOST: db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
-      RAILS_ENV: development
-      NODE_ENV: development
+      REDIS_URL: redis://redis:6379/1
       NODE_OPTIONS: --openssl-legacy-provider
+      RAILS_SERVE_STATIC_FILES: true
 
 volumes:
   postgres_data:

@@ -15,9 +15,7 @@ test:
   database: CodeQuiz_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: CodeQuiz_production
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
+
 
