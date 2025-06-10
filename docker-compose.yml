@@ -5,22 +5,25 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: CodeQuiz_production
+      POSTGRES_DB: codequiz_production
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "14052:5432"
+    networks:
+      - proxy-network
+      - codequiz-network
   
   redis:
     image: redis:7
     container_name: codequiz_redis
-    ports:
-      - "14050:6379"
+    restart: always
+    networks:
+      - proxy-network
+      - codequiz-network
 
   web:
     build: .
     container_name: codequiz_web
-    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
+    command: bash -c "echo 'bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
     volumes:
       - .:/app
       - ./config/master.key:/app/config/master.key:ro
@@ -32,12 +35,25 @@ services:
     environment:
       RAILS_ENV: production
       NODE_ENV: production
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       DATABASE_HOST: db
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      REDIS_URL: redis://redis:6379/1
       NODE_OPTIONS: --openssl-legacy-provider
       RAILS_SERVE_STATIC_FILES: true
+      RAILS_LOG_TO_STDOUT: true
+      VIRTUAL_HOST: www.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_HOST: www.codequiz.dockergp.ip-ddns.com
+    networks:
+      - proxy-network
+      - codequiz-network
 
 volumes:
   postgres_data:
+
+networks:
+  proxy-network:
+    external: true
+  codequiz-network:
+    name: codequiz-network
+    driver: bridge
+    internal: true
