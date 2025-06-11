@@ -23,11 +23,32 @@ services:
     networks:
       - proxy-network
       - codequiz-network
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: codequiz_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@codequiz.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+      VIRTUAL_HOST: www.pgadmin.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_HOST: www.pgadmin.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_EMAIL: postgres@codequiz.com
+    ports:
+      - "14053:80"
+    networks:
+      - proxy-network
+      - codequiz-network
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - .:/root/.pgadmin:rw
+    restart: unless-stopped
 
   web:
     build: .
     container_name: codequiz_web
-    command: bash -c "echo 'RAILS_ENV='$RAILS_ENV && sleep 10 && bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
     volumes:
       - .:/app
       - ./config/master.key:/app/config/master.key:ro
@@ -54,6 +75,7 @@ services:
 
 volumes:
   postgres_data:
+  pgadmin_data:
 
 networks:
   proxy-network:
