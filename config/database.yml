@@ -1,22 +1,24 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
-  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD", "postgres") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
 
 development:
   <<: *default
   database: CodeQuiz_development
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "postgres") %>
 
 test:
   <<: *default
   database: CodeQuiz_test
-
-production:
-  <<: *default
-  database: codequiz_production
-  host: <%= ENV.fetch("DATABASE_HOST", "db") %>
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
   username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD", "postgres") %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  url: <%= ENV["DATABASE_URL"] %>
