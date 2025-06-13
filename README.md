@@ -32,6 +32,10 @@ Algunas de las gemas clave utilizadas:
 - Bootstrap 5 – Interfaz responsive
 - ActionCable – Para comunicación en tiempo real vía WebSockets
 
+# Trello
+
+- https://trello.com/b/Cs8oOYuK
+
 
 # Contenedores Docker
 
