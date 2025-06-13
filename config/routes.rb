@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+  
   resources :game_responses
   resources :questions do
     member do

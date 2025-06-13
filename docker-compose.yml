@@ -5,30 +5,82 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: CodeQuiz_development
+      POSTGRES_DB: codequiz_production
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "14052:5432"
+    networks:
+      - proxy-network
+      - codequiz-network
+  
+  redis:
+    image: redis:7
+    container_name: codequiz_redis
+    restart: always
+    ports:
+      - "14050:6379"
+    networks:
+      - proxy-network
+      - codequiz-network
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: codequiz_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@codequiz.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+      VIRTUAL_HOST: www.pgadmin.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_HOST: www.pgadmin.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_EMAIL: postgres@codequiz.com
+    ports:
+      - "14053:80"
+    networks:
+      - proxy-network
+      - codequiz-network
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - .:/root/.pgadmin:rw
+    restart: unless-stopped
 
   web:
     build: .
     container_name: codequiz_web
-    command: bash -c "bundle exec rails db:prepare && bundle exec rails s -b 0.0.0.0"
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails s -e production -b 0.0.0.0 -p 3000"
     volumes:
       - .:/app
       - ./config/master.key:/app/config/master.key:ro
     ports:
-      - "3000:3000"
+      - "14051:3000"
     depends_on:
       - db
+      - redis
     environment:
+      RAILS_ENV: production
+      NODE_ENV: production
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      DATABASE_URL: postgres://postgres:postgres@db:5432/codequiz_production
       DATABASE_HOST: db
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      RAILS_ENV: development
-      NODE_ENV: development
       NODE_OPTIONS: --openssl-legacy-provider
+      RAILS_SERVE_STATIC_FILES: true
+      RAILS_LOG_TO_STDOUT: true
+      VIRTUAL_HOST: www.codequiz.dockergp.ip-ddns.com
+      LETSENCRYPT_HOST: www.codequiz.dockergp.ip-ddns.com
+    networks:
+      - proxy-network
+      - codequiz-network
 
 volumes:
   postgres_data:
+  pgadmin_data:
+
+networks:
+  proxy-network:
+    external: true
+  codequiz-network:
+    name: codequiz-network
+    driver: bridge
+    internal: true
